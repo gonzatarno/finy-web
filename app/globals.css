@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Source+Serif+4:wght@200;300;400;500;600;700;800;900&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to bg-zinc-50 for global background */
+  --background: oklch(1 0 0); /* bg-zinc-50 */
+  --foreground: oklch(0.1450 0 0); /* text-gray-900 */
+  --card: oklch(1 0 0); /* Pure white */
+  --card-foreground: oklch(0.1450 0 0);
+  --popover: oklch(1 0 0); /* White background for tooltips/dropdowns */
+  --popover-foreground: oklch(0.1450 0 0); /* Black text for tooltips/dropdowns */
+  --primary: #CEFD55; /* #CEFD55 Lime */
+  --primary-foreground: #1f1f1f; /* Black text on lime */
+  --secondary: oklch(0.9700 0 0);
+  --secondary-foreground: oklch(0.2050 0 0);
+  --muted: oklch(0.9700 0 0); /* bg-gray-100 */
+  --muted-foreground: oklch(0.5560 0 0); /* text-gray-500 */
+  --accent: oklch(0.9700 0 0); /* #CEFD55 Lime */
+  --accent-foreground: oklch(0.2050 0 0); /* Black text on lime */
+  --destructive: oklch(0.5770 0.2450 27.3250);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9220 0 0); /* border-gray-100 */
+  --input: #efefef;
+  --ring: oklch(0.7080 0 0);
+  --chart-1: #696FC7; /* Emerald */
+  --chart-2: #F5D3C4; /* Teal */
+  --chart-3: #F2AEBB; /* Blue */
+  --chart-4: #E2852E; /* Yellow */
+  --chart-5: #ABE0F0; /* Pink */
+  --radius: 0.5rem; /* 8px for rounded-lg global standard */
+  --sidebar: oklch(0.9850 0 0); /* White sidebar */
+  --sidebar-foreground: oklch(0.1450 0 0); /* Black text */
+  --sidebar-primary: oklch(0.2050 0 0);
+  --sidebar-primary-foreground: oklch(0.9850 0 0);
+  --sidebar-accent: oklch(0.9700 0 0); /* Light gray selected */
+  --sidebar-accent-foreground: oklch(0.2050 0 0); /* Black text */
+  --sidebar-border: oklch(0.9220 0 0);
+  --sidebar-ring: oklch(0.7080 0 0);
+  --shadow-x: 0px;
+  --shadow-y: 1px;
+  --shadow-blur: 2px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.05;
+  --shadow-color: #000000;
+}
+
+.dark {
+  --background: #09090b; /* zinc-950 */
+  --foreground: #fafafa; /* zinc-50 */
+  --card: #18181b; /* zinc-900 */
+  --card-foreground: #fafafa;
+  --popover: #18181b; /* zinc-900 */
+  --popover-foreground: #fafafa;
+  --primary: #CEFD55; /* Keep lime green */
+  --primary-foreground: #000000;
+  --secondary: #27272a; /* zinc-800 */
+  --secondary-foreground: #fafafa;
+  --muted: #27272a; /* zinc-800 */
+  --muted-foreground: #a1a1aa; /* zinc-400 */
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #27272a; /* zinc-800 */
+  --input: #27272a;
+  --ring: #52525b; /* zinc-600 */
+  --chart-1: #696FC7;
+  --chart-2: #F5D3C4;
+  --chart-3: #F2AEBB;
+  --chart-4: #E2852E;
+  --chart-5: #ABE0F0;
+  --sidebar: #18181b; /* zinc-900 */
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #CEFD55;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #27272a; /* zinc-800 */
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #52525b;
+  --shadow-x: 0px;
+  --shadow-y: 1px;
+  --shadow-blur: 2px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.1;
+  --shadow-color: #000000;
+}
+
+@theme inline {
+  --font-sans: 'Poppins', 'Poppins Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-serif: 'Source Serif 4', 'Source Serif 4 Fallback';
+  /* computed shadow variables below - do not modify */
+  --shadow-2xs: var(--shadow-x) var(--shadow-y) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xs: var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--shadow-spread) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-sm: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * 1.5) var(--shadow-spread) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-md: calc(var(--shadow-x) * 2) calc(var(--shadow-y) * 2) calc(var(--shadow-blur) * 3) calc(var(--shadow-spread) - 1px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-lg: calc(var(--shadow-x) * 4) calc(var(--shadow-y) * 4) calc(var(--shadow-blur) * 5) calc(var(--shadow-spread) - 3px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xl: calc(var(--shadow-x) * 6) calc(var(--shadow-y) * 6) calc(var(--shadow-blur) * 7) calc(var(--shadow-spread) - 5px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-2xl: calc(var(--shadow-x) * 8) calc(var(--shadow-y) * 8) calc(max(0px, var(--shadow-blur) * 9 - 8px)) calc(var(--shadow-spread) - 12px) color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 250%), transparent);
+  --shadow: var(--shadow-md);
+  --color-shadow-color: var(--shadow-color);
+  --shadow-opacity: var(--shadow-opacity);
+  --shadow-spread: var(--shadow-spread);
+  --shadow-blur: var(--shadow-blur);
+  --shadow-y: var(--shadow-y);
+  --shadow-x: var(--shadow-x);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    /* Disable tap highlight on all elements (iOS/Android) */
+    -webkit-tap-highlight-color: transparent;
+    /* Disable long-press context menu on iOS */
+    -webkit-touch-callout: none;
+    /* Disable text selection globally */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Re-enable text selection in inputs and textareas */
+  input,
+  textarea,
+  [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Disable elastic bounce scroll on iOS (Capacitor) */
+    overscroll-behavior-y: none;
+    /* Cover safe area background — prevents white bars on notch/home bar */
+    background-attachment: fixed;
+  }
+
+  /* Add custom shadow for cards */
+  .card-shadow {
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  }
+
+  /* AI Icon Glow Effect */
+  .ai-icon-glow {
+    background-color: #CEFD55;
+    box-shadow: 0 0 20px rgba(206, 253, 85, 0.4), 0 0 40px rgba(206, 253, 85, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+
+  .ai-icon-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle, rgba(206, 253, 85, 0.15) 0%, transparent 70%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+}

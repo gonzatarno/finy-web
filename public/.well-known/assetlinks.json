@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.finy.app",
+        "sha256_cert_fingerprints": ["3F:9E:02:7D:93:9A:70:50:11:37:AD:7D:51:4E:6B:C2:9E:B3:C5:36:9C:0A:18:46:2A:D6:BD:15:D8:EB:15:50"]
+      }
+    }]
