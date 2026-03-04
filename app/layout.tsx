@@ -1,11 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-
 import { Analytics } from "@vercel/analytics/next"
 import { Providers } from "@/components/providers"
 import { OneSignalInit } from "@/components/onesignal-init"
-import "./globals.css"
 
+import "./globals.css"
 import { Poppins, Geist_Mono, Source_Serif_4, Poppins as V0_Font_Poppins, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
 
 // Initialize fonts
@@ -63,7 +62,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${poppins.variable} ${geistMono.variable} ${sourceSerif4.variable}`}>
+    <html
+      lang="es"
+      className={`${poppins.variable} ${geistMono.variable} ${sourceSerif4.variable}`}
+    >
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

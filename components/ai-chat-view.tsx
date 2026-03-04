@@ -511,6 +511,7 @@ export function AIChatView({ isOpen, onClose }: AIChatViewProps) {
             ? "inset-0 h-[100dvh]"
             : "bottom-6 right-6 w-[420px] h-[700px] rounded-2xl shadow-2xl border border-gray-200 dark:border-zinc-800"
         )}
+        style={isMobile ? { paddingTop: "env(safe-area-inset-top)" } : undefined}
       >
         {/* Header - Never shrinks */}
         <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-t-2xl">
