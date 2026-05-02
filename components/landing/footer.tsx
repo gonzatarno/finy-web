@@ -7,7 +7,7 @@ import { useT } from "@/hooks/use-t"
 
 const COPY = {
   es: {
-    tagline: "La app de finanzas personales con IA. Anotá gastos por audio, foto o chat — todo desde tu teléfono.",
+    tagline: "La app de finanzas personales con IA. Anota gastos por audio, foto o chat — todo desde tu teléfono.",
     productH: "Producto",
     productLinks: [
       { href: "#como-funciona", label: "Cómo funciona" },
@@ -23,7 +23,7 @@ const COPY = {
       { href: "/centro-legal", label: "Centro legal" },
     ],
     rights: "Todos los derechos reservados.",
-    madeWith: "Hecho con 💚 en Argentina",
+    madeWith: "Hecho con 💚",
   },
   en: {
     tagline: "The AI-powered personal finance app. Log expenses by voice, photo or chat — all from your phone.",
@@ -42,7 +42,7 @@ const COPY = {
       { href: "/centro-legal", label: "Legal center" },
     ],
     rights: "All rights reserved.",
-    madeWith: "Made with 💚 in Argentina",
+    madeWith: "Made with 💚",
   },
 }
 

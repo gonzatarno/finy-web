@@ -25,32 +25,32 @@ const COPY = {
     features: [
       {
         eyebrow: "Por audio",
-        title: "Hablale a la IA",
-        body: "Tocá el micrófono, decile en qué gastaste y la IA detecta monto, categoría y método sola. Como decirle a un amigo cuánto saliste.",
+        title: "Háblale a la IA",
+        body: "Toca el micrófono, dile en qué gastaste y la IA detecta monto, categoría y método sola. Como contarle a un amigo cuánto te gastaste.",
         bullets: [
           "Detección automática de monto, categoría y comercio",
-          "Sin formularios, sin tipear",
+          "Sin formularios, sin escribir",
           "Funciona en cualquier idioma",
         ],
       },
       {
         eyebrow: "Por foto",
-        title: "Sacale foto al ticket",
-        body: "Saca la foto y la IA lee monto, fecha y comercio. Funciona con tickets en mal estado, capturas de transferencia y resúmenes bancarios completos.",
+        title: "Saca foto del ticket",
+        body: "Toma la foto y la IA lee monto, fecha y comercio. Funciona con tickets en mal estado, capturas de transferencia y resúmenes bancarios completos.",
         bullets: [
-          "Tickets físicos, comprobantes digitales o pantallazos",
+          "Tickets físicos, comprobantes digitales o capturas",
           "Resúmenes bancarios PDF: extrae cada movimiento",
-          "Detecta cuotas y las divide automáticamente",
+          "Detecta pagos a cuotas y los divide automáticamente",
         ],
       },
       {
         eyebrow: "Por chat",
         title: "Pregúntale lo que sea",
-        body: "¿Cuánto gasté en delivery? ¿Puedo pagarlo en 6 cuotas? ¿En qué se me fue la plata? La IA conoce tu historial y te responde con tus números reales.",
+        body: "¿Cuánto gasté en delivery? ¿Puedo pagarlo en 6 cuotas? ¿En qué se fue mi dinero? La IA conoce tu historial y te responde con tus números reales.",
         bullets: [
           "Asesor financiero personal con tus datos",
-          '"¿Lo puedo comprar?" — analiza si te conviene',
-          "Crear presupuestos y metas conversando",
+          '"¿Me conviene?" — analiza si puedes comprarlo',
+          "Crea presupuestos y metas conversando",
         ],
       },
     ],

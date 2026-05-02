@@ -14,10 +14,10 @@ const CTA_SCREENS = [
 
 const COPY = {
   es: {
-    pill: "Empezá ahora",
-    titleA: "Tu plata,",
+    pill: "Empieza ahora",
+    titleA: "Tu dinero,",
     titleHighlight: "bajo control",
-    bodyPre: "Bajate Finy en 30 segundos. Cargá tu primer gasto hablando, sacando una foto o tipeando. Sin tarjeta.",
+    bodyPre: "Descarga Finy en 30 segundos. Carga tu primer gasto hablando, tomando una foto o escribiendo. Sin tarjeta.",
     bodyBold: "14 días PRO gratis.",
     note: "Disponible para iPhone (iOS 15+) y Android (12+).",
   },
