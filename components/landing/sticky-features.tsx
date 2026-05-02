@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion"
 import { Mic, Camera, MessageCircle, Sparkles } from "lucide-react"
+import { useT } from "@/hooks/use-t"
 
 interface Feature {
   icon: React.ReactNode
@@ -16,55 +17,90 @@ interface Feature {
   screen: string
 }
 
-const FEATURES: Feature[] = [
-  {
-    icon: <Mic className="h-5 w-5" />,
-    iconBg: "bg-violet-500/15",
-    iconColor: "text-violet-300",
-    eyebrow: "Por audio",
-    title: "Hablale a la IA",
-    body:
-      "Tocá el micrófono, decile en qué gastaste y la IA detecta monto, categoría y método sola. Como decirle a un amigo cuánto saliste.",
-    bullets: [
-      "Detección automática de monto, categoría y comercio",
-      "Sin formularios, sin tipear",
-      "Funciona en cualquier idioma",
+const COPY = {
+  es: {
+    eyebrow: "Cómo funciona",
+    titleA: "Tres formas de cargar gastos.",
+    titleB: "Cero esfuerzo.",
+    features: [
+      {
+        eyebrow: "Por audio",
+        title: "Hablale a la IA",
+        body: "Tocá el micrófono, decile en qué gastaste y la IA detecta monto, categoría y método sola. Como decirle a un amigo cuánto saliste.",
+        bullets: [
+          "Detección automática de monto, categoría y comercio",
+          "Sin formularios, sin tipear",
+          "Funciona en cualquier idioma",
+        ],
+      },
+      {
+        eyebrow: "Por foto",
+        title: "Sacale foto al ticket",
+        body: "Saca la foto y la IA lee monto, fecha y comercio. Funciona con tickets en mal estado, capturas de transferencia y resúmenes bancarios completos.",
+        bullets: [
+          "Tickets físicos, comprobantes digitales o pantallazos",
+          "Resúmenes bancarios PDF: extrae cada movimiento",
+          "Detecta cuotas y las divide automáticamente",
+        ],
+      },
+      {
+        eyebrow: "Por chat",
+        title: "Pregúntale lo que sea",
+        body: "¿Cuánto gasté en delivery? ¿Puedo pagarlo en 6 cuotas? ¿En qué se me fue la plata? La IA conoce tu historial y te responde con tus números reales.",
+        bullets: [
+          "Asesor financiero personal con tus datos",
+          '"¿Lo puedo comprar?" — analiza si te conviene',
+          "Crear presupuestos y metas conversando",
+        ],
+      },
     ],
-    screen: "/screens/audio.png",
   },
-  {
-    icon: <Camera className="h-5 w-5" />,
-    iconBg: "bg-sky-500/15",
-    iconColor: "text-sky-300",
-    eyebrow: "Por foto",
-    title: "Sacale foto al ticket",
-    body:
-      "Saca la foto y la IA lee monto, fecha y comercio. Funciona con tickets en mal estado, capturas de transferencia y resúmenes bancarios completos.",
-    bullets: [
-      "Tickets físicos, comprobantes digitales o pantallazos",
-      "Resúmenes bancarios PDF: extrae cada movimiento",
-      "Detecta cuotas y las divide automáticamente",
+  en: {
+    eyebrow: "How it works",
+    titleA: "Three ways to log expenses.",
+    titleB: "Zero effort.",
+    features: [
+      {
+        eyebrow: "By voice",
+        title: "Talk to the AI",
+        body: "Tap the mic, tell it what you spent and the AI detects amount, category and payment method on its own. Like telling a friend what you bought.",
+        bullets: [
+          "Automatic detection of amount, category and merchant",
+          "No forms, no typing",
+          "Works in any language",
+        ],
+      },
+      {
+        eyebrow: "By photo",
+        title: "Snap your receipt",
+        body: "Take the photo and the AI reads amount, date and merchant. Works with damaged receipts, transfer screenshots and full bank statements.",
+        bullets: [
+          "Physical receipts, digital invoices or screenshots",
+          "PDF bank statements: extracts every transaction",
+          "Detects installments and splits them automatically",
+        ],
+      },
+      {
+        eyebrow: "By chat",
+        title: "Ask anything",
+        body: "How much did I spend on delivery? Can I afford it in 6 installments? Where did my money go? The AI knows your history and answers with your real numbers.",
+        bullets: [
+          "Personal financial advisor with your real data",
+          '"Should I buy it?" — analyzes if it suits you',
+          "Create budgets and goals conversationally",
+        ],
+      },
     ],
-    screen: "/screens/escaner.png",
   },
-  {
-    icon: <MessageCircle className="h-5 w-5" />,
-    iconBg: "bg-emerald-500/15",
-    iconColor: "text-emerald-300",
-    eyebrow: "Por chat",
-    title: "Pregúntale lo que sea",
-    body:
-      "¿Cuánto gasté en delivery? ¿Puedo pagarlo en 6 cuotas? ¿En qué se me fue la plata? La IA conoce tu historial y te responde con tus números reales.",
-    bullets: [
-      "Asesor financiero personal con tus datos",
-      '"¿Lo puedo comprar?" — analiza si te conviene',
-      "Crear presupuestos y metas conversando",
-    ],
-    screen: "/screens/chat-advisor.png",
-  },
+}
+
+const ICONS = [
+  { icon: <Mic className="h-5 w-5" />,           iconBg: "bg-violet-500/15",  iconColor: "text-violet-300",  screen: "/screens/audio.png" },
+  { icon: <Camera className="h-5 w-5" />,        iconBg: "bg-sky-500/15",     iconColor: "text-sky-300",     screen: "/screens/escaner.png" },
+  { icon: <MessageCircle className="h-5 w-5" />, iconBg: "bg-emerald-500/15", iconColor: "text-emerald-300", screen: "/screens/chat-advisor.png" },
 ]
 
-const N = FEATURES.length
+const N = 3
 const CROSS = 0.06 // ancho del crossfade entre features
 
 // Genera los stops/values para opacity de la feature i.
@@ -93,6 +129,15 @@ function fadeKeyframes(i: number, n: number, cross: number) {
 }
 
 export function StickyFeatures() {
+  const t = useT(COPY)
+  const FEATURES: Feature[] = t.features.map((f, i) => ({
+    ...f,
+    icon: ICONS[i].icon,
+    iconBg: ICONS[i].iconBg,
+    iconColor: ICONS[i].iconColor,
+    screen: ICONS[i].screen,
+  }))
+
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -143,11 +188,11 @@ export function StickyFeatures() {
         <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-24 lg:pt-28 pb-6 flex-shrink-0">
           {/* Eyebrow + title (arriba, no centrado vertical) */}
           <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#CEFD55] mb-3 text-center">
-            Cómo funciona
+            {t.eyebrow}
           </p>
           <h2 className="text-[26px] sm:text-[36px] lg:text-[48px] font-extrabold tracking-tight text-center text-white max-w-3xl mx-auto leading-[1.05]">
-            Tres formas de cargar gastos.{" "}
-            <span className="text-zinc-500">Cero esfuerzo.</span>
+            {t.titleA}{" "}
+            <span className="text-zinc-500">{t.titleB}</span>
           </h2>
         </div>
 

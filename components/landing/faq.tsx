@@ -3,43 +3,47 @@
 import { motion } from "framer-motion"
 import { Plus } from "lucide-react"
 import { useState } from "react"
+import { useT } from "@/hooks/use-t"
 
-const FAQS = [
-  {
-    q: "¿Cómo es eso de cargar gastos por audio?",
-    a: "Tocás el botón de micrófono, decís en lenguaje natural lo que gastaste (\"pagué $5.000 en café con débito\") y la IA detecta el monto, la categoría y el método de pago. Si algo no entendió bien, lo editás antes de confirmar.",
+const COPY = {
+  es: {
+    eyebrow: "Preguntas frecuentes",
+    titleA: "Lo que la gente",
+    titleB: "nos pregunta.",
+    moreDoubts: "¿Otra duda?",
+    writeUs: "Escribinos",
+    items: [
+      { q: "¿Cómo es eso de cargar gastos por audio?", a: "Tocás el botón de micrófono, decís en lenguaje natural lo que gastaste (\"pagué $5.000 en café con débito\") y la IA detecta el monto, la categoría y el método de pago. Si algo no entendió bien, lo editás antes de confirmar." },
+      { q: "¿Puedo conectar mi cuenta bancaria o tarjeta?", a: "Sí, podés conectar Mercado Pago para que tus pagos se importen automáticamente. Estamos trabajando en integraciones con bancos directos. Por ahora también podés subir resúmenes en PDF y la IA extrae todos los movimientos solos." },
+      { q: "¿Mis datos están seguros?", a: "Toda la información viaja encriptada de punta a punta. No vendemos datos a terceros. Si algún día querés borrar todo, lo hacés desde la app con un toque y desaparece." },
+      { q: "¿Qué pasa cuando se acaban los 14 días de PRO?", a: "Pasás automáticamente al plan Gratis. No te cobramos nada sin que vos confirmes. Si querés mantener PRO, suscribís cuando quieras desde la app." },
+      { q: "¿Funciona en Argentina y otros países?", a: "Sí. Soporta más de 40 monedas (ARS, USD, EUR, BRL, MXN, COP, CLP, UYU, PEN, etc.) y la integración con Mercado Pago funciona en Argentina, Brasil, México, Colombia, Chile, Perú y Uruguay." },
+      { q: "¿Puedo compartir gastos con mi pareja o socios?", a: "Sí, con los Espacios Compartidos. Creás un espacio (Casa, Viaje, Negocio), invitás por link y cada persona aporta sus gastos. Finy hace las cuentas y te dice quién le debe a quién." },
+      { q: "¿Funciona offline?", a: "Podés cargar gastos manualmente sin conexión y se sincronizan cuando volvés a tener internet. Las funciones de IA (audio, foto, chat) sí necesitan internet porque procesamos en la nube." },
+      { q: "¿Puedo cancelar cuando quiera?", a: "Sí, sin compromiso. Cancelás directo desde la app o desde tu cuenta de App Store / Google Play. Sin costos por cancelar." },
+    ],
   },
-  {
-    q: "¿Puedo conectar mi cuenta bancaria o tarjeta?",
-    a: "Sí, podés conectar Mercado Pago para que tus pagos se importen automáticamente. Estamos trabajando en integraciones con bancos directos. Por ahora también podés subir resúmenes en PDF y la IA extrae todos los movimientos solos.",
+  en: {
+    eyebrow: "FAQ",
+    titleA: "What people",
+    titleB: "ask us.",
+    moreDoubts: "Another question?",
+    writeUs: "Write us",
+    items: [
+      { q: "How does logging expenses by voice work?", a: "You tap the mic, say what you spent in natural language (\"I paid $5 on coffee with debit\") and the AI detects the amount, category and payment method. If something is off, you can edit before confirming." },
+      { q: "Can I connect my bank account or card?", a: "Yes, you can connect Mercado Pago so your payments import automatically. We're working on direct bank integrations. For now you can also upload PDF statements and the AI extracts every transaction." },
+      { q: "Is my data safe?", a: "All your data travels end-to-end encrypted. We don't sell data to third parties. If you ever want to wipe everything, you do it from the app with one tap." },
+      { q: "What happens after the 14-day PRO trial?", a: "You automatically switch to the Free plan. We don't charge you without your explicit confirmation. If you want to keep PRO, you subscribe whenever you want from inside the app." },
+      { q: "Does it work outside Argentina?", a: "Yes. It supports 40+ currencies (USD, EUR, BRL, ARS, MXN, COP, CLP, UYU, PEN, etc.) and Mercado Pago integration works in Argentina, Brazil, Mexico, Colombia, Chile, Peru and Uruguay." },
+      { q: "Can I share expenses with my partner or business?", a: "Yes, with Shared Spaces. You create a space (Home, Trip, Business), invite by link and everyone adds their expenses. Finy does the math and tells you who owes whom." },
+      { q: "Does it work offline?", a: "You can log expenses manually without connection and they sync when you're back online. AI features (voice, photo, chat) need internet since we process in the cloud." },
+      { q: "Can I cancel anytime?", a: "Yes, no strings attached. You cancel directly from the app or from your App Store / Google Play account. No cancellation fees." },
+    ],
   },
-  {
-    q: "¿Mis datos están seguros?",
-    a: "Toda la información viaja encriptada de punta a punta. No vendemos datos a terceros. Si algún día querés borrar todo, lo hacés desde la app con un toque y desaparece.",
-  },
-  {
-    q: "¿Qué pasa cuando se acaban los 14 días de PRO?",
-    a: "Pasás automáticamente al plan Gratis. No te cobramos nada sin que vos confirmes. Si querés mantener PRO, suscribís cuando quieras desde la app.",
-  },
-  {
-    q: "¿Funciona en Argentina y otros países?",
-    a: "Sí. Soporta más de 40 monedas (ARS, USD, EUR, BRL, MXN, COP, CLP, UYU, PEN, etc.) y la integración con Mercado Pago funciona en Argentina, Brasil, México, Colombia, Chile, Perú y Uruguay.",
-  },
-  {
-    q: "¿Puedo compartir gastos con mi pareja o socios?",
-    a: "Sí, con los Espacios Compartidos. Creás un espacio (Casa, Viaje, Negocio), invitás por link y cada persona aporta sus gastos. Finy hace las cuentas y te dice quién le debe a quién.",
-  },
-  {
-    q: "¿Funciona offline?",
-    a: "Podés cargar gastos manualmente sin conexión y se sincronizan cuando volvés a tener internet. Las funciones de IA (audio, foto, chat) sí necesitan internet porque procesamos en la nube.",
-  },
-  {
-    q: "¿Puedo cancelar cuando quiera?",
-    a: "Sí, sin compromiso. Cancelás directo desde la app o desde tu cuenta de App Store / Google Play. Sin costos por cancelar.",
-  },
-]
+}
 
 export function FAQ() {
+  const t = useT(COPY)
   const [open, setOpen] = useState<number | null>(0)
 
   return (
@@ -47,17 +51,17 @@ export function FAQ() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-zinc-500 mb-3">
-            Preguntas frecuentes
+            {t.eyebrow}
           </p>
           <h2 className="text-[36px] sm:text-[52px] lg:text-[60px] font-extrabold tracking-tight text-zinc-950 leading-[1.02]">
-            Lo que la gente
+            {t.titleA}
             <br />
-            <span className="text-zinc-400">nos pregunta.</span>
+            <span className="text-zinc-400">{t.titleB}</span>
           </h2>
         </div>
 
         <div className="divide-y divide-zinc-200 border-y border-zinc-200">
-          {FAQS.map((f, i) => (
+          {t.items.map((f, i) => (
             <motion.div
               key={f.q}
               initial={{ opacity: 0 }}
@@ -69,9 +73,7 @@ export function FAQ() {
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full flex items-center justify-between gap-4 py-5 text-left active:opacity-60 transition-opacity"
               >
-                <span className="text-[16px] sm:text-[18px] font-semibold text-zinc-900">
-                  {f.q}
-                </span>
+                <span className="text-[16px] sm:text-[18px] font-semibold text-zinc-900">{f.q}</span>
                 <Plus
                   className={`h-5 w-5 text-zinc-500 shrink-0 transition-transform duration-300 ${
                     open === i ? "rotate-45" : ""
@@ -92,9 +94,9 @@ export function FAQ() {
         </div>
 
         <div className="mt-12 text-center text-[13px] text-zinc-500">
-          ¿Otra duda?{" "}
+          {t.moreDoubts}{" "}
           <a href="#contacto" className="font-semibold text-zinc-900 underline underline-offset-2">
-            Escribinos
+            {t.writeUs}
           </a>
         </div>
       </div>

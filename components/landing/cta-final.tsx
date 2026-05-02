@@ -4,14 +4,35 @@ import { motion } from "framer-motion"
 import { PhoneFrame } from "./phone-frame"
 import { StoreBadges } from "./store-badges"
 import { Sparkles } from "lucide-react"
+import { useT } from "@/hooks/use-t"
 
 const CTA_SCREENS = [
-  { src: "/screens/home.png", alt: "Inicio Finy", label: "Inicio" },
-  { src: "/screens/stats.png", alt: "Estadísticas", label: "Stats" },
-  { src: "/screens/more.png", alt: "Más", label: "Más" },
+  { src: "/screens/home.png",  alt: "Finy home",         label: "Home" },
+  { src: "/screens/stats.png", alt: "Stats",             label: "Stats" },
+  { src: "/screens/more.png",  alt: "More",              label: "More" },
 ]
 
+const COPY = {
+  es: {
+    pill: "Empezá ahora",
+    titleA: "Tu plata,",
+    titleHighlight: "bajo control",
+    bodyPre: "Bajate Finy en 30 segundos. Cargá tu primer gasto hablando, sacando una foto o tipeando. Sin tarjeta.",
+    bodyBold: "14 días PRO gratis.",
+    note: "Disponible para iPhone (iOS 15+) y Android (12+).",
+  },
+  en: {
+    pill: "Get started",
+    titleA: "Your money,",
+    titleHighlight: "in control",
+    bodyPre: "Get Finy in 30 seconds. Log your first expense by voice, photo or typing. No credit card.",
+    bodyBold: "14-day PRO trial free.",
+    note: "Available on iPhone (iOS 15+) and Android (12+).",
+  },
+}
+
 export function CTAFinal() {
+  const t = useT(COPY)
   return (
     <section id="descargar" className="relative bg-zinc-950 text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20">
       {/* Big lime glow */}
@@ -34,7 +55,7 @@ export function CTAFinal() {
               className="inline-flex items-center gap-2 rounded-full bg-[#CEFD55]/10 ring-1 ring-[#CEFD55]/30 px-3.5 py-1.5 text-[12px] font-semibold tracking-wider uppercase text-[#CEFD55]"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Empezá ahora
+              {t.pill}
             </motion.div>
 
             <motion.h2
@@ -44,9 +65,9 @@ export function CTAFinal() {
               transition={{ duration: 0.7, delay: 0.05 }}
               className="mt-5 text-[44px] sm:text-[64px] lg:text-[80px] font-extrabold tracking-tight leading-[0.96]"
             >
-              Tu plata,
+              {t.titleA}
               <br />
-              <span className="text-[#CEFD55]">bajo control</span>.
+              <span className="text-[#CEFD55]">{t.titleHighlight}</span>.
             </motion.h2>
 
             <motion.p
@@ -56,8 +77,7 @@ export function CTAFinal() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="mt-6 text-[18px] text-zinc-300 max-w-md leading-relaxed"
             >
-              Bajate Finy en 30 segundos. Cargá tu primer gasto hablando, sacando una foto o
-              tipeando. Sin tarjeta. <span className="font-semibold text-white">14 días PRO gratis.</span>
+              {t.bodyPre} <span className="font-semibold text-white">{t.bodyBold}</span>
             </motion.p>
 
             <motion.div
@@ -77,7 +97,7 @@ export function CTAFinal() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-6 text-[12px] text-zinc-500"
             >
-              Disponible para iPhone (iOS 15+) y Android (12+).
+              {t.note}
             </motion.p>
           </div>
 

@@ -8,16 +8,39 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LanguageSelector } from "@/components/language-selector"
+import { useT } from "@/hooks/use-t"
 
-const NAV_LINKS = [
-  { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#ventajas",       label: "Ventajas" },
-  { href: "#precios",        label: "Precios" },
-  { href: "#faq",            label: "FAQ" },
-  { href: "#contacto",       label: "Contacto" },
-]
+const COPY = {
+  es: {
+    links: [
+      { href: "#como-funciona", label: "Cómo funciona" },
+      { href: "#ventajas",      label: "Ventajas" },
+      { href: "#precios",       label: "Precios" },
+      { href: "#faq",           label: "FAQ" },
+      { href: "#contacto",      label: "Contacto" },
+    ],
+    download: "Descargar app",
+    menu: "Menú",
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
+  },
+  en: {
+    links: [
+      { href: "#como-funciona", label: "How it works" },
+      { href: "#ventajas",      label: "Why Finy" },
+      { href: "#precios",       label: "Pricing" },
+      { href: "#faq",           label: "FAQ" },
+      { href: "#contacto",      label: "Contact" },
+    ],
+    download: "Download app",
+    menu: "Menu",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+}
 
 export function Nav() {
+  const t = useT(COPY)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -78,7 +101,7 @@ export function Nav() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((l) => (
+            {t.links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
@@ -97,12 +120,12 @@ export function Nav() {
               href="#descargar"
               className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-zinc-900 text-white text-[14px] font-semibold hover:bg-zinc-800 transition-colors"
             >
-              Descargar app
+              {t.download}
             </Link>
             <button
               onClick={() => setOpen(true)}
               className="md:hidden p-2 -mr-2 rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors"
-              aria-label="Abrir menú"
+              aria-label={t.openMenu}
               aria-expanded={open}
             >
               <Menu className="h-6 w-6 text-zinc-900" />
@@ -159,14 +182,14 @@ export function Nav() {
                     <button
                       onClick={() => setOpen(false)}
                       className="w-9 h-9 -mr-1 rounded-full bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 flex items-center justify-center transition-colors"
-                      aria-label="Cerrar menú"
+                      aria-label={t.closeMenu}
                     >
                       <X className="h-5 w-5 text-zinc-900" />
                     </button>
                   </div>
 
                   <nav className="flex-1 overflow-y-auto px-5 py-4 flex flex-col">
-                    {NAV_LINKS.map((l, i) => (
+                    {t.links.map((l, i) => (
                       <motion.div
                         key={l.href}
                         initial={{ opacity: 0, x: 12 }}
@@ -193,7 +216,7 @@ export function Nav() {
                       onClick={() => setOpen(false)}
                       className="flex items-center justify-center px-5 py-3.5 rounded-full bg-zinc-900 text-white text-[15px] font-semibold active:scale-[0.98] transition-transform"
                     >
-                      Descargar app
+                      {t.download}
                     </Link>
                   </div>
                 </motion.div>

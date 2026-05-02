@@ -6,13 +6,60 @@ import Image from "next/image"
 import { Mic, Camera, MessageCircle, Sparkles, Star, ArrowDown } from "lucide-react"
 import { PhoneFrame } from "./phone-frame"
 import { StoreBadges } from "./store-badges"
+import { useT } from "@/hooks/use-t"
+import { useLanguage } from "@/contexts/language-context"
 
-const ROTATING_WORDS = [
-  { word: "voz",  icon: <Mic className="h-[0.8em] w-[0.8em]" /> },
-  { word: "foto", icon: <Camera className="h-[0.8em] w-[0.8em]" /> },
-  { word: "chat", icon: <MessageCircle className="h-[0.8em] w-[0.8em]" /> },
-  { word: "IA",   icon: <Sparkles className="h-[0.8em] w-[0.8em]" /> },
-]
+const ROTATING_WORDS = {
+  es: ["voz",   "foto",  "chat", "IA"],
+  en: ["voice", "photo", "chat", "AI"],
+}
+
+const COPY = {
+  es: {
+    pillL: "Asistente financiero",
+    pillM: "con IA",
+    pillR: "14 días",
+    pillRStrong: "PRO gratis",
+    headlineLead: "Anotá gastos",
+    headlineMid:  "con",
+    subPre:  "Hablale, sacale foto al ticket o escribile.",
+    subBold: "La IA de Finy carga todo por vos.",
+    subPost: "En 1 minuto sabés cuánto gastás este mes.",
+    downloads: "descargas",
+    scrollHint: "Mirá cómo funciona",
+    floatMsg: '"Ayer pagué 25k en delivery"',
+    floatMsgMeta: "Audio · 2s",
+    floatTickEyebrow: "Ticket leído",
+    floatTickReady: "✓ Listo",
+    floatTickStore: "Comercio",
+    floatTickStoreVal: "Coto Express",
+    floatTickTotal: "Total",
+    floatTickTotalVal: "$8.450",
+    floatChip: "✓ Cargado",
+  },
+  en: {
+    pillL: "AI-powered",
+    pillM: "money assistant",
+    pillR: "14-day",
+    pillRStrong: "PRO trial",
+    headlineLead: "Track expenses",
+    headlineMid:  "with",
+    subPre:  "Talk to it, snap your receipt or type.",
+    subBold: "Finy's AI logs everything for you.",
+    subPost: "In one minute you know what you've spent this month.",
+    downloads: "downloads",
+    scrollHint: "See how it works",
+    floatMsg: '"Yesterday I paid $25 on delivery"',
+    floatMsgMeta: "Voice · 2s",
+    floatTickEyebrow: "Receipt scanned",
+    floatTickReady: "✓ Done",
+    floatTickStore: "Store",
+    floatTickStoreVal: "Whole Foods",
+    floatTickTotal: "Total",
+    floatTickTotalVal: "$28.50",
+    floatChip: "✓ Logged",
+  },
+}
 
 // Contador que tickea de 0 → target con ease-out cubic
 function CountUp({ to, duration = 2 }: { to: number; duration?: number }) {
@@ -40,6 +87,10 @@ const HERO_SCREENS = [
 ]
 
 export function Hero() {
+  const t = useT(COPY)
+  const { language } = useLanguage()
+  const words = ROTATING_WORDS[language as "es" | "en"] ?? ROTATING_WORDS.es
+
   // 3D tilt seguidor del mouse en el phone
   const ref = useRef<HTMLDivElement>(null)
   const mx = useMotionValue(0)
@@ -62,9 +113,9 @@ export function Hero() {
   // Word rotator del headline
   const [wIdx, setWIdx] = useState(0)
   useEffect(() => {
-    const id = setInterval(() => setWIdx((i) => (i + 1) % ROTATING_WORDS.length), 2400)
+    const id = setInterval(() => setWIdx((i) => (i + 1) % words.length), 2400)
     return () => clearInterval(id)
-  }, [])
+  }, [words.length])
 
   // Cursor glow seguidor (efecto premium)
   const sectionRef = useRef<HTMLElement>(null)
@@ -118,10 +169,10 @@ export function Hero() {
             >
               <Sparkles className="h-3.5 w-3.5 text-[#7AB23A]" />
               <span className="text-zinc-700">
-                Asistente financiero <span className="font-bold text-zinc-900">con IA</span>
+                {t.pillL} <span className="font-bold text-zinc-900">{t.pillM}</span>
               </span>
               <span className="h-3 w-px bg-zinc-300" />
-              <span className="text-zinc-700">14 días <span className="font-bold text-zinc-900">PRO gratis</span></span>
+              <span className="text-zinc-700">{t.pillR} <span className="font-bold text-zinc-900">{t.pillRStrong}</span></span>
             </motion.div>
 
             {/* Headline GIGANTE con palabra rotando */}
@@ -131,21 +182,21 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 text-[52px] sm:text-[80px] lg:text-[100px] font-extrabold tracking-[-0.04em] text-zinc-950 leading-[0.92]"
             >
-              Anotá gastos
+              {t.headlineLead}
               <br />
-              <span className="text-zinc-400">con</span>{" "}
+              <span className="text-zinc-400">{t.headlineMid}</span>{" "}
               <span className="relative inline-block align-baseline" style={{ minWidth: "1ch" }}>
-                <span className="invisible">{ROTATING_WORDS.reduce((max, w) => (w.word.length > max.length ? w.word : max), "")}</span>
+                <span className="invisible">{words.reduce((max, w) => (w.length > max.length ? w : max), "")}</span>
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
-                    key={ROTATING_WORDS[wIdx].word}
+                    key={words[wIdx]}
                     initial={{ y: "0.45em", opacity: 0, filter: "blur(8px)" }}
                     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: "-0.45em", opacity: 0, filter: "blur(8px)" }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 lime-underline whitespace-nowrap"
                   >
-                    {ROTATING_WORDS[wIdx].word}
+                    {words[wIdx]}
                   </motion.span>
                 </AnimatePresence>
               </span>
@@ -158,9 +209,9 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="mt-7 text-[18px] sm:text-[20px] leading-relaxed text-zinc-700 max-w-xl mx-auto lg:mx-0"
             >
-              Hablale, sacale foto al ticket o escribile.{" "}
-              <span className="font-semibold text-zinc-900">La IA de Finy carga todo por vos.</span>{" "}
-              En 1 minuto sabés cuánto gastás este mes.
+              {t.subPre}{" "}
+              <span className="font-semibold text-zinc-900">{t.subBold}</span>{" "}
+              {t.subPost}
             </motion.p>
 
             {/* CTAs */}
@@ -185,7 +236,7 @@ export function Hero() {
                   <span className="font-semibold text-zinc-900 tabular-nums">
                     +<CountUp to={12000} />
                   </span>{" "}
-                  descargas
+                  {t.downloads}
                 </span>
               </div>
             </motion.div>
@@ -198,7 +249,7 @@ export function Hero() {
               className="hidden lg:flex items-center gap-2 mt-12 text-[12px] font-medium text-zinc-500"
             >
               <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
-              Mirá cómo funciona
+              {t.scrollHint}
             </motion.div>
           </div>
 
@@ -225,17 +276,25 @@ export function Hero() {
               className="absolute -left-4 sm:-left-12 top-[12%] hidden sm:flex"
               delay={0.7}
               avatar={<Mic className="h-4 w-4 text-zinc-900" />}
-              text='"Ayer pagué 25k en delivery"'
-              meta="Audio · 2s"
+              text={t.floatMsg}
+              meta={t.floatMsgMeta}
             />
             <FloatingTickCard
               className="absolute -right-4 sm:-right-10 top-[40%] hidden sm:flex"
               delay={1.0}
+              copy={{
+                eyebrow: t.floatTickEyebrow,
+                ready:   t.floatTickReady,
+                store:   t.floatTickStore,
+                storeVal:t.floatTickStoreVal,
+                total:   t.floatTickTotal,
+                totalVal:t.floatTickTotalVal,
+              }}
             />
             <FloatingChipBubble
               className="absolute -left-2 sm:-left-8 bottom-[12%] hidden sm:flex"
               delay={1.3}
-              text="✓ Cargado"
+              text={t.floatChip}
             />
           </motion.div>
         </div>
@@ -266,7 +325,13 @@ function FloatingMessageCard({
   )
 }
 
-function FloatingTickCard({ className, delay }: { className?: string; delay: number }) {
+function FloatingTickCard({
+  className, delay, copy,
+}: {
+  className?: string
+  delay: number
+  copy: { eyebrow: string; ready: string; store: string; storeVal: string; total: string; totalVal: string }
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 14, x: 8 }}
@@ -276,18 +341,18 @@ function FloatingTickCard({ className, delay }: { className?: string; delay: num
     >
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-wider uppercase text-zinc-500">
-          <Camera className="h-3 w-3" /> Ticket leído
+          <Camera className="h-3 w-3" /> {copy.eyebrow}
         </span>
-        <span className="text-[10px] font-semibold text-emerald-600">✓ Listo</span>
+        <span className="text-[10px] font-semibold text-emerald-600">{copy.ready}</span>
       </div>
       <div className="space-y-1">
         <div className="flex justify-between text-[12px]">
-          <span className="text-zinc-500">Comercio</span>
-          <span className="font-semibold text-zinc-900">Coto Express</span>
+          <span className="text-zinc-500">{copy.store}</span>
+          <span className="font-semibold text-zinc-900">{copy.storeVal}</span>
         </div>
         <div className="flex justify-between text-[12px]">
-          <span className="text-zinc-500">Total</span>
-          <span className="font-semibold text-zinc-900">$8.450</span>
+          <span className="text-zinc-500">{copy.total}</span>
+          <span className="font-semibold text-zinc-900">{copy.totalVal}</span>
         </div>
       </div>
     </motion.div>

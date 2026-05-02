@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Check, Sparkles } from "lucide-react"
 import Link from "next/link"
+import { useT } from "@/hooks/use-t"
 
 type Period = "monthly" | "yearly"
 
@@ -17,54 +18,94 @@ interface Plan {
   cta: string
 }
 
-const PLANS: Plan[] = [
-  {
-    name: "Gratis",
-    tagline: "Para empezar a controlar tus gastos.",
-    monthlyPrice: 0,
-    yearlyPrice: 0,
-    features: [
-      "100 transacciones por mes",
-      "10 consultas a la IA",
-      "1 espacio personal",
-      "Categorías ilimitadas",
-      "Con publicidad",
+const COPY = {
+  es: {
+    eyebrow: "Precios",
+    titleA: "Un precio simple.",
+    titleB: "Sin sorpresas.",
+    intro: "Empezás gratis. Si te gusta, subís a Plus o Pro. Cancelás cuando quieras.",
+    monthly: "Mensual",
+    yearly: "Anual",
+    saveBadge: "Ahorrá hasta 50%",
+    perMonth: "/mes",
+    perYear: "al año",
+    saveText: (pct: number) => `ahorrás ${pct}%`,
+    orYear: "O",
+    paidYearly: "pagado por año",
+    trialNote: "Todos los nuevos usuarios reciben",
+    trialBold: "14 días de PRO gratis",
+    trialNote2: "al instalar la app. Sin tarjeta.",
+    trial14Badge: "14 días gratis",
+    plans: [
+      {
+        name: "Gratis",
+        tagline: "Para empezar a controlar tus gastos.",
+        features: ["100 transacciones por mes","10 consultas a la IA","1 espacio personal","Categorías ilimitadas","Con publicidad"],
+        cta: "Empezar gratis",
+      },
+      {
+        name: "Plus",
+        tagline: "Para quien quiere usarlo todos los días.",
+        features: ["500 transacciones por mes","75 consultas a la IA","30 escaneos de foto / PDF","3 espacios compartidos","Sin publicidad"],
+        cta: "Probar Plus",
+      },
+      {
+        name: "Pro",
+        tagline: "El plan completo. Todo desbloqueado.",
+        features: ["1.000 transacciones por mes","200 consultas a la IA","100 escaneos de foto / PDF","10 espacios compartidos","Reportes avanzados","Sin publicidad"],
+        cta: "Probar Pro 14 días",
+      },
     ],
-    cta: "Empezar gratis",
   },
-  {
-    name: "Plus",
-    tagline: "Para quien quiere usarlo todos los días.",
-    monthlyPrice: 4.99,
-    yearlyPrice: 34.99,
-    features: [
-      "500 transacciones por mes",
-      "75 consultas a la IA",
-      "30 escaneos de foto / PDF",
-      "3 espacios compartidos",
-      "Sin publicidad",
+  en: {
+    eyebrow: "Pricing",
+    titleA: "Simple pricing.",
+    titleB: "No surprises.",
+    intro: "Start for free. If you like it, upgrade to Plus or Pro. Cancel anytime.",
+    monthly: "Monthly",
+    yearly: "Yearly",
+    saveBadge: "Save up to 50%",
+    perMonth: "/mo",
+    perYear: "per year",
+    saveText: (pct: number) => `save ${pct}%`,
+    orYear: "or",
+    paidYearly: "billed yearly",
+    trialNote: "Every new user gets",
+    trialBold: "14 days of PRO free",
+    trialNote2: "when they install the app. No credit card.",
+    trial14Badge: "14-day trial",
+    plans: [
+      {
+        name: "Free",
+        tagline: "To start tracking your expenses.",
+        features: ["100 transactions per month","10 AI queries","1 personal space","Unlimited categories","With ads"],
+        cta: "Start free",
+      },
+      {
+        name: "Plus",
+        tagline: "For everyday users.",
+        features: ["500 transactions per month","75 AI queries","30 photo / PDF scans","3 shared spaces","No ads"],
+        cta: "Try Plus",
+      },
+      {
+        name: "Pro",
+        tagline: "The full plan. Everything unlocked.",
+        features: ["1,000 transactions per month","200 AI queries","100 photo / PDF scans","10 shared spaces","Advanced reports","No ads"],
+        cta: "Try Pro 14 days",
+      },
     ],
-    cta: "Probar Plus",
   },
-  {
-    name: "Pro",
-    tagline: "El plan completo. Todo desbloqueado.",
-    monthlyPrice: 9.99,
-    yearlyPrice: 59.99,
-    features: [
-      "1.000 transacciones por mes",
-      "200 consultas a la IA",
-      "100 escaneos de foto / PDF",
-      "10 espacios compartidos",
-      "Reportes avanzados",
-      "Sin publicidad",
-    ],
-    highlight: true,
-    cta: "Probar Pro 14 días",
-  },
+}
+
+const PRICES: { monthlyPrice: number; yearlyPrice: number; highlight?: boolean }[] = [
+  { monthlyPrice: 0,    yearlyPrice: 0 },
+  { monthlyPrice: 4.99, yearlyPrice: 34.99 },
+  { monthlyPrice: 9.99, yearlyPrice: 59.99, highlight: true },
 ]
 
 export function Pricing() {
+  const t = useT(COPY)
+  const PLANS: Plan[] = t.plans.map((p, i) => ({ ...p, ...PRICES[i] }))
   const [period, setPeriod] = useState<Period>("yearly")
 
   const yearlyDiscount = (plan: Plan) => {
@@ -86,7 +127,7 @@ export function Pricing() {
             transition={{ duration: 0.5 }}
             className="text-[12px] font-semibold tracking-[0.2em] uppercase text-zinc-500 mb-3"
           >
-            Precios
+            {t.eyebrow}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
@@ -95,8 +136,8 @@ export function Pricing() {
             transition={{ duration: 0.6, delay: 0.05 }}
             className="text-[36px] sm:text-[56px] lg:text-[68px] font-extrabold tracking-tight text-zinc-950 leading-[0.98] max-w-3xl mx-auto"
           >
-            Un precio simple.{" "}
-            <span className="text-zinc-400">Sin sorpresas.</span>
+            {t.titleA}{" "}
+            <span className="text-zinc-400">{t.titleB}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -105,7 +146,7 @@ export function Pricing() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-5 text-[16px] text-zinc-600 max-w-xl mx-auto"
           >
-            Empezás gratis. Si te gusta, subís a Plus o Pro. Cancelás cuando quieras.
+            {t.intro}
           </motion.p>
 
           {/* Toggle */}
@@ -123,7 +164,7 @@ export function Pricing() {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="relative">Mensual</span>
+              <span className="relative">{t.monthly}</span>
             </button>
             <button
               onClick={() => setPeriod("yearly")}
@@ -138,9 +179,9 @@ export function Pricing() {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="relative">Anual</span>
+              <span className="relative">{t.yearly}</span>
               <span className="relative inline-flex items-center text-[10px] font-bold tracking-wider uppercase bg-zinc-900 text-[#CEFD55] rounded-full px-2 py-0.5">
-                Ahorrá hasta 50%
+                {t.saveBadge}
               </span>
             </button>
           </div>
@@ -168,7 +209,7 @@ export function Pricing() {
                 {plan.highlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 bg-[#CEFD55] text-black text-[11px] font-bold tracking-wider uppercase rounded-full px-3 py-1.5 shadow-lg shadow-[#CEFD55]/30">
                     <Sparkles className="h-3 w-3" />
-                    14 días gratis
+                    {t.trial14Badge}
                   </div>
                 )}
 
@@ -198,23 +239,23 @@ export function Pricing() {
                         ${price.toFixed(2)}
                       </span>
                       <span className={`text-[14px] font-medium ${plan.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
-                        /mes
+                        {t.perMonth}
                       </span>
                     </>
                   )}
                 </div>
                 {annual && (
                   <p className={`mt-1 text-[12px] font-semibold ${plan.highlight ? "text-[#CEFD55]" : "text-zinc-900"}`}>
-                    ${plan.yearlyPrice.toFixed(2)} al año{" "}
+                    ${plan.yearlyPrice.toFixed(2)} {t.perYear}{" "}
                     <span className={`font-medium ${plan.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
-                      · ahorrás {yearlyDiscount(plan)}%
+                      · {t.saveText(yearlyDiscount(plan))}
                     </span>
                   </p>
                 )}
                 {!annual && !isFree && (
                   <p className="mt-1 text-[12px] text-zinc-500">
-                    O <span className="font-semibold text-zinc-900">${plan.yearlyPrice}/año</span>{" "}
-                    <span className="font-semibold">(ahorrás {yearlyDiscount(plan)}%)</span>
+                    {t.orYear} <span className="font-semibold text-zinc-900">${plan.yearlyPrice} {t.perYear}</span>{" "}
+                    <span className="font-semibold">({t.saveText(yearlyDiscount(plan))})</span>
                   </p>
                 )}
 
@@ -253,8 +294,8 @@ export function Pricing() {
 
         {/* Bottom note */}
         <p className="mt-10 text-center text-[13px] text-zinc-500">
-          Todos los nuevos usuarios reciben{" "}
-          <span className="font-semibold text-zinc-900">14 días de PRO gratis</span> al instalar la app. Sin tarjeta.
+          {t.trialNote}{" "}
+          <span className="font-semibold text-zinc-900">{t.trialBold}</span> {t.trialNote2}
         </p>
       </div>
     </section>

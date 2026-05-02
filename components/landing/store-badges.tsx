@@ -3,9 +3,15 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Apple } from "lucide-react"
+import { useT } from "@/hooks/use-t"
 
 const APP_STORE_URL = "https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721"
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.finy.app"
+
+const COPY = {
+  es: { iosTop: "Descargar en",  iosBot: "App Store", andTop: "Disponible en", andBot: "Google Play" },
+  en: { iosTop: "Download on",   iosBot: "App Store", andTop: "Get it on",     andBot: "Google Play" },
+}
 
 interface StoreBadgesProps {
   variant?: "default" | "compact"
@@ -13,6 +19,7 @@ interface StoreBadgesProps {
 }
 
 export function StoreBadges({ variant = "default", className }: StoreBadgesProps) {
+  const t = useT(COPY)
   return (
     <div className={cn("flex flex-col sm:flex-row gap-3", className)}>
       <Link
@@ -27,10 +34,10 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         <Apple className={variant === "default" ? "h-7 w-7 fill-white" : "h-5 w-5 fill-white"} strokeWidth={1.5} />
         <div className="flex flex-col leading-tight text-left">
           <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
-            Descargar en
+            {t.iosTop}
           </span>
           <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
-            App Store
+            {t.iosBot}
           </span>
         </div>
       </Link>
@@ -47,10 +54,10 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         <PlayStoreIcon className={variant === "default" ? "h-7 w-7" : "h-5 w-5"} />
         <div className="flex flex-col leading-tight text-left">
           <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
-            Disponible en
+            {t.andTop}
           </span>
           <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
-            Google Play
+            {t.andBot}
           </span>
         </div>
       </Link>
