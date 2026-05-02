@@ -139,8 +139,8 @@ export function Pricing() {
                 />
               )}
               <span className="relative">Anual</span>
-              <span className="relative inline-flex items-center text-[10px] font-bold tracking-wider uppercase bg-emerald-500 text-white rounded-full px-1.5 py-0.5">
-                -42%
+              <span className="relative inline-flex items-center text-[10px] font-bold tracking-wider uppercase bg-zinc-900 text-[#CEFD55] rounded-full px-2 py-0.5">
+                Ahorrá hasta 50%
               </span>
             </button>
           </div>
@@ -204,14 +204,17 @@ export function Pricing() {
                   )}
                 </div>
                 {annual && (
-                  <p className="mt-1 text-[12px] text-emerald-500 font-semibold">
-                    ${plan.yearlyPrice.toFixed(2)} pagado por año
+                  <p className={`mt-1 text-[12px] font-semibold ${plan.highlight ? "text-[#CEFD55]" : "text-zinc-900"}`}>
+                    ${plan.yearlyPrice.toFixed(2)} al año{" "}
+                    <span className={`font-medium ${plan.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
+                      · ahorrás {yearlyDiscount(plan)}%
+                    </span>
                   </p>
                 )}
                 {!annual && !isFree && (
                   <p className="mt-1 text-[12px] text-zinc-500">
-                    O <span className="font-semibold">${plan.yearlyPrice}/año</span>{" "}
-                    <span className="text-emerald-600">(-{yearlyDiscount(plan)}%)</span>
+                    O <span className="font-semibold text-zinc-900">${plan.yearlyPrice}/año</span>{" "}
+                    <span className="font-semibold">(ahorrás {yearlyDiscount(plan)}%)</span>
                   </p>
                 )}
 
