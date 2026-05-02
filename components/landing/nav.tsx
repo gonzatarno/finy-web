@@ -3,21 +3,26 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
+import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LanguageSelector } from "@/components/language-selector"
 
 const NAV_LINKS = [
   { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#ventajas", label: "Ventajas" },
-  { href: "#precios", label: "Precios" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#ventajas",       label: "Ventajas" },
+  { href: "#precios",        label: "Precios" },
+  { href: "#faq",            label: "FAQ" },
+  { href: "#contacto",       label: "Contacto" },
 ]
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -26,104 +31,177 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  // Bloquear scroll del body cuando el drawer está abierto
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => { document.body.style.overflow = prev }
   }, [open])
 
+  // Cerrar drawer con Esc
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false) }
+    document.addEventListener("keydown", onKey)
+    return () => document.removeEventListener("keydown", onKey)
+  }, [open])
+
+  // Cerrar drawer cuando crece la viewport a desktop
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)")
+    const onChange = () => { if (mql.matches) setOpen(false) }
+    mql.addEventListener("change", onChange)
+    return () => mql.removeEventListener("change", onChange)
+  }, [])
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled || open
-          ? "bg-white/85 backdrop-blur-md border-b border-zinc-200/70"
-          : "bg-transparent",
-      )}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center shrink-0" aria-label="Finy">
-          <Image
-            src="/images/fini-negro-logo.png"
-            alt="Finy"
-            width={94}
-            height={54}
-            priority
-            className="h-7 w-auto"
-          />
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="px-3 py-2 text-[14px] font-medium text-zinc-600 hover:text-zinc-900 rounded-lg hover:bg-zinc-100 transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <LanguageSelector />
-          </div>
-          <Link
-            href="#descargar"
-            className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-zinc-900 text-white text-[14px] font-semibold hover:bg-zinc-800 transition-colors"
-          >
-            Descargar app
+    <>
+      <header
+        className={cn(
+          "fixed top-0 inset-x-0 z-40 transition-all duration-300",
+          scrolled
+            ? "bg-white/85 backdrop-blur-md border-b border-zinc-200/70"
+            : "bg-transparent",
+        )}
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center shrink-0" aria-label="Finy">
+            <Image
+              src="/images/fini-negro-logo.png"
+              alt="Finy"
+              width={94}
+              height={54}
+              priority
+              className="h-7 w-auto"
+            />
           </Link>
-          <button
-            onClick={() => setOpen(true)}
-            className="md:hidden p-2 -mr-2 rounded-lg hover:bg-zinc-100 transition-colors"
-            aria-label="Abrir menú"
-          >
-            <Menu className="h-6 w-6 text-zinc-900" />
-          </button>
-        </div>
-      </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-zinc-900/30" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-[78%] max-w-sm bg-white shadow-2xl flex flex-col">
-            <div className="h-16 flex items-center justify-between px-5 border-b border-zinc-100">
-              <span className="font-semibold text-zinc-900">Menú</span>
-              <button
-                onClick={() => setOpen(false)}
-                className="p-2 -mr-2 rounded-lg hover:bg-zinc-100"
-                aria-label="Cerrar menú"
+          <nav className="hidden md:flex items-center gap-1">
+            {NAV_LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="px-3 py-2 text-[14px] font-medium text-zinc-600 hover:text-zinc-900 rounded-lg hover:bg-zinc-100 transition-colors"
               >
-                <X className="h-5 w-5 text-zinc-900" />
-              </button>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <LanguageSelector />
             </div>
-            <div className="flex-1 px-5 py-4 flex flex-col">
-              {NAV_LINKS.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="py-3 text-[17px] font-medium text-zinc-900"
-                >
-                  {l.label}
-                </Link>
-              ))}
-              <div className="mt-auto pt-6 space-y-3">
-                <LanguageSelector />
-                <Link
-                  href="#descargar"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-center px-5 py-3 rounded-full bg-zinc-900 text-white text-[15px] font-semibold"
-                >
-                  Descargar app
-                </Link>
-              </div>
-            </div>
+            <Link
+              href="#descargar"
+              className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-zinc-900 text-white text-[14px] font-semibold hover:bg-zinc-800 transition-colors"
+            >
+              Descargar app
+            </Link>
+            <button
+              onClick={() => setOpen(true)}
+              className="md:hidden p-2 -mr-2 rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors"
+              aria-label="Abrir menú"
+              aria-expanded={open}
+            >
+              <Menu className="h-6 w-6 text-zinc-900" />
+            </button>
           </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* Mobile drawer en portal — evita conflictos de stacking con el header */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                key="mobile-drawer"
+                className="fixed inset-0 z-[60] md:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+              >
+                {/* Backdrop */}
+                <motion.div
+                  className="absolute inset-0 bg-zinc-950/50 backdrop-blur-sm"
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                />
+                {/* Panel */}
+                <motion.div
+                  className="absolute right-0 top-0 h-full w-[82%] max-w-sm bg-white shadow-2xl flex flex-col"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "spring", stiffness: 320, damping: 32 }}
+                >
+                  <div className="h-16 flex items-center justify-between px-5 border-b border-zinc-100 flex-shrink-0">
+                    <Link
+                      href="/"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center"
+                      aria-label="Finy"
+                    >
+                      <Image
+                        src="/images/fini-negro-logo.png"
+                        alt="Finy"
+                        width={94}
+                        height={54}
+                        className="h-6 w-auto"
+                      />
+                    </Link>
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="w-9 h-9 -mr-1 rounded-full bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 flex items-center justify-center transition-colors"
+                      aria-label="Cerrar menú"
+                    >
+                      <X className="h-5 w-5 text-zinc-900" />
+                    </button>
+                  </div>
+
+                  <nav className="flex-1 overflow-y-auto px-5 py-4 flex flex-col">
+                    {NAV_LINKS.map((l, i) => (
+                      <motion.div
+                        key={l.href}
+                        initial={{ opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.08 + i * 0.04, duration: 0.3 }}
+                      >
+                        <Link
+                          href={l.href}
+                          onClick={() => setOpen(false)}
+                          className="block py-3.5 text-[17px] font-semibold text-zinc-900 border-b border-zinc-100"
+                        >
+                          {l.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </nav>
+
+                  <div className="px-5 pt-4 pb-[max(env(safe-area-inset-bottom),20px)] border-t border-zinc-100 flex-shrink-0 space-y-3">
+                    <div className="flex justify-start">
+                      <LanguageSelector />
+                    </div>
+                    <Link
+                      href="#descargar"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center px-5 py-3.5 rounded-full bg-zinc-900 text-white text-[15px] font-semibold active:scale-[0.98] transition-transform"
+                    >
+                      Descargar app
+                    </Link>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
+    </>
   )
 }

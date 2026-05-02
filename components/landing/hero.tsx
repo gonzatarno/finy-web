@@ -165,7 +165,6 @@ export function Hero() {
 
             {/* CTAs */}
             <motion.div
-              id="descargar"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}

@@ -10,7 +10,7 @@ export default function PoliticaPrivacidadClient() {
   const content = {
     es: {
       title: 'Política de Privacidad de Finy',
-      lastUpdated: 'Última actualización: 2 de Marzo de 2026',
+      lastUpdated: 'Última actualización: 2 de Mayo de 2026',
       sections: [
         {
           number: 1,
@@ -151,7 +151,7 @@ Web: www.finyapp.io`,
     },
     en: {
       title: 'Finy Privacy Policy',
-      lastUpdated: 'Last updated: March 2, 2026',
+      lastUpdated: 'Last updated: May 2, 2026',
       sections: [
         {
           number: 1,
