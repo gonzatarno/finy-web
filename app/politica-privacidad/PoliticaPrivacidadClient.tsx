@@ -17,7 +17,7 @@ export default function PoliticaPrivacidadClient() {
           title: 'Introducción',
           content: `Bienvenido a Finy ("nosotros", "nuestro").
 
-La presente Política de Privacidad describe cómo Finy recopila, utiliza y protege la información de los usuarios a través de su ecosistema multiplataforma, el cual incluye nuestra Aplicación Móvil (disponible en iOS y Android), nuestra Plataforma Web (dashboard) y nuestro Asistente virtual en WhatsApp.
+La presente Política de Privacidad describe cómo Finy recopila, utiliza y protege la información de los usuarios a través de su ecosistema, el cual incluye nuestra Aplicación Móvil (disponible en iOS y Android) y nuestra Plataforma Web (dashboard).
 
 Al utilizar el Ecosistema Finy, usted acepta las prácticas descritas en esta política. Si no está de acuerdo, por favor no utilice nuestros servicios.`,
         },
@@ -27,9 +27,8 @@ Al utilizar el Ecosistema Finy, usted acepta las prácticas descritas en esta po
           content: `Para brindarle una plataforma financiera precisa y funcional, recopilamos los siguientes tipos de información:
 
 A. Datos de Registro:
-• Nombre y correo electrónico (incluyendo autenticación a través de terceros como Google).
-• Número de teléfono vinculado para el Asistente virtual de WhatsApp.
-• En caso de suscripciones, datos de facturación procesados por los procesadores de pago autorizados (Gumroad, Apple App Store, Google Play Store y RevenueCat).
+• Nombre y correo electrónico (incluyendo autenticación a través de terceros como Google y Apple).
+• En caso de suscripciones, datos de facturación procesados por los procesadores de pago autorizados (Apple App Store, Google Play Store y RevenueCat).
 
 B. Datos Financieros:
 • Registros de ingresos, gastos, presupuestos, categorías personalizadas, métodos de pago y la moneda de preferencia del usuario (primary_currency).
@@ -137,7 +136,7 @@ Si eres padre, madre o tutor y tienes preocupaciones sobre la privacidad de un m
         {
           number: 11,
           title: 'Cambios en esta Política',
-          content: `Podemos actualizar esta Política de Privacidad ocasionalmente. Le notificaremos cualquier cambio significativo a través de WhatsApp o por correo electrónico. El uso continuado de Finy después de dichos cambios constituye su aceptación de la nueva política.`,
+          content: `Podemos actualizar esta Política de Privacidad ocasionalmente. Le notificaremos cualquier cambio significativo dentro de la app o por correo electrónico. El uso continuado de Finy después de dichos cambios constituye su aceptación de la nueva política.`,
         },
         {
           number: 12,
@@ -158,7 +157,7 @@ Web: www.finyapp.io`,
           title: 'Introduction',
           content: `Welcome to Finy ("we", "our").
 
-This Privacy Policy describes how Finy collects, uses and protects user information through its multi-platform ecosystem, which includes our Mobile Application (available on iOS and Android), our Web Platform (dashboard) and our virtual assistant on WhatsApp.
+This Privacy Policy describes how Finy collects, uses and protects user information through its ecosystem, which includes our Mobile Application (available on iOS and Android) and our Web Platform (dashboard).
 
 By using the Finy Ecosystem, you accept the practices described in this policy. If you do not agree, please do not use our services.`,
         },
@@ -168,9 +167,8 @@ By using the Finy Ecosystem, you accept the practices described in this policy. 
           content: `To provide you with an accurate and functional financial platform, we collect the following types of information:
 
 A. Registration Data:
-• Name and email address (including authentication through third parties such as Google).
-• Phone number linked to the WhatsApp virtual assistant.
-• In case of subscriptions, billing data processed by authorized payment processors (Gumroad, Apple App Store, Google Play Store and RevenueCat).
+• Name and email address (including authentication through third parties such as Google and Apple).
+• In case of subscriptions, billing data processed by authorized payment processors (Apple App Store, Google Play Store and RevenueCat).
 
 B. Financial Data:
 • Records of income, expenses, budgets, custom categories, payment methods, and the user's preferred currency (primary_currency).
@@ -278,7 +276,7 @@ If you are a parent, guardian, or tutor and have concerns about a minor's privac
         {
           number: 11,
           title: 'Changes to This Policy',
-          content: `We may update this Privacy Policy occasionally. We will notify you of any significant changes through WhatsApp or email. Continued use of Finy after such changes constitutes your acceptance of the new policy.`,
+          content: `We may update this Privacy Policy occasionally. We will notify you of any significant changes inside the app or by email. Continued use of Finy after such changes constitutes your acceptance of the new policy.`,
         },
         {
           number: 12,

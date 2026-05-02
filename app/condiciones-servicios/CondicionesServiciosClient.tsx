@@ -15,15 +15,14 @@ export default function CondicionesServiciosClient() {
         {
           number: 1,
           title: 'Aceptación de los Términos',
-          content: `Al registrarse, acceder al sitio web dashboard.finyapp.io, descargar la aplicación móvil de Finy desde la Apple App Store o Google Play Store, o interactuar con el bot de WhatsApp de Finy (el "Servicio"), usted acepta estar legalmente vinculado por estos Términos y Condiciones. Si no acepta estos términos en su totalidad, no podrá utilizar el Servicio.`,
+          content: `Al registrarse, acceder al sitio web dashboard.finyapp.io o descargar la aplicación móvil de Finy desde la Apple App Store o Google Play Store (el "Servicio"), usted acepta estar legalmente vinculado por estos Términos y Condiciones. Si no acepta estos términos en su totalidad, no podrá utilizar el Servicio.`,
         },
         {
           number: 2,
           title: 'Descripción del Servicio',
-          content: `Finy es una herramienta tecnológica de registro, organización y visualización de finanzas personales, accesible vía App Móvil (iOS y Android), Web y WhatsApp. Finy utiliza Inteligencia Artificial para procesar comandos de voz, texto e imágenes y categorizar gastos. El servicio incluye:
+          content: `Finy es una herramienta tecnológica de registro, organización y visualización de finanzas personales, accesible vía App Móvil (iOS y Android) y Plataforma Web. Finy utiliza Inteligencia Artificial para procesar comandos de voz, texto e imágenes y categorizar gastos. El servicio incluye:
 • Una App Móvil disponible en la Apple App Store y Google Play Store, como canal principal de acceso.
 • Un Dashboard Web en dashboard.finyapp.io para la visualización de métricas, gráficos históricos y gestión de categorías.
-• Un Bot de WhatsApp como canal complementario para el ingreso de datos mediante texto, audio e imágenes.
 • Herramientas de automatización para procesamiento de correos electrónicos transaccionales (opcional).
 
 Naturaleza Informativa: Finy es una herramienta de registro y visualización. Finy NO es un asesor financiero, planificador de inversiones, contador ni abogado. Los reportes, proyecciones de cuotas y alertas son estimaciones basadas en los datos provistos por usted.`,
@@ -31,7 +30,7 @@ Naturaleza Informativa: Finy es una herramienta de registro y visualización. Fi
         {
           number: 3,
           title: 'Registro y Seguridad',
-          content: `Para utilizar el Servicio, puede registrarse a través de la App Móvil, el sitio web o vinculando una cuenta de WhatsApp válida.
+          content: `Para utilizar el Servicio, puede registrarse a través de la App Móvil o el sitio web mediante email o autenticación con Google o Apple.
 • Responsabilidad: Usted es el único responsable de mantener la seguridad de sus credenciales de acceso y de su dispositivo móvil.
 • Acceso no autorizado: Finy no será responsable por pérdidas o daños causados por el acceso no autorizado a su cuenta por parte de terceros.`,
         },
@@ -74,7 +73,7 @@ Cambios de Precio: Nos reservamos el derecho de modificar las tarifas de suscrip
         {
           number: 7,
           title: 'Dependencia de Plataformas de Terceros',
-          content: `El Servicio depende de la disponibilidad continua de plataformas externas, incluyendo la Apple App Store, Google Play Store, WhatsApp (Meta Platforms, Inc.) y proveedores de correo electrónico (Google).
+          content: `El Servicio depende de la disponibilidad continua de plataformas externas, incluyendo la Apple App Store, Google Play Store y proveedores de correo electrónico (Google).
 
 Finy no garantiza que el servicio sea ininterrumpido. Finy no será responsable si alguna de estas plataformas sufre interrupciones, cambia sus políticas o suspende el acceso al Servicio.`,
         },
@@ -116,15 +115,14 @@ soporte@finyapp.io`,
         {
           number: 1,
           title: 'Acceptance of Terms',
-          content: `By registering, accessing the website dashboard.finyapp.io, downloading the Finy mobile app from the Apple App Store or Google Play Store, or interacting with the Finy WhatsApp bot (the "Service"), you agree to be legally bound by these Terms and Conditions. If you do not accept these terms in full, you will not be able to use the Service.`,
+          content: `By registering, accessing the website dashboard.finyapp.io or downloading the Finy mobile app from the Apple App Store or Google Play Store (the "Service"), you agree to be legally bound by these Terms and Conditions. If you do not accept these terms in full, you will not be able to use the Service.`,
         },
         {
           number: 2,
           title: 'Service Description',
-          content: `Finy is a technological tool for recording, organizing and visualizing personal finances, accessible via Mobile App (iOS and Android), Web and WhatsApp. Finy uses Artificial Intelligence to process voice commands, text and images and categorize expenses. The service includes:
+          content: `Finy is a technological tool for recording, organizing and visualizing personal finances, accessible via Mobile App (iOS and Android) and Web Platform. Finy uses Artificial Intelligence to process voice commands, text and images and categorize expenses. The service includes:
 • A Mobile App available on the Apple App Store and Google Play Store, as the primary access channel.
 • A Web Dashboard at dashboard.finyapp.io for viewing metrics, historical charts, and category management.
-• A WhatsApp Bot as a complementary channel for data entry through text, audio, and images.
 • Automation tools for processing transactional emails (optional).
 
 Informational Nature: Finy is a recording and visualization tool. Finy is NOT a financial advisor, investment planner, accountant or lawyer. Reports, installment projections, and alerts are estimates based on data provided by you.`,
@@ -132,7 +130,7 @@ Informational Nature: Finy is a recording and visualization tool. Finy is NOT a 
         {
           number: 3,
           title: 'Registration and Security',
-          content: `To use the Service, you may register through the Mobile App, the website, or by linking a valid WhatsApp account.
+          content: `To use the Service, you may register through the Mobile App or the website using email or Google/Apple authentication.
 • Responsibility: You are solely responsible for maintaining the security of your access credentials and your mobile device.
 • Unauthorized Access: Finy will not be responsible for any losses or damages caused by unauthorized access to your account by third parties.`,
         },
@@ -175,7 +173,7 @@ Price Changes: We reserve the right to modify subscription fees. Any changes wil
         {
           number: 7,
           title: 'Dependence on Third-Party Platforms',
-          content: `The Service depends on the continuous availability of external platforms, including the Apple App Store, Google Play Store, WhatsApp (Meta Platforms, Inc.) and email providers (Google).
+          content: `The Service depends on the continuous availability of external platforms, including the Apple App Store, Google Play Store and email providers (Google).
 
 Finy does not guarantee uninterrupted service. Finy will not be responsible if any of these platforms experiences outages, changes its policies, or suspends access to the Service.`,
         },

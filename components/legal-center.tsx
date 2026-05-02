@@ -13,7 +13,7 @@ export function LegalCenter() {
         {
           number: 1,
           title: 'Introducción',
-          content: `Bienvenido a Finy ("nosotros", "nuestro"). Finy es una plataforma de gestión financiera inteligente que opera a través de WhatsApp y una Aplicación Web (Dashboard).
+          content: `Bienvenido a Finy ("nosotros", "nuestro"). Finy es una plataforma de gestión financiera inteligente que opera a través de una Aplicación Móvil (iOS y Android) y una Aplicación Web (Dashboard).
 
 Su privacidad es crítica para nosotros. Esta Política de Privacidad describe cómo recopilamos, usamos, procesamos y compartimos su información personal cuando utiliza nuestros servicios.
 
@@ -25,7 +25,7 @@ Al utilizar Finy, usted acepta las prácticas descritas en esta política. Si no
           content: `Para brindarle un asistente financiero preciso y un dashboard funcional, recopilamos los siguientes tipos de información:
 
 **A. Información proporcionada por usted:**
-• **Datos de Cuenta:** Su número de teléfono (WhatsApp ID), nombre de perfil y, en caso de suscripciones, datos de facturación (procesados por Gumroad).
+• **Datos de Cuenta:** Su nombre, correo electrónico (incluyendo autenticación de Google y Apple) y, en caso de suscripciones, datos de facturación (procesados por Apple App Store, Google Play Store y RevenueCat).
 • **Datos Financieros:** Información sobre sus gastos, ingresos, presupuestos, categorías, fechas y descripciones que usted envía voluntariamente al chat o carga en el Dashboard Web.
 • **Contenido Multimedia:** Notas de voz (audios) e imágenes (fotos de tickets/facturas) que envía al bot para su procesamiento automático.
 
@@ -99,7 +99,7 @@ Finy **no vende, alquila ni comercializa** su información personal o financiera
         {
           number: 9,
           title: 'Cambios en esta Política',
-          content: `Podemos actualizar esta Política de Privacidad ocasionalmente. Le notificaremos cualquier cambio significativo a través de WhatsApp o por correo electrónico. El uso continuado de Finy después de dichos cambios constituye su aceptación de la nueva política.`,
+          content: `Podemos actualizar esta Política de Privacidad ocasionalmente. Le notificaremos cualquier cambio significativo dentro de la app o por correo electrónico. El uso continuado de Finy después de dichos cambios constituye su aceptación de la nueva política.`,
         },
         {
           number: 10,
@@ -118,7 +118,7 @@ Finy **no vende, alquila ni comercializa** su información personal o financiera
         {
           number: 1,
           title: 'Introduction',
-          content: `Welcome to Finy ("we", "our"). Finy is an intelligent financial management platform that operates through WhatsApp and a Web Application (Dashboard).
+          content: `Welcome to Finy ("we", "our"). Finy is an intelligent financial management platform that operates through a Mobile App (iOS and Android) and a Web Application (Dashboard).
 
 Your privacy is critical to us. This Privacy Policy describes how we collect, use, process, and share your personal information when you use our services.
 
@@ -130,7 +130,7 @@ By using Finy, you accept the practices described in this policy. If you do not 
           content: `To provide you with an accurate financial assistant and functional dashboard, we collect the following types of information:
 
 **A. Information provided by you:**
-• **Account Data:** Your phone number (WhatsApp ID), profile name, and, in case of subscriptions, billing data (processed by Gumroad).
+• **Account Data:** Your name, email address (including Google and Apple authentication) and, in case of subscriptions, billing data (processed by Apple App Store, Google Play Store and RevenueCat).
 • **Financial Data:** Information about your expenses, income, budgets, categories, dates, and descriptions that you voluntarily send to the chat or upload to the Web Dashboard.
 • **Multimedia Content:** Voice notes (audio) and images (photos of receipts/invoices) that you send to the bot for automatic processing.
 
@@ -204,7 +204,7 @@ Finy **does not sell, rent, or commercialize** your personal or financial inform
         {
           number: 9,
           title: 'Changes to This Policy',
-          content: `We may update this Privacy Policy occasionally. We will notify you of any significant changes through WhatsApp or email. Continued use of Finy after such changes constitutes your acceptance of the new policy.`,
+          content: `We may update this Privacy Policy occasionally. We will notify you of any significant changes inside the app or by email. Continued use of Finy after such changes constitutes your acceptance of the new policy.`,
         },
         {
           number: 10,
