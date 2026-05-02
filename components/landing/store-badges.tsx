@@ -4,7 +4,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Apple } from "lucide-react"
 
-const APP_STORE_URL = "https://apps.apple.com/app/finy"
+const APP_STORE_URL = "https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721"
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.finy.app"
 
 interface StoreBadgesProps {

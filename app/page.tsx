@@ -4,6 +4,7 @@ import { StickyFeatures } from "@/components/landing/sticky-features"
 import { VentajasSections } from "@/components/landing/ventajas-sections"
 import { Pricing } from "@/components/landing/pricing"
 import { FAQ } from "@/components/landing/faq"
+import { Contact } from "@/components/landing/contact"
 import { CTAFinal } from "@/components/landing/cta-final"
 import { Footer } from "@/components/landing/footer"
 
@@ -17,6 +18,7 @@ export default function HomePage() {
         <VentajasSections />
         <Pricing />
         <FAQ />
+        <Contact />
         <CTAFinal />
       </main>
       <Footer />

@@ -93,8 +93,8 @@ export function FAQ() {
 
         <div className="mt-12 text-center text-[13px] text-zinc-500">
           ¿Otra duda?{" "}
-          <a href="mailto:hola@finyapp.io" className="font-semibold text-zinc-900 underline underline-offset-2">
-            hola@finyapp.io
+          <a href="#contacto" className="font-semibold text-zinc-900 underline underline-offset-2">
+            Escribinos
           </a>
         </div>
       </div>

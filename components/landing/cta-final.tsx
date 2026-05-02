@@ -46,7 +46,7 @@ export function CTAFinal() {
             >
               Tu plata,
               <br />
-              <span className="lime-underline text-zinc-950">bajo control</span>.
+              <span className="text-[#CEFD55]">bajo control</span>.
             </motion.h2>
 
             <motion.p

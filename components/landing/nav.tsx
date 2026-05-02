@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -11,6 +12,7 @@ const NAV_LINKS = [
   { href: "#ventajas", label: "Ventajas" },
   { href: "#precios", label: "Precios" },
   { href: "#faq", label: "FAQ" },
+  { href: "#contacto", label: "Contacto" },
 ]
 
 export function Nav() {
@@ -39,11 +41,15 @@ export function Nav() {
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#CEFD55]">
-            <span className="text-black font-extrabold text-[14px] tracking-tight">F</span>
-          </span>
-          <span className="text-[20px] font-bold tracking-tight text-zinc-900">finy</span>
+        <Link href="/" className="flex items-center shrink-0" aria-label="Finy">
+          <Image
+            src="/images/fini-negro-logo.png"
+            alt="Finy"
+            width={94}
+            height={54}
+            priority
+            className="h-7 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

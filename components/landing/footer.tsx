@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Instagram } from "lucide-react"
+import Image from "next/image"
+import { Instagram, Mail } from "lucide-react"
 
 export function Footer() {
   return (
@@ -8,11 +9,15 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#CEFD55]">
-                <span className="text-black font-extrabold text-[14px]">F</span>
-              </span>
-              <span className="text-xl font-bold text-white">finy</span>
+            <Link href="/" className="inline-flex items-center" aria-label="Finy">
+              <Image
+                src="/images/fini-negro-logo.png"
+                alt="Finy"
+                width={94}
+                height={54}
+                className="h-8 w-auto invert brightness-0"
+                style={{ filter: "invert(1)" }}
+              />
             </Link>
             <p className="mt-4 text-sm text-zinc-400 max-w-sm leading-relaxed">
               La app de finanzas personales con IA. Anotá gastos por audio, foto o chat —
@@ -27,6 +32,13 @@ export function Footer() {
               >
                 <Instagram className="h-4 w-4" />
               </Link>
+              <Link
+                href="mailto:soporte@finyapp.io"
+                aria-label="Email"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900 hover:bg-zinc-800 transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+              </Link>
             </div>
           </div>
 
@@ -37,6 +49,7 @@ export function Footer() {
               <li><Link href="#ventajas" className="hover:text-white transition-colors">Ventajas</Link></li>
               <li><Link href="#precios" className="hover:text-white transition-colors">Precios</Link></li>
               <li><Link href="#faq" className="hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="#contacto" className="hover:text-white transition-colors">Contacto</Link></li>
             </ul>
           </div>
 
