@@ -1,7 +1,7 @@
 import { Nav } from "@/components/landing/nav"
 import { Hero } from "@/components/landing/hero"
 import { StickyFeatures } from "@/components/landing/sticky-features"
-import { BentoVentajas } from "@/components/landing/bento-ventajas"
+import { VentajasSections } from "@/components/landing/ventajas-sections"
 import { Pricing } from "@/components/landing/pricing"
 import { FAQ } from "@/components/landing/faq"
 import { CTAFinal } from "@/components/landing/cta-final"
@@ -14,7 +14,7 @@ export default function HomePage() {
       <main className="bg-white">
         <Hero />
         <StickyFeatures />
-        <BentoVentajas />
+        <VentajasSections />
         <Pricing />
         <FAQ />
         <CTAFinal />

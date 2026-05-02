@@ -101,24 +101,16 @@ export function Hero() {
             >
               <StoreBadges />
 
-              {/* Stats inline */}
-              <div className="flex items-center gap-5 text-[13px] text-zinc-700">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex -space-x-1.5">
-                    {["bg-violet-500", "bg-sky-500", "bg-emerald-500", "bg-amber-400"].map((c) => (
-                      <span key={c} className={`inline-flex h-6 w-6 rounded-full ring-2 ring-white ${c}`} />
-                    ))}
-                  </div>
-                  <span><span className="font-bold text-zinc-900">+12.000</span> usuarios activos</span>
+              {/* Stats — limpio, una línea */}
+              <div className="flex items-center gap-3 text-[13px] text-zinc-600">
+                <div className="flex items-center gap-1">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-zinc-900 text-zinc-900" />
+                  ))}
                 </div>
-                <div className="hidden sm:flex items-center gap-1">
-                  <div className="flex items-center gap-0.5">
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <span className="font-semibold text-zinc-900 ml-0.5">4.9</span>
-                </div>
+                <span className="font-semibold text-zinc-900">4.9</span>
+                <span className="text-zinc-300">·</span>
+                <span><span className="font-semibold text-zinc-900">+12.000</span> descargas</span>
               </div>
             </motion.div>
 
@@ -152,12 +144,11 @@ export function Hero() {
               <PhoneFrame screens={HERO_SCREENS} className="!max-w-[340px]" />
             </motion.div>
 
-            {/* Floating real-product cards (no chips genéricos) */}
+            {/* Floating real-product cards (paleta disciplinada — solo lima + zinc) */}
             <FloatingMessageCard
               className="absolute -left-4 sm:-left-12 top-[12%] hidden sm:flex"
               delay={0.7}
-              avatar={<Mic className="h-4 w-4 text-violet-600" />}
-              avatarBg="bg-violet-100"
+              avatar={<Mic className="h-4 w-4 text-zinc-900" />}
               text='"Ayer pagué 25k en delivery"'
               meta="Audio · 2s"
             />
@@ -168,9 +159,7 @@ export function Hero() {
             <FloatingChipBubble
               className="absolute -left-2 sm:-left-8 bottom-[12%] hidden sm:flex"
               delay={1.3}
-              icon={<Sparkles className="h-4 w-4 text-emerald-600" />}
               text="✓ Cargado"
-              tone="emerald"
             />
           </motion.div>
         </div>
@@ -181,9 +170,9 @@ export function Hero() {
 
 // ─── Tarjetas flotantes que parecen pedacitos reales del producto ───────────
 function FloatingMessageCard({
-  className, delay, avatar, avatarBg, text, meta,
+  className, delay, avatar, text, meta,
 }: {
-  className?: string; delay: number; avatar: React.ReactNode; avatarBg: string; text: string; meta: string
+  className?: string; delay: number; avatar: React.ReactNode; text: string; meta: string
 }) {
   return (
     <motion.div
@@ -192,7 +181,7 @@ function FloatingMessageCard({
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={`${className} items-start gap-3 rounded-2xl bg-white/95 backdrop-blur px-3.5 py-3 shadow-xl shadow-zinc-900/10 ring-1 ring-zinc-200/80 max-w-[220px]`}
     >
-      <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${avatarBg}`}>{avatar}</span>
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CEFD55]">{avatar}</span>
       <div className="flex flex-col">
         <span className="text-[13px] font-medium text-zinc-900 leading-tight">{text}</span>
         <span className="text-[10.5px] text-zinc-500 mt-1">{meta}</span>
@@ -230,20 +219,18 @@ function FloatingTickCard({ className, delay }: { className?: string; delay: num
 }
 
 function FloatingChipBubble({
-  className, delay, icon, text, tone,
+  className, delay, text,
 }: {
-  className?: string; delay: number; icon: React.ReactNode; text: string; tone: "violet" | "sky" | "emerald"
+  className?: string; delay: number; text: string
 }) {
-  const ring = { violet: "ring-violet-200", sky: "ring-sky-200", emerald: "ring-emerald-200" }[tone]
   return (
     <motion.div
       initial={{ opacity: 0, y: 14, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`${className} items-center gap-2 rounded-full bg-white px-3.5 py-2 shadow-lg shadow-zinc-900/10 ring-1 ${ring}`}
+      className={`${className} items-center gap-2 rounded-full bg-zinc-950 text-white px-4 py-2 shadow-xl shadow-zinc-900/30`}
     >
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-50">{icon}</span>
-      <span className="text-[12px] font-semibold text-zinc-800 whitespace-nowrap">{text}</span>
+      <span className="text-[12px] font-semibold whitespace-nowrap">{text}</span>
     </motion.div>
   )
 }
