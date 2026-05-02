@@ -25,7 +25,7 @@ const COPY = {
     subPre:  "Háblale, saca foto del ticket o escríbele.",
     subBold: "La IA de Finy lo carga todo por ti.",
     subPost: "En 1 minuto sabes cuánto gastaste este mes.",
-    downloads: "descargas",
+    proof: "Disponible para iPhone y Android · Sin tarjeta de crédito",
     scrollHint: "Mira cómo funciona",
     floatMsg: '"Pagué 25 en delivery"',
     floatMsgMeta: "Audio · 2s",
@@ -47,7 +47,7 @@ const COPY = {
     subPre:  "Talk to it, snap your receipt or type.",
     subBold: "Finy's AI logs everything for you.",
     subPost: "In one minute you know what you've spent this month.",
-    downloads: "downloads",
+    proof: "Available on iPhone and Android · No credit card needed",
     scrollHint: "See how it works",
     floatMsg: '"Yesterday I paid $25 on delivery"',
     floatMsgMeta: "Voice · 2s",
@@ -223,22 +223,10 @@ export function Hero() {
             >
               <StoreBadges />
 
-              {/* Stats — animated counter para dar vida */}
-              <div className="flex items-center gap-3 text-[13px] text-zinc-600">
-                <div className="flex items-center gap-1">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-zinc-900 text-zinc-900" />
-                  ))}
-                </div>
-                <span className="font-semibold text-zinc-900">4.9</span>
-                <span className="text-zinc-300">·</span>
-                <span>
-                  <span className="font-semibold text-zinc-900 tabular-nums">
-                    +<CountUp to={12000} />
-                  </span>{" "}
-                  {t.downloads}
-                </span>
-              </div>
+              {/* Línea sutil debajo de los CTAs — sin métricas vanity */}
+              <p className="text-[13px] text-zinc-500">
+                {t.proof}
+              </p>
             </motion.div>
 
             {/* Scroll hint en mobile */}
