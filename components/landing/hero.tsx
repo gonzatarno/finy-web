@@ -1,0 +1,248 @@
+"use client"
+
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { useRef } from "react"
+import Image from "next/image"
+import { Mic, Camera, MessageCircle, Sparkles, Star, ArrowDown } from "lucide-react"
+import { PhoneFrame } from "./phone-frame"
+import { StoreBadges } from "./store-badges"
+
+const HERO_SCREENS = [
+  { src: "/screens/home.png",         alt: "Pantalla principal de Finy",   label: "Inicio" },
+  { src: "/screens/chat-add.png",     alt: "Cargar gasto con IA",          label: "AI Chat" },
+  { src: "/screens/transactions.png", alt: "Lista de movimientos",         label: "Movimientos" },
+  { src: "/screens/stats.png",        alt: "Estadísticas con IA",          label: "Estadísticas" },
+]
+
+export function Hero() {
+  // 3D tilt seguidor del mouse en el phone
+  const ref = useRef<HTMLDivElement>(null)
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const sx = useSpring(mx, { stiffness: 80, damping: 14 })
+  const sy = useSpring(my, { stiffness: 80, damping: 14 })
+  const rotY = useTransform(sx, [-1, 1], [10, -10])
+  const rotX = useTransform(sy, [-1, 1], [-8, 8])
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = ref.current?.getBoundingClientRect()
+    if (!r) return
+    const px = (e.clientX - r.left) / r.width  // 0..1
+    const py = (e.clientY - r.top) / r.height // 0..1
+    mx.set(px * 2 - 1)
+    my.set(py * 2 - 1)
+  }
+  const onMouseLeave = () => { mx.set(0); my.set(0) }
+
+  return (
+    <section
+      id="inicio"
+      className="relative isolate overflow-hidden pt-28 sm:pt-36 pb-20 sm:pb-28"
+    >
+      {/* Mesh gradient background animado */}
+      <div className="absolute inset-0 mesh-bg -z-10" aria-hidden />
+      {/* Fade superior para que el nav respire */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/80 to-transparent -z-10" aria-hidden />
+      {/* Fade inferior para corte limpio con la siguiente sección */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/90 to-transparent -z-10" aria-hidden />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-12 items-center">
+          {/* TEXTO */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            {/* Pre-headline pill con dot animado */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-300/60 bg-white/80 backdrop-blur px-3.5 py-1.5 text-[12px] font-medium text-zinc-800 shadow-sm"
+            >
+              <span className="relative inline-flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full bg-emerald-500 live-dot text-emerald-500" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              <span className="text-zinc-700">14 días <span className="font-bold text-zinc-900">PRO gratis</span> al instalar</span>
+            </motion.div>
+
+            {/* Headline GIGANTE */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 text-[52px] sm:text-[80px] lg:text-[104px] font-extrabold tracking-[-0.04em] text-zinc-950 leading-[0.92]"
+            >
+              Anotá tus gastos
+              <br />
+              <span className="relative inline-block">
+                <span className="lime-underline">sin esfuerzo</span>
+                <span className="text-zinc-950">.</span>
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-7 text-[18px] sm:text-[20px] leading-relaxed text-zinc-700 max-w-xl mx-auto lg:mx-0"
+            >
+              Hablale, sacale foto al ticket o escribile.{" "}
+              <span className="font-semibold text-zinc-900">Finy carga todo por vos.</span>{" "}
+              En 1 minuto sabés cuánto gastás este mes.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              id="descargar"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-9 flex flex-col items-center lg:items-start gap-5"
+            >
+              <StoreBadges />
+
+              {/* Stats inline */}
+              <div className="flex items-center gap-5 text-[13px] text-zinc-700">
+                <div className="flex items-center gap-1.5">
+                  <div className="flex -space-x-1.5">
+                    {["bg-violet-500", "bg-sky-500", "bg-emerald-500", "bg-amber-400"].map((c) => (
+                      <span key={c} className={`inline-flex h-6 w-6 rounded-full ring-2 ring-white ${c}`} />
+                    ))}
+                  </div>
+                  <span><span className="font-bold text-zinc-900">+12.000</span> usuarios activos</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="font-semibold text-zinc-900 ml-0.5">4.9</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Scroll hint en mobile */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="hidden lg:flex items-center gap-2 mt-12 text-[12px] font-medium text-zinc-500"
+            >
+              <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
+              Mirá cómo funciona
+            </motion.div>
+          </div>
+
+          {/* PHONE MOCKUP con tilt 3D */}
+          <motion.div
+            ref={ref}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative w-full max-w-[440px] mx-auto"
+            style={{ perspective: "1200px" }}
+          >
+            <motion.div
+              style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
+              className="relative"
+            >
+              <PhoneFrame screens={HERO_SCREENS} className="!max-w-[340px]" />
+            </motion.div>
+
+            {/* Floating real-product cards (no chips genéricos) */}
+            <FloatingMessageCard
+              className="absolute -left-4 sm:-left-12 top-[12%] hidden sm:flex"
+              delay={0.7}
+              avatar={<Mic className="h-4 w-4 text-violet-600" />}
+              avatarBg="bg-violet-100"
+              text='"Ayer pagué 25k en delivery"'
+              meta="Audio · 2s"
+            />
+            <FloatingTickCard
+              className="absolute -right-4 sm:-right-10 top-[40%] hidden sm:flex"
+              delay={1.0}
+            />
+            <FloatingChipBubble
+              className="absolute -left-2 sm:-left-8 bottom-[12%] hidden sm:flex"
+              delay={1.3}
+              icon={<Sparkles className="h-4 w-4 text-emerald-600" />}
+              text="✓ Cargado"
+              tone="emerald"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Tarjetas flotantes que parecen pedacitos reales del producto ───────────
+function FloatingMessageCard({
+  className, delay, avatar, avatarBg, text, meta,
+}: {
+  className?: string; delay: number; avatar: React.ReactNode; avatarBg: string; text: string; meta: string
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14, x: -8 }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={`${className} items-start gap-3 rounded-2xl bg-white/95 backdrop-blur px-3.5 py-3 shadow-xl shadow-zinc-900/10 ring-1 ring-zinc-200/80 max-w-[220px]`}
+    >
+      <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${avatarBg}`}>{avatar}</span>
+      <div className="flex flex-col">
+        <span className="text-[13px] font-medium text-zinc-900 leading-tight">{text}</span>
+        <span className="text-[10.5px] text-zinc-500 mt-1">{meta}</span>
+      </div>
+    </motion.div>
+  )
+}
+
+function FloatingTickCard({ className, delay }: { className?: string; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14, x: 8 }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={`${className} flex-col gap-2 rounded-2xl bg-white px-3.5 py-3 shadow-xl shadow-zinc-900/10 ring-1 ring-zinc-200/80 min-w-[200px]`}
+    >
+      <div className="flex items-center justify-between">
+        <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-wider uppercase text-zinc-500">
+          <Camera className="h-3 w-3" /> Ticket leído
+        </span>
+        <span className="text-[10px] font-semibold text-emerald-600">✓ Listo</span>
+      </div>
+      <div className="space-y-1">
+        <div className="flex justify-between text-[12px]">
+          <span className="text-zinc-500">Comercio</span>
+          <span className="font-semibold text-zinc-900">Coto Express</span>
+        </div>
+        <div className="flex justify-between text-[12px]">
+          <span className="text-zinc-500">Total</span>
+          <span className="font-semibold text-zinc-900">$8.450</span>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function FloatingChipBubble({
+  className, delay, icon, text, tone,
+}: {
+  className?: string; delay: number; icon: React.ReactNode; text: string; tone: "violet" | "sky" | "emerald"
+}) {
+  const ring = { violet: "ring-violet-200", sky: "ring-sky-200", emerald: "ring-emerald-200" }[tone]
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={`${className} items-center gap-2 rounded-full bg-white px-3.5 py-2 shadow-lg shadow-zinc-900/10 ring-1 ${ring}`}
+    >
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-50">{icon}</span>
+      <span className="text-[12px] font-semibold text-zinc-800 whitespace-nowrap">{text}</span>
+    </motion.div>
+  )
+}
