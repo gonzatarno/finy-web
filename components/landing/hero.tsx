@@ -1,11 +1,36 @@
 "use client"
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Mic, Camera, MessageCircle, Sparkles, Star, ArrowDown } from "lucide-react"
 import { PhoneFrame } from "./phone-frame"
 import { StoreBadges } from "./store-badges"
+
+const ROTATING_WORDS = [
+  { word: "voz",  icon: <Mic className="h-[0.8em] w-[0.8em]" /> },
+  { word: "foto", icon: <Camera className="h-[0.8em] w-[0.8em]" /> },
+  { word: "chat", icon: <MessageCircle className="h-[0.8em] w-[0.8em]" /> },
+  { word: "IA",   icon: <Sparkles className="h-[0.8em] w-[0.8em]" /> },
+]
+
+// Contador que tickea de 0 → target con ease-out cubic
+function CountUp({ to, duration = 2 }: { to: number; duration?: number }) {
+  const [n, setN] = useState(0)
+  useEffect(() => {
+    const start = performance.now()
+    let raf = 0
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / (duration * 1000), 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setN(Math.round(to * eased))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [to, duration])
+  return <>{n.toLocaleString("es-AR")}</>
+}
 
 const HERO_SCREENS = [
   { src: "/screens/chat-add.png",     alt: "Asistente IA de Finy",         label: "IA Chat" },
@@ -34,13 +59,47 @@ export function Hero() {
   }
   const onMouseLeave = () => { mx.set(0); my.set(0) }
 
+  // Word rotator del headline
+  const [wIdx, setWIdx] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setWIdx((i) => (i + 1) % ROTATING_WORDS.length), 2400)
+    return () => clearInterval(id)
+  }, [])
+
+  // Cursor glow seguidor (efecto premium)
+  const sectionRef = useRef<HTMLElement>(null)
+  const glowX = useMotionValue(0)
+  const glowY = useMotionValue(0)
+  const sgx = useSpring(glowX, { stiffness: 100, damping: 20 })
+  const sgy = useSpring(glowY, { stiffness: 100, damping: 20 })
+  const onSectionMove = (e: React.MouseEvent<HTMLElement>) => {
+    const r = sectionRef.current?.getBoundingClientRect()
+    if (!r) return
+    glowX.set(e.clientX - r.left)
+    glowY.set(e.clientY - r.top)
+  }
+
   return (
     <section
+      ref={sectionRef}
+      onMouseMove={onSectionMove}
       id="inicio"
       className="relative isolate overflow-hidden pt-28 sm:pt-36 pb-20 sm:pb-28"
     >
       {/* Mesh gradient background animado */}
       <div className="absolute inset-0 mesh-bg -z-10" aria-hidden />
+      {/* Cursor glow — efecto premium que sigue al mouse */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -z-10 hidden lg:block w-[600px] h-[600px] rounded-full opacity-50 blur-3xl"
+        style={{
+          background: "radial-gradient(closest-side, rgba(206,253,85,0.55), rgba(206,253,85,0) 70%)",
+          x: sgx,
+          y: sgy,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
       {/* Fade superior para que el nav respire */}
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/80 to-transparent -z-10" aria-hidden />
       {/* Fade inferior para corte limpio con la siguiente sección */}
@@ -65,7 +124,7 @@ export function Hero() {
               <span className="text-zinc-700">14 días <span className="font-bold text-zinc-900">PRO gratis</span></span>
             </motion.div>
 
-            {/* Headline GIGANTE — IA al frente */}
+            {/* Headline GIGANTE con palabra rotando */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,10 +133,23 @@ export function Hero() {
             >
               Anotá gastos
               <br />
-              <span className="relative inline-block">
-                <span className="lime-underline">con IA</span>
-                <span className="text-zinc-950">.</span>
+              <span className="text-zinc-400">con</span>{" "}
+              <span className="relative inline-block align-baseline" style={{ minWidth: "1ch" }}>
+                <span className="invisible">{ROTATING_WORDS.reduce((max, w) => (w.word.length > max.length ? w.word : max), "")}</span>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={ROTATING_WORDS[wIdx].word}
+                    initial={{ y: "0.45em", opacity: 0, filter: "blur(8px)" }}
+                    animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                    exit={{ y: "-0.45em", opacity: 0, filter: "blur(8px)" }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 lime-underline whitespace-nowrap"
+                  >
+                    {ROTATING_WORDS[wIdx].word}
+                  </motion.span>
+                </AnimatePresence>
               </span>
+              <span className="text-zinc-950">.</span>
             </motion.h1>
 
             <motion.p
@@ -101,7 +173,7 @@ export function Hero() {
             >
               <StoreBadges />
 
-              {/* Stats — limpio, una línea */}
+              {/* Stats — animated counter para dar vida */}
               <div className="flex items-center gap-3 text-[13px] text-zinc-600">
                 <div className="flex items-center gap-1">
                   {[0, 1, 2, 3, 4].map((i) => (
@@ -110,7 +182,12 @@ export function Hero() {
                 </div>
                 <span className="font-semibold text-zinc-900">4.9</span>
                 <span className="text-zinc-300">·</span>
-                <span><span className="font-semibold text-zinc-900">+12.000</span> descargas</span>
+                <span>
+                  <span className="font-semibold text-zinc-900 tabular-nums">
+                    +<CountUp to={12000} />
+                  </span>{" "}
+                  descargas
+                </span>
               </div>
             </motion.div>
 
