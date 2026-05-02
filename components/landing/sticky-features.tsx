@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion"
 import { Mic, Camera, MessageCircle, Sparkles } from "lucide-react"
 
 interface Feature {
@@ -19,23 +19,23 @@ interface Feature {
 const FEATURES: Feature[] = [
   {
     icon: <Mic className="h-5 w-5" />,
-    iconBg: "bg-violet-100",
-    iconColor: "text-violet-600",
+    iconBg: "bg-violet-500/15",
+    iconColor: "text-violet-300",
     eyebrow: "Por audio",
-    title: "Hablale al teléfono",
+    title: "Hablale a la IA",
     body:
-      "Tocá el micrófono, decile en qué gastaste y listo. Detecta monto, categoría y método solo. Como decirle a un amigo cuánto saliste.",
+      "Tocá el micrófono, decile en qué gastaste y la IA detecta monto, categoría y método sola. Como decirle a un amigo cuánto saliste.",
     bullets: [
-      "Detección automática de monto y comercio",
+      "Detección automática de monto, categoría y comercio",
       "Sin formularios, sin tipear",
-      "Funciona también con notas en cualquier idioma",
+      "Funciona en cualquier idioma",
     ],
-    screen: "/screens/chat-add.png",
+    screen: "/screens/audio.png",
   },
   {
     icon: <Camera className="h-5 w-5" />,
-    iconBg: "bg-sky-100",
-    iconColor: "text-sky-600",
+    iconBg: "bg-sky-500/15",
+    iconColor: "text-sky-300",
     eyebrow: "Por foto",
     title: "Sacale foto al ticket",
     body:
@@ -45,12 +45,12 @@ const FEATURES: Feature[] = [
       "Resúmenes bancarios PDF: extrae cada movimiento",
       "Detecta cuotas y las divide automáticamente",
     ],
-    screen: "/screens/transactions.png",
+    screen: "/screens/escaner.png",
   },
   {
     icon: <MessageCircle className="h-5 w-5" />,
-    iconBg: "bg-emerald-100",
-    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-500/15",
+    iconColor: "text-emerald-300",
     eyebrow: "Por chat",
     title: "Pregúntale lo que sea",
     body:
@@ -64,6 +64,34 @@ const FEATURES: Feature[] = [
   },
 ]
 
+const N = FEATURES.length
+const CROSS = 0.06 // ancho del crossfade entre features
+
+// Genera los stops/values para opacity de la feature i.
+// - Feature 0 arranca visible y se desvanece al final de su segmento.
+// - Feature N-1 arranca a 0 y queda visible hasta el final.
+// - Las del medio aparecen y desaparecen.
+function fadeKeyframes(i: number, n: number, cross: number) {
+  const start = i / n
+  const end = (i + 1) / n
+  if (i === 0) {
+    return {
+      stops: [0, end - cross, end + cross],
+      values: [1, 1, 0],
+    }
+  }
+  if (i === n - 1) {
+    return {
+      stops: [start - cross, start + cross, 1],
+      values: [0, 1, 1],
+    }
+  }
+  return {
+    stops: [start - cross, start + cross, end - cross, end + cross],
+    values: [0, 1, 1, 0],
+  }
+}
+
 export function StickyFeatures() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -71,8 +99,26 @@ export function StickyFeatures() {
     offset: ["start start", "end end"],
   })
 
-  // 3 segments for 3 features
-  const N = FEATURES.length
+  // Hooks llamados afuera del map, con índice fijo.
+  const f0 = fadeKeyframes(0, N, CROSS)
+  const f1 = fadeKeyframes(1, N, CROSS)
+  const f2 = fadeKeyframes(2, N, CROSS)
+  const opacity0 = useTransform(scrollYProgress, f0.stops, f0.values)
+  const opacity1 = useTransform(scrollYProgress, f1.stops, f1.values)
+  const opacity2 = useTransform(scrollYProgress, f2.stops, f2.values)
+  const opacities: MotionValue<number>[] = [opacity0, opacity1, opacity2]
+
+  // Pequeño parallax vertical en el texto
+  const ty0 = useTransform(scrollYProgress, [0, 1 / N], [0, -10])
+  const ty1 = useTransform(scrollYProgress, [1 / N, 2 / N], [10, -10])
+  const ty2 = useTransform(scrollYProgress, [2 / N, 1], [10, 0])
+  const ys: MotionValue<number>[] = [ty0, ty1, ty2]
+
+  // Indicador progress
+  const dotW0 = useTransform(scrollYProgress, [0, 1 / N], ["32px", "32px"])
+  const dotW1 = useTransform(scrollYProgress, [0, 1 / N, 2 / N], ["6px", "32px", "32px"])
+  const dotW2 = useTransform(scrollYProgress, [0, 2 / N, 1], ["6px", "6px", "32px"])
+  const dotWs = [dotW0, dotW1, dotW2]
 
   return (
     <section
@@ -93,159 +139,109 @@ export function StickyFeatures() {
       />
 
       {/* SECCIÓN STICKY */}
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
-          {/* Eyebrow general */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#CEFD55] mb-3 lg:mb-4 text-center"
-          >
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-24 lg:pt-28 pb-6 flex-shrink-0">
+          {/* Eyebrow + title (arriba, no centrado vertical) */}
+          <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#CEFD55] mb-3 text-center">
             Cómo funciona
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="text-[34px] sm:text-[48px] lg:text-[60px] font-extrabold tracking-tight text-center text-white max-w-3xl mx-auto leading-[1.05] mb-10 lg:mb-14"
-          >
+          </p>
+          <h2 className="text-[26px] sm:text-[36px] lg:text-[48px] font-extrabold tracking-tight text-center text-white max-w-3xl mx-auto leading-[1.05]">
             Tres formas de cargar gastos.{" "}
-            <span className="text-zinc-400">Cero esfuerzo.</span>
-          </motion.h2>
+            <span className="text-zinc-500">Cero esfuerzo.</span>
+          </h2>
+        </div>
 
+        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex-1 flex items-center">
           {/* CONTENIDO DE 2 COLUMNAS */}
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
             {/* TEXTO IZQUIERDA — un feature visible a la vez */}
-            <div className="relative h-[420px]">
-              {FEATURES.map((f, i) => {
-                const start = i / N
-                const end = (i + 1) / N
-                const opacity = useTransform(
-                  scrollYProgress,
-                  [
-                    Math.max(start - 0.05, 0),
-                    start + 0.05,
-                    end - 0.05,
-                    Math.min(end + 0.05, 1),
-                  ],
-                  [0, 1, 1, 0],
-                )
-                const y = useTransform(
-                  scrollYProgress,
-                  [start, end],
-                  [20, -20],
-                )
-                return (
-                  <motion.div
-                    key={f.title}
-                    style={{ opacity, y }}
-                    className="absolute inset-0 flex flex-col justify-center"
-                  >
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${f.iconBg} ${f.iconColor}`}>
-                        {f.icon}
-                      </div>
-                      <span className="text-[12px] font-bold tracking-wider uppercase text-[#CEFD55]">
-                        {f.eyebrow}
-                      </span>
+            <div className="relative h-[400px] lg:h-[440px]">
+              {FEATURES.map((f, i) => (
+                <motion.div
+                  key={f.title}
+                  style={{ opacity: opacities[i], y: ys[i] }}
+                  className="absolute inset-0 flex flex-col justify-center"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div
+                      className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${f.iconBg} ${f.iconColor} ring-1 ring-white/10`}
+                    >
+                      {f.icon}
                     </div>
-                    <h3 className="text-[32px] sm:text-[44px] font-extrabold tracking-tight leading-[1.05] text-white">
-                      {f.title}
-                    </h3>
-                    <p className="mt-4 text-[16px] sm:text-[18px] leading-relaxed text-zinc-400 max-w-md">
-                      {f.body}
-                    </p>
-                    <ul className="mt-6 space-y-2.5">
-                      {f.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-[14px] text-zinc-200">
-                          <Sparkles className="h-4 w-4 text-[#CEFD55] mt-0.5 shrink-0" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )
-              })}
+                    <span className="text-[12px] font-bold tracking-wider uppercase text-[#CEFD55]">
+                      {f.eyebrow}
+                    </span>
+                  </div>
+                  <h3 className="text-[30px] sm:text-[42px] lg:text-[48px] font-extrabold tracking-tight leading-[1.05] text-white">
+                    {f.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] sm:text-[17px] leading-relaxed text-zinc-400 max-w-md">
+                    {f.body}
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {f.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-3 text-[14px] text-zinc-200">
+                        <Sparkles className="h-4 w-4 text-[#CEFD55] mt-0.5 shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
             </div>
 
             {/* PHONE DERECHA — cambia de imagen según scroll */}
             <div className="relative flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[340px]">
+              <div className="relative w-full max-w-[300px] sm:max-w-[320px]">
                 <div
                   aria-hidden
                   className="pointer-events-none absolute -inset-12 rounded-[60px] opacity-50 blur-3xl"
                   style={{
-                    background: "radial-gradient(closest-side, rgba(206,253,85,0.4), rgba(206,253,85,0) 70%)",
+                    background:
+                      "radial-gradient(closest-side, rgba(206,253,85,0.4), rgba(206,253,85,0) 70%)",
                   }}
                 />
                 <div className="relative w-full" style={{ aspectRatio: "393 / 852" }}>
                   <div className="absolute inset-0 rounded-[52px] bg-zinc-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] ring-1 ring-zinc-800" />
-                  <div className="absolute inset-[10px] overflow-hidden rounded-[44px] bg-black">
-                    {FEATURES.map((f, i) => {
-                      const start = i / N
-                      const end = (i + 1) / N
-                      const opacity = useTransform(
-                        scrollYProgress,
-                        [
-                          Math.max(start - 0.03, 0),
-                          start + 0.03,
-                          end - 0.03,
-                          Math.min(end + 0.03, 1),
-                        ],
-                        [0, 1, 1, 0],
-                      )
-                      const scale = useTransform(scrollYProgress, [start, end], [1.04, 1])
-                      return (
-                        <motion.div
-                          key={f.screen}
-                          style={{ opacity, scale }}
-                          className="absolute inset-0"
-                        >
-                          <Image
-                            src={f.screen}
-                            alt={f.title}
-                            fill
-                            sizes="340px"
-                            className="object-cover"
-                          />
-                        </motion.div>
-                      )
-                    })}
+                  <div className="absolute inset-[10px] overflow-hidden rounded-[44px] bg-white">
+                    {FEATURES.map((f, i) => (
+                      <motion.div
+                        key={f.screen}
+                        style={{ opacity: opacities[i] }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={f.screen}
+                          alt={f.title}
+                          fill
+                          sizes="320px"
+                          className="object-cover"
+                          priority={i === 0}
+                        />
+                      </motion.div>
+                    ))}
                     {/* Dynamic Island */}
-                    <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-[28px] w-[110px] -translate-x-1/2 rounded-full bg-black" />
+                    <div
+                      className="pointer-events-none absolute left-1/2 top-2 z-10 h-[28px] w-[110px] -translate-x-1/2 rounded-full bg-black"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Progress indicador (puntitos) */}
-          <div className="mt-10 flex justify-center gap-2">
-            {FEATURES.map((_, i) => {
-              const start = i / N
-              const end = (i + 1) / N
-              const w = useTransform(scrollYProgress, [start, end], ["6px", "32px"])
-              const bg = useTransform(
-                scrollYProgress,
-                [
-                  Math.max(start - 0.05, 0),
-                  start + 0.05,
-                  end - 0.05,
-                  Math.min(end + 0.05, 1),
-                ],
-                ["#3f3f46", "#CEFD55", "#CEFD55", "#3f3f46"],
-              )
-              return (
-                <motion.span
-                  key={i}
-                  style={{ width: w, backgroundColor: bg }}
-                  className="h-1.5 rounded-full transition-all"
-                />
-              )
-            })}
+        </div>
+
+        {/* Progress indicador (fuera del flex item-center para quedar abajo) */}
+        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pb-8 lg:pb-12 flex-shrink-0">
+          <div className="flex justify-center gap-2">
+            {FEATURES.map((_, i) => (
+              <motion.span
+                key={i}
+                style={{ width: dotWs[i] }}
+                className="h-1.5 rounded-full bg-[#CEFD55]"
+              />
+            ))}
           </div>
         </div>
       </div>

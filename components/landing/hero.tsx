@@ -8,10 +8,10 @@ import { PhoneFrame } from "./phone-frame"
 import { StoreBadges } from "./store-badges"
 
 const HERO_SCREENS = [
+  { src: "/screens/chat-add.png",     alt: "Asistente IA de Finy",         label: "IA Chat" },
   { src: "/screens/home.png",         alt: "Pantalla principal de Finy",   label: "Inicio" },
-  { src: "/screens/chat-add.png",     alt: "Cargar gasto con IA",          label: "AI Chat" },
-  { src: "/screens/transactions.png", alt: "Lista de movimientos",         label: "Movimientos" },
-  { src: "/screens/stats.png",        alt: "Estadísticas con IA",          label: "Estadísticas" },
+  { src: "/screens/stats.png",        alt: "Análisis IA mensual",          label: "IA Stats" },
+  { src: "/screens/transactions.png", alt: "Movimientos con cuotas",       label: "Movimientos" },
 ]
 
 export function Hero() {
@@ -50,31 +50,32 @@ export function Hero() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12 items-center">
           {/* TEXTO */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            {/* Pre-headline pill con dot animado */}
+            {/* Pre-headline pill con dot animado — IA first */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-2 rounded-full border border-zinc-300/60 bg-white/80 backdrop-blur px-3.5 py-1.5 text-[12px] font-medium text-zinc-800 shadow-sm"
             >
-              <span className="relative inline-flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full bg-emerald-500 live-dot text-emerald-500" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              <Sparkles className="h-3.5 w-3.5 text-[#7AB23A]" />
+              <span className="text-zinc-700">
+                Asistente financiero <span className="font-bold text-zinc-900">con IA</span>
               </span>
-              <span className="text-zinc-700">14 días <span className="font-bold text-zinc-900">PRO gratis</span> al instalar</span>
+              <span className="h-3 w-px bg-zinc-300" />
+              <span className="text-zinc-700">14 días <span className="font-bold text-zinc-900">PRO gratis</span></span>
             </motion.div>
 
-            {/* Headline GIGANTE */}
+            {/* Headline GIGANTE — IA al frente */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 text-[52px] sm:text-[80px] lg:text-[104px] font-extrabold tracking-[-0.04em] text-zinc-950 leading-[0.92]"
+              className="mt-6 text-[52px] sm:text-[80px] lg:text-[100px] font-extrabold tracking-[-0.04em] text-zinc-950 leading-[0.92]"
             >
-              Anotá tus gastos
+              Anotá gastos
               <br />
               <span className="relative inline-block">
-                <span className="lime-underline">sin esfuerzo</span>
+                <span className="lime-underline">con IA</span>
                 <span className="text-zinc-950">.</span>
               </span>
             </motion.h1>
@@ -86,7 +87,7 @@ export function Hero() {
               className="mt-7 text-[18px] sm:text-[20px] leading-relaxed text-zinc-700 max-w-xl mx-auto lg:mx-0"
             >
               Hablale, sacale foto al ticket o escribile.{" "}
-              <span className="font-semibold text-zinc-900">Finy carga todo por vos.</span>{" "}
+              <span className="font-semibold text-zinc-900">La IA de Finy carga todo por vos.</span>{" "}
               En 1 minuto sabés cuánto gastás este mes.
             </motion.p>
 
