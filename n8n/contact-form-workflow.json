@@ -1,0 +1,137 @@
+{
+  "name": "Landing — Contact Form",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "landing-contact",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://www.finyapp.io,https://finyapp.io"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-720, 0],
+      "id": "webhook-contact",
+      "name": "Webhook contact form",
+      "webhookId": "landing-contact-form"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normaliza payload del landing y arma asunto / contenido por tipo\nconst body = $input.first().json.body || $input.first().json;\n\nconst safe = (s) => String(s ?? '').trim();\nconst escape = (s) => safe(s).replace(/[&<>\"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;' }[c]));\n\nconst name = safe(body.name);\nconst email = safe(body.email).toLowerCase();\nconst type = safe(body.type);\nconst type_label = safe(body.type_label) || type;\nconst message = safe(body.message);\n\n// Asunto del mail al equipo\nconst teamSubject = `[Finy Web] [${type_label}] ${name}`;\n\n// Mensajes de auto-reply por tipo\nconst REPLIES = {\n  soporte: {\n    pill: 'Soporte técnico',\n    title: '¡Hola, ' + escape(name) + '! 👋',\n    body: 'Recibimos tu mensaje y ya estamos revisando lo que contás. Nuestro equipo se pone en contacto en menos de 24 horas para ayudarte a resolverlo.',\n  },\n  propuesta: {\n    pill: 'Propuesta de negocio',\n    title: '¡Gracias por escribirnos, ' + escape(name) + '!',\n    body: 'Recibimos tu propuesta y la vamos a revisar con detalle. Si encaja con lo que estamos buscando, te respondemos en menos de 48 horas para coordinar una llamada.',\n  },\n  baja: {\n    pill: 'Cancelación / baja',\n    title: 'Recibimos tu pedido, ' + escape(name),\n    body: 'Lamentamos que te vayas. Procesamos tu solicitud de baja y te confirmamos por mail en menos de 24 horas. Si querés contarnos qué te llevó a cancelar, sería de mucha ayuda — leemos cada respuesta.',\n  },\n  otro: {\n    pill: 'Tu mensaje',\n    title: '¡Hola, ' + escape(name) + '!',\n    body: 'Recibimos tu mensaje. Te respondemos en menos de 24 horas con lo que necesites.',\n  },\n};\nconst rep = REPLIES[type] || REPLIES.otro;\n\nconst userSubject = '[Finy] Recibimos tu mensaje';\n\n// HTML auto-reply (estilo del template existente)\nconst userHtml = `<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Finy</title>\n<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>\nbody{margin:0;padding:0;background:#F5F5F5;font-family:'Inter',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#202020}\ntable{border-collapse:collapse;width:100%}\nimg{display:block;max-width:100%;height:auto;border:0}\na{text-decoration:none!important;color:inherit!important}\n.main-wrapper{background:#F5F5F5;padding:40px 10px}\n.logo{max-width:600px;margin:0 auto 30px;text-align:center}\n.card{max-width:600px;margin:0 auto;background:#FFFFFF;border-radius:16px;border:1px solid #E5E5E5;overflow:hidden;margin-bottom:20px}\n.pad{padding:40px}\nh1{font-size:24px;font-weight:700;margin:0 0 16px;letter-spacing:-.5px;line-height:1.3}\np{font-size:15px;line-height:1.6;color:#505050;margin:0 0 20px}\n.pill{background:#F5F5F5;color:#666;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:15px}\n.box{background:#FAFAFA;border-left:4px solid #cefd55;padding:18px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;border-top:1px solid #E5E5E5;border-right:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5;font-size:14px;color:#505050;line-height:1.55;white-space:pre-wrap}\n.divider{height:1px;background:#F0F0F0;width:100%;margin:25px 0}\n.footer{text-align:center;margin-top:30px;font-size:12px;color:#999}\n@media (max-width:600px){.pad{padding:24px}h1{font-size:22px}}\n</style>\n</head>\n<body>\n<div class=\"main-wrapper\">\n  <div class=\"logo\">\n    <a href=\"https://www.finyapp.io/\" target=\"_blank\">\n      <img src=\"https://zqniepbsjrvuypxyagaz.supabase.co/storage/v1/object/public/newsletter-assets/finy_email_logo.png\" alt=\"Finy\" width=\"80\">\n    </a>\n  </div>\n  <div class=\"card\">\n    <div class=\"pad\">\n      <span class=\"pill\">${rep.pill}</span>\n      <h1>${rep.title}</h1>\n      <p>${rep.body}</p>\n      <div class=\"divider\"></div>\n      <p style=\"font-size:13px;color:#999;margin-bottom:8px\">Tu mensaje:</p>\n      <div class=\"box\">${escape(message)}</div>\n      <p style=\"margin-bottom:0;font-weight:600;color:#202020\">— El equipo de Finy</p>\n    </div>\n  </div>\n  <div class=\"footer\"><p>Finy App © 2026<br>Respondés a este mail si necesitás algo más.</p></div>\n</div>\n</body>\n</html>`;\n\n// HTML notificación al equipo\nconst teamHtml = `<!DOCTYPE html>\n<html><body style=\"font-family:system-ui,-apple-system,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#18181b\">\n  <h2 style=\"margin:0 0 8px;font-size:18px\">Nueva consulta — finyapp.io</h2>\n  <p style=\"margin:0 0 16px;color:#71717a;font-size:13px\">${escape(type_label)}</p>\n  <table style=\"width:100%;border-collapse:collapse;font-size:14px;margin-bottom:18px\">\n    <tr><td style=\"padding:6px 0;color:#71717a;width:80px\">Nombre</td><td style=\"padding:6px 0;font-weight:600\">${escape(name)}</td></tr>\n    <tr><td style=\"padding:6px 0;color:#71717a\">Email</td><td style=\"padding:6px 0;font-weight:600\"><a href=\"mailto:${escape(email)}\" style=\"color:#18181b;text-decoration:underline\">${escape(email)}</a></td></tr>\n  </table>\n  <div style=\"background:#f4f4f5;border-radius:12px;padding:16px;font-size:14px;line-height:1.6;white-space:pre-wrap\">${escape(message)}</div>\n  <p style=\"font-size:12px;color:#a1a1aa;margin-top:18px\">Respondé directo: este mail tiene Reply-To configurado al usuario.</p>\n</body></html>`;\n\nreturn [{\n  json: {\n    name,\n    email,\n    type,\n    type_label,\n    message,\n    teamSubject,\n    teamHtml,\n    userSubject,\n    userHtml,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-480, 0],
+      "id": "code-prepare",
+      "name": "Preparar payload"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "contact_messages",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "name",    "fieldValue": "={{ $json.name }}" },
+            { "fieldId": "email",   "fieldValue": "={{ $json.email }}" },
+            { "fieldId": "subject", "fieldValue": "={{ $json.type }}" },
+            { "fieldId": "message", "fieldValue": "={{ $json.message }}" }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [-220, -160],
+      "id": "supabase-insert",
+      "name": "Guardar en Supabase",
+      "continueOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "REEMPLAZAR_CON_TU_CRED_SUPABASE",
+          "name": "Supabase Finy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "soporte@finyapp.io",
+        "subject": "={{ $('Preparar payload').first().json.teamSubject }}",
+        "emailType": "html",
+        "message": "={{ $('Preparar payload').first().json.teamHtml }}",
+        "options": {
+          "replyTo": "={{ $('Preparar payload').first().json.email }}",
+          "senderName": "Finy Web"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [-220, 0],
+      "id": "gmail-team",
+      "name": "Notificar al equipo",
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Z3DunaXc3vhBJx5M",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Preparar payload').first().json.email }}",
+        "subject": "={{ $('Preparar payload').first().json.userSubject }}",
+        "emailType": "html",
+        "message": "={{ $('Preparar payload').first().json.userHtml }}",
+        "options": {
+          "senderName": "Finy"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [-220, 160],
+      "id": "gmail-user",
+      "name": "Auto-reply al usuario",
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Z3DunaXc3vhBJx5M",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [60, 0],
+      "id": "respond-ok",
+      "name": "Responder OK"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook contact form": {
+      "main": [[{ "node": "Preparar payload", "type": "main", "index": 0 }]]
+    },
+    "Preparar payload": {
+      "main": [[
+        { "node": "Guardar en Supabase",  "type": "main", "index": 0 },
+        { "node": "Notificar al equipo",  "type": "main", "index": 0 },
+        { "node": "Auto-reply al usuario","type": "main", "index": 0 }
+      ]]
+    },
+    "Guardar en Supabase":   { "main": [[{ "node": "Responder OK", "type": "main", "index": 0 }]] },
+    "Notificar al equipo":   { "main": [[{ "node": "Responder OK", "type": "main", "index": 0 }]] },
+    "Auto-reply al usuario": { "main": [[{ "node": "Responder OK", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

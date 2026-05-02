@@ -43,14 +43,41 @@ export async function POST(request: Request) {
   if (!v.ok) return NextResponse.json({ error: v.error }, { status: 400 })
   const data = v.data
 
+  const N8N_URL = process.env.N8N_CONTACT_WEBHOOK_URL
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
   const SUPABASE_SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY
-  const RESEND_API_KEY = process.env.RESEND_API_KEY
-  const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "soporte@finyapp.io"
-  const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Finy Web <hola@finyapp.io>"
 
-  // 1) Guardar en Supabase si está configurado
-  let stored = false
+  // Payload enviado a n8n: incluye el label legible para que el workflow lo use directamente
+  const payload = {
+    name:        data.name,
+    email:       data.email,
+    type:        data.type,
+    type_label:  TYPE_LABEL[data.type],
+    message:     data.message,
+    received_at: new Date().toISOString(),
+    source:      "finyapp.io/contacto",
+  }
+
+  // 1) Intentar via n8n (es el camino primario — maneja Supabase + Gmail team + auto-reply)
+  if (N8N_URL) {
+    try {
+      const res = await fetch(N8N_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        // 12s timeout para no colgar la UI
+        signal: AbortSignal.timeout(12_000),
+      })
+      if (res.ok) return NextResponse.json({ ok: true, channel: "n8n" })
+      console.error("[contact] n8n responded non-2xx:", res.status, await res.text().catch(() => ""))
+      // sigue al fallback
+    } catch (e: any) {
+      console.error("[contact] n8n exception:", e?.message)
+      // sigue al fallback
+    }
+  }
+
+  // 2) Fallback: guardar en Supabase para no perder el lead aunque n8n falle
   if (SUPABASE_URL && SUPABASE_SERVICE_ROLE) {
     try {
       const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE)
@@ -60,69 +87,21 @@ export async function POST(request: Request) {
         subject: data.type,
         message: data.message,
       })
-      if (error) console.error("[contact] Supabase insert error:", error.message)
-      else stored = true
+      if (!error) return NextResponse.json({ ok: true, channel: "supabase-fallback" })
+      console.error("[contact] Supabase insert error:", error.message)
     } catch (e: any) {
       console.error("[contact] Supabase exception:", e?.message)
     }
   }
 
-  // 2) Enviar email via Resend si está configurado
-  let mailed = false
-  if (RESEND_API_KEY) {
-    try {
-      const { Resend } = await import("resend")
-      const resend = new Resend(RESEND_API_KEY)
-      const subject = `[${TYPE_LABEL[data.type]}] ${data.name}`
-      const text = [
-        `Nueva consulta desde finyapp.io`,
-        ``,
-        `Tipo:    ${TYPE_LABEL[data.type]}`,
-        `Nombre:  ${data.name}`,
-        `Email:   ${data.email}`,
-        ``,
-        `Mensaje:`,
-        data.message,
-      ].join("\n")
-      const html = `
-        <div style="font-family:system-ui,-apple-system,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#18181b">
-          <h2 style="margin:0 0 8px 0;font-size:18px">Nueva consulta — finyapp.io</h2>
-          <p style="margin:0 0 16px 0;color:#71717a;font-size:13px">${TYPE_LABEL[data.type]}</p>
-          <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:18px">
-            <tr><td style="padding:6px 0;color:#71717a;width:80px">Nombre</td><td style="padding:6px 0;font-weight:600">${escape(data.name)}</td></tr>
-            <tr><td style="padding:6px 0;color:#71717a">Email</td><td style="padding:6px 0;font-weight:600"><a href="mailto:${escape(data.email)}" style="color:#18181b;text-decoration:underline">${escape(data.email)}</a></td></tr>
-          </table>
-          <div style="background:#f4f4f5;border-radius:12px;padding:16px;font-size:14px;line-height:1.6;white-space:pre-wrap">${escape(data.message)}</div>
-        </div>
-      `
-      const res = await resend.emails.send({
-        from: FROM_EMAIL,
-        to: [TO_EMAIL],
-        replyTo: data.email,
-        subject,
-        text,
-        html,
-      })
-      if (res?.error) console.error("[contact] Resend error:", res.error)
-      else mailed = true
-    } catch (e: any) {
-      console.error("[contact] Resend exception:", e?.message)
-    }
-  } else {
-    // En dev sin Resend: log al servidor para que se vea
-    console.log("[contact] No Resend configurado. Mensaje recibido:", data)
+  // 3) Sin nada configurado en dev: log y devolvemos OK (no romper UX local)
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[contact] DEV — mensaje recibido (sin canales configurados):", payload)
+    return NextResponse.json({ ok: true, channel: "dev-log" })
   }
 
-  if (!stored && !mailed) {
-    return NextResponse.json(
-      { error: "No se pudo guardar el mensaje. Intentá de nuevo o escribinos a soporte@finyapp.io." },
-      { status: 500 },
-    )
-  }
-
-  return NextResponse.json({ ok: true, stored, mailed })
-}
-
-function escape(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!)
+  return NextResponse.json(
+    { error: "No pudimos enviar el mensaje ahora. Probá más tarde o escribinos a soporte@finyapp.io." },
+    { status: 502 },
+  )
 }
