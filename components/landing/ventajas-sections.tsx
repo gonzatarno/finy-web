@@ -1,6 +1,7 @@
 "use client"
 
 import { Spotlight } from "./spotlight"
+import { SplitsDiorama } from "./splits-diorama"
 import { useT } from "@/hooks/use-t"
 
 const COPY = {
@@ -68,15 +69,8 @@ export function VentajasSections() {
         imageAlt={t.a.alt}
       />
 
-      <Spotlight
-        variant="dark"
-        imagePosition="left"
-        eyebrow={t.b.eyebrow}
-        title={<>{t.b.titleA} <span className="text-zinc-500">{t.b.titleB}</span></>}
-        body={t.b.body}
-        image="/screens/spaces.png"
-        imageAlt={t.b.alt}
-      />
+      {/* Espacios — diorama de cards en vez de phone para romper monotonía visual */}
+      <SplitsDiorama />
 
       <Spotlight
         variant="light"
