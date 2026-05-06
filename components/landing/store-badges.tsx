@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useT } from "@/hooks/use-t"
+import { trackPixelEvent } from "@/components/meta-pixel"
 
 const APP_STORE_URL = "https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721"
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.finy.app"
@@ -25,6 +26,7 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         href={APP_STORE_URL}
         target="_blank"
         rel="noopener"
+        onClick={() => trackPixelEvent("Lead", { content_name: "App Store" })}
         className={cn(
           "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
           variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",
@@ -45,6 +47,7 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         href={PLAY_STORE_URL}
         target="_blank"
         rel="noopener"
+        onClick={() => trackPixelEvent("Lead", { content_name: "Play Store" })}
         className={cn(
           "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
           variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",

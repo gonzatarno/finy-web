@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
+import { MetaPixel } from "@/components/meta-pixel"
 import { LanguageProvider } from "@/contexts/language-context"
 import { Suspense } from "react"
 
@@ -60,6 +61,7 @@ export default function RootLayout({
             <Suspense>
               {children}
               <Analytics />
+              <MetaPixel />
             </Suspense>
           </ThemeProvider>
         </LanguageProvider>
