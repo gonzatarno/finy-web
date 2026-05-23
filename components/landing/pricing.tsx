@@ -253,9 +253,9 @@ export function Pricing() {
                   </p>
                 )}
                 {!annual && !isFree && (
-                  <p className="mt-1 text-[12px] text-zinc-500">
-                    {t.orYear} <span className="font-semibold text-zinc-900">${plan.yearlyPrice} {t.perYear}</span>{" "}
-                    <span className="font-semibold">({t.saveText(yearlyDiscount(plan))})</span>
+                  <p className={`mt-1 text-[12px] ${plan.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
+                    {t.orYear} <span className={`font-semibold ${plan.highlight ? "text-white" : "text-zinc-900"}`}>${plan.yearlyPrice} {t.perYear}</span>{" "}
+                    <span className={`font-semibold ${plan.highlight ? "text-[#CEFD55]" : "text-zinc-700"}`}>({t.saveText(yearlyDiscount(plan))})</span>
                   </p>
                 )}
 
