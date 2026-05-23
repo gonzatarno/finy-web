@@ -1,3 +1,1 @@
-export function Analytics() {
-  return null
-}
+export { Analytics } from "@vercel/analytics/react"
