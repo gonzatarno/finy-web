@@ -26,7 +26,7 @@ const COPY = {
     intro: "Empieza gratis. Si te gusta, subes a Plus o Pro. Cancela cuando quieras.",
     monthly: "Mensual",
     yearly: "Anual",
-    saveBadge: "Ahorra hasta 50%",
+    saveBadge: "Ahorra hasta 33%",
     perMonth: "/mes",
     perYear: "al año",
     saveText: (pct: number) => `ahorra ${pct}%`,
@@ -64,7 +64,7 @@ const COPY = {
     intro: "Start for free. If you like it, upgrade to Plus or Pro. Cancel anytime.",
     monthly: "Monthly",
     yearly: "Yearly",
-    saveBadge: "Save up to 50%",
+    saveBadge: "Save up to 33%",
     perMonth: "/mo",
     perYear: "per year",
     saveText: (pct: number) => `save ${pct}%`,
@@ -99,8 +99,8 @@ const COPY = {
 
 const PRICES: { monthlyPrice: number; yearlyPrice: number; highlight?: boolean }[] = [
   { monthlyPrice: 0,    yearlyPrice: 0 },
-  { monthlyPrice: 4.99, yearlyPrice: 34.99 },
-  { monthlyPrice: 9.99, yearlyPrice: 59.99, highlight: true },
+  { monthlyPrice: 2.99, yearlyPrice: 24.99 },
+  { monthlyPrice: 4.99, yearlyPrice: 39.99, highlight: true },
 ]
 
 export function Pricing() {
