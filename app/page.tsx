@@ -8,6 +8,7 @@ import { FAQ } from "@/components/landing/faq"
 import { Contact } from "@/components/landing/contact"
 import { CTAFinal } from "@/components/landing/cta-final"
 import { Footer } from "@/components/landing/footer"
+import { StickyDownloadBar } from "@/components/landing/sticky-download-bar"
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
         <CTAFinal />
       </main>
       <Footer />
+      <StickyDownloadBar />
     </>
   )
 }

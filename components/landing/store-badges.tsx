@@ -22,27 +22,7 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
   const t = useT(COPY)
   return (
     <div className={cn("flex flex-col sm:flex-row gap-3", className)}>
-      <Link
-        href={APP_STORE_URL}
-        target="_blank"
-        rel="noopener"
-        onClick={() => trackPixelEvent("Lead", { content_name: "App Store" })}
-        className={cn(
-          "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
-          variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",
-        )}
-      >
-        <AppleLogo className={variant === "default" ? "h-7 w-7" : "h-5 w-5"} />
-        <div className="flex flex-col leading-tight text-left">
-          <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
-            {t.iosTop}
-          </span>
-          <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
-            {t.iosBot}
-          </span>
-        </div>
-      </Link>
-
+      {/* Android first — 90% of traffic is Android */}
       <Link
         href={PLAY_STORE_URL}
         target="_blank"
@@ -60,6 +40,27 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
           </span>
           <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
             {t.andBot}
+          </span>
+        </div>
+      </Link>
+
+      <Link
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener"
+        onClick={() => trackPixelEvent("Lead", { content_name: "App Store" })}
+        className={cn(
+          "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
+          variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",
+        )}
+      >
+        <AppleLogo className={variant === "default" ? "h-7 w-7" : "h-5 w-5"} />
+        <div className="flex flex-col leading-tight text-left">
+          <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
+            {t.iosTop}
+          </span>
+          <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
+            {t.iosBot}
           </span>
         </div>
       </Link>
