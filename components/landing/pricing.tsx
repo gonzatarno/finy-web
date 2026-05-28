@@ -40,7 +40,7 @@ const COPY = {
       {
         name: "Gratis",
         tagline: "Para empezar a controlar tus gastos.",
-        features: ["100 transacciones por mes","10 consultas a la IA","1 espacio personal","Categorías ilimitadas","Con publicidad"],
+        features: ["30 transacciones por mes","5 consultas a la IA","1 espacio personal","Categorías ilimitadas","Con publicidad"],
         cta: "Empezar gratis",
       },
       {
@@ -78,7 +78,7 @@ const COPY = {
       {
         name: "Free",
         tagline: "To start tracking your expenses.",
-        features: ["100 transactions per month","10 AI queries","1 personal space","Unlimited categories","With ads"],
+        features: ["30 transactions per month","5 AI queries","1 personal space","Unlimited categories","With ads"],
         cta: "Start free",
       },
       {
