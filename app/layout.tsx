@@ -78,9 +78,16 @@ export default function RootLayout({
         <StructuredData />
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <Suspense>
-              {children}
-              <Analytics />
+            {children}
+            <Analytics />
+            {/*
+              MetaPixel usa useSearchParams(), que fuerza render en cliente de
+              todo lo que esté dentro de su Suspense. Tiene que ir en su propio
+              boundary: si envuelve a {children}, el body entero deja de
+              prerenderizarse y los crawlers que no ejecutan JS ven una página
+              vacía.
+            */}
+            <Suspense fallback={null}>
               <MetaPixel />
             </Suspense>
           </ThemeProvider>
