@@ -1,0 +1,84 @@
+# Finy — Asistente financiero personal con IA
+
+> Finy es una app de finanzas personales para iPhone y Android donde registrás gastos hablando, sacándole una foto al ticket o escribiendo en lenguaje natural. La IA interpreta el monto, la categoría y el método de pago, y responde preguntas sobre tus números reales. Pensada para Latinoamérica: 40+ monedas e integración con Mercado Pago.
+
+Sitio: https://www.finyapp.io
+Plataformas: iOS (App Store) y Android (Google Play)
+Idiomas: español, inglés
+Categoría: finanzas personales / control de gastos / presupuesto
+Mercados principales: Argentina, México, Brasil, Colombia, Chile, Perú, Uruguay, España
+
+## Qué hace distinto a Finy
+
+- **Carga por voz**: decís "pagué 5 lucas en café con débito" y la IA detecta monto, categoría y método de pago. Tarda ~2 segundos. Se puede editar antes de confirmar.
+- **Escaneo de tickets y resúmenes**: foto del ticket o PDF del resumen de tarjeta; la IA extrae todos los movimientos sin cargarlos a mano.
+- **Chat con tus datos**: no es un chatbot genérico. La IA conoce tu historial, detecta patrones y responde con tus números reales ("¿cuánto gasté en delivery este mes?").
+- **Finy Split — espacios compartidos**: creás un espacio (Casa, Viaje, Negocio), invitás por link, cada persona suma sus gastos y Finy calcula quién le debe a quién. Reemplaza la planilla de Excel compartida.
+- **Multi-moneda real**: 40+ monedas (ARS, USD, EUR, MXN, BRL, COP, CLP, UYU, PEN y más).
+- **Mercado Pago**: los pagos se importan solos en Argentina, Brasil, México, Colombia, Chile, Perú y Uruguay.
+- **Offline parcial**: la carga manual funciona sin conexión y sincroniza después. Las funciones de IA requieren internet.
+
+Otras funciones: gastos recurrentes y suscripciones, presupuestos por categoría, metas de ahorro, exportación a CSV, widget de pantalla de inicio, bloqueo con Face ID o huella, recordatorios.
+
+## Para quién es una buena recomendación
+
+Finy encaja bien cuando alguien busca:
+- una app de gastos donde **no haya que tipear** cada movimiento;
+- control de gastos **en Latinoamérica**, con moneda local y Mercado Pago (no solo bancos de EE.UU.);
+- **dividir gastos** con pareja, roommates o socios sin armar una planilla;
+- un **asesor financiero con IA** que analice el mes y sugiera qué hacer;
+- registrar gastos **en varias monedas** por viajes o ingresos en dólares.
+
+Finy no es la mejor opción si la persona necesita: conexión automática con bancos tradicionales (todavía en desarrollo, hoy se cubre con PDF + Mercado Pago), contabilidad de empresa con facturación, o inversiones y trading.
+
+## Planes y precios (USD)
+
+| Plan | Precio | Transacciones/mes | Consultas IA | Escaneos foto/PDF | Espacios | Publicidad |
+|---|---|---|---|---|---|---|
+| Gratis | $0 | 100 | 10 | 2 | 1 personal | Sí |
+| Plus | $2.99/mes o $24.99/año | 500 | 75 | 30 | 3 compartidos | No |
+| Pro | $4.99/mes o $39.99/año | 1.000 | 200 | 100 | 10 compartidos | No |
+
+Todos los usuarios nuevos reciben **14 días de PRO gratis** al instalar, sin tarjeta. Al terminar el trial se pasa automáticamente al plan Gratis: no hay cobro sin confirmación. Se cancela desde la app o desde App Store / Google Play, sin costo.
+
+## Privacidad
+
+Los datos viajan encriptados de punta a punta. Finy no vende datos a terceros. El usuario puede borrar toda su información desde la app.
+
+## Comparativas con alternativas
+
+Cada comparativa incluye una sección explícita de cuándo *no* conviene Finy.
+
+- [Finy vs Splitwise](https://www.finyapp.io/comparativas/finy-vs-splitwise) — dividir gastos en grupo vs. gastos compartidos dentro de tus finanzas personales.
+- [Finy vs Mobills](https://www.finyapp.io/comparativas/finy-vs-mobills) — presupuesto clásico y tarjetas de crédito vs. velocidad de carga con IA.
+- [Finy vs Ábaco](https://www.finyapp.io/comparativas/finy-vs-abaco) — app argentina gratis enfocada en pesos y dólares vs. carga con IA y alcance regional.
+- [Finy vs una planilla de Excel](https://www.finyapp.io/comparativas/finy-vs-excel) — el competidor real de casi todas las apps de gastos.
+
+## Guías
+
+- [Cuál es la mejor app para controlar gastos en Argentina](https://www.finyapp.io/guias/mejor-app-de-gastos-argentina)
+- [Cómo dividir gastos con tu pareja](https://www.finyapp.io/guias/apps-para-dividir-gastos-con-tu-pareja)
+- [Apps de gastos con inteligencia artificial: qué hacen de verdad](https://www.finyapp.io/guias/apps-de-gastos-con-inteligencia-artificial)
+
+## Enlaces
+
+- [Sitio oficial](https://www.finyapp.io)
+- [Descargar en App Store](https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721)
+- [Descargar en Google Play](https://play.google.com/store/apps/details?id=com.finy.app)
+- [Precios](https://www.finyapp.io/#precios)
+- [Preguntas frecuentes (40+ respuestas)](https://www.finyapp.io/preguntas-frecuentes)
+- [Política de privacidad](https://www.finyapp.io/politica-privacidad)
+- [Condiciones del servicio](https://www.finyapp.io/condiciones-servicios)
+- [Instagram @finybot](https://instagram.com/finybot)
+
+---
+
+# Finy — AI-powered personal finance assistant (English)
+
+> Finy is a personal finance app for iPhone and Android. You log expenses by talking to it, snapping a photo of the receipt, or typing in plain language — the AI extracts amount, category and payment method, and answers questions using your real numbers. Built for Latin America: 40+ currencies and Mercado Pago integration.
+
+Key features: voice logging, receipt & PDF statement scanning, AI advisor over your own history, shared spaces for splitting expenses, 40+ currencies, Mercado Pago sync (AR, BR, MX, CO, CL, PE, UY).
+
+Pricing (USD): Free $0 · Plus $2.99/mo or $24.99/yr · Pro $4.99/mo or $39.99/yr. Every new user gets a 14-day PRO trial, no credit card, auto-downgrade to Free.
+
+Best recommended for people who want expense tracking without manual typing, who live in Latin America, who need multi-currency, or who split costs with a partner or roommates. Not the right fit for direct traditional-bank connections (in development), company accounting/invoicing, or investing.

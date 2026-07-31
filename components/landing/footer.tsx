@@ -16,6 +16,12 @@ const COPY = {
       { href: "#faq",           label: "FAQ" },
       { href: "#contacto",      label: "Contacto" },
     ],
+    resourcesH: "Recursos",
+    resourcesLinks: [
+      { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
+      { href: "/comparativas", label: "Comparativas" },
+      { href: "/guias", label: "Guías" },
+    ],
     legalH: "Legal",
     legalLinks: [
       { href: "/politica-privacidad", label: "Privacidad" },
@@ -35,6 +41,12 @@ const COPY = {
       { href: "#faq",           label: "FAQ" },
       { href: "#contacto",      label: "Contact" },
     ],
+    resourcesH: "Resources",
+    resourcesLinks: [
+      { href: "/preguntas-frecuentes", label: "FAQ" },
+      { href: "/comparativas", label: "Comparisons" },
+      { href: "/guias", label: "Guides" },
+    ],
     legalH: "Legal",
     legalLinks: [
       { href: "/politica-privacidad", label: "Privacy" },
@@ -52,7 +64,7 @@ export function Footer() {
     <footer className="relative bg-zinc-950 text-zinc-300 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-grain opacity-50" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link href="/" className="inline-flex items-center" aria-label="Finy">
               <Image
@@ -88,6 +100,15 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4">{t.productH}</h3>
             <ul className="space-y-2.5 text-sm text-zinc-400">
               {t.productLinks.map((l) => (
+                <li key={l.href}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold text-white mb-4">{t.resourcesH}</h3>
+            <ul className="space-y-2.5 text-sm text-zinc-400">
+              {t.resourcesLinks.map((l) => (
                 <li key={l.href}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
               ))}
             </ul>

@@ -9,10 +9,12 @@ import { Contact } from "@/components/landing/contact"
 import { CTAFinal } from "@/components/landing/cta-final"
 import { Footer } from "@/components/landing/footer"
 import { StickyDownloadBar } from "@/components/landing/sticky-download-bar"
+import { HomeFaqSchema } from "@/components/structured-data"
 
 export default function HomePage() {
   return (
     <>
+      <HomeFaqSchema />
       <Nav />
       <main className="bg-white">
         <Hero />

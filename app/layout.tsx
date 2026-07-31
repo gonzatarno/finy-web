@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { MetaPixel } from "@/components/meta-pixel"
 import { LanguageProvider } from "@/contexts/language-context"
+import { StructuredData } from "@/components/structured-data"
 import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -24,6 +25,22 @@ export const metadata: Metadata = {
     "presupuesto personal",
   ],
   metadataBase: new URL("https://www.finyapp.io"),
+  alternates: {
+    canonical: "/",
+  },
+  // Sin límite de snippet: queremos que buscadores y asistentes IA puedan citar
+  // el contenido completo en sus respuestas.
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Finy — Anotá tus gastos sin esfuerzo",
     description:
@@ -32,11 +49,13 @@ export const metadata: Metadata = {
     siteName: "Finy",
     locale: "es_AR",
     type: "website",
+    images: [{ url: "/images/iphone-finy-chat-updated.png", alt: "Finy — asistente financiero con IA" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Finy — Anotá tus gastos sin esfuerzo",
     description: "La app de finanzas personales con IA.",
+    images: ["/images/iphone-finy-chat-updated.png"],
   },
   icons: {
     icon: [
@@ -56,6 +75,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <body className="font-sans antialiased">
+        <StructuredData />
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <Suspense>
