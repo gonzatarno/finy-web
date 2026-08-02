@@ -1,10 +1,11 @@
 "use client"
 
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Mic, Camera, MessageCircle, Sparkles, Star, ArrowDown } from "lucide-react"
-import { PhoneFrame } from "./phone-frame"
+import { Device } from "./device"
+import { AuroraField } from "./aurora-field"
 import { StoreBadges } from "./store-badges"
 import { useT } from "@/hooks/use-t"
 import { useLanguage } from "@/contexts/language-context"
@@ -91,25 +92,6 @@ export function Hero() {
   const { language } = useLanguage()
   const words = ROTATING_WORDS[language as "es" | "en"] ?? ROTATING_WORDS.es
 
-  // 3D tilt seguidor del mouse en el phone
-  const ref = useRef<HTMLDivElement>(null)
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  const sx = useSpring(mx, { stiffness: 80, damping: 14 })
-  const sy = useSpring(my, { stiffness: 80, damping: 14 })
-  const rotY = useTransform(sx, [-1, 1], [10, -10])
-  const rotX = useTransform(sy, [-1, 1], [-8, 8])
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const r = ref.current?.getBoundingClientRect()
-    if (!r) return
-    const px = (e.clientX - r.left) / r.width  // 0..1
-    const py = (e.clientY - r.top) / r.height // 0..1
-    mx.set(px * 2 - 1)
-    my.set(py * 2 - 1)
-  }
-  const onMouseLeave = () => { mx.set(0); my.set(0) }
-
   // Word rotator del headline
   const [wIdx, setWIdx] = useState(0)
   useEffect(() => {
@@ -117,44 +99,19 @@ export function Hero() {
     return () => clearInterval(id)
   }, [words.length])
 
-  // Cursor glow seguidor (efecto premium)
-  const sectionRef = useRef<HTMLElement>(null)
-  const glowX = useMotionValue(0)
-  const glowY = useMotionValue(0)
-  const sgx = useSpring(glowX, { stiffness: 100, damping: 20 })
-  const sgy = useSpring(glowY, { stiffness: 100, damping: 20 })
-  const onSectionMove = (e: React.MouseEvent<HTMLElement>) => {
-    const r = sectionRef.current?.getBoundingClientRect()
-    if (!r) return
-    glowX.set(e.clientX - r.left)
-    glowY.set(e.clientY - r.top)
-  }
-
   return (
     <section
-      ref={sectionRef}
-      onMouseMove={onSectionMove}
       id="inicio"
-      className="relative isolate overflow-hidden pt-28 sm:pt-36 pb-20 sm:pb-28"
+      className="relative isolate overflow-hidden bg-[#07090a] pt-28 sm:pt-36 pb-24 sm:pb-32"
     >
-      {/* Mesh gradient background animado */}
-      <div className="absolute inset-0 mesh-bg -z-10" aria-hidden />
-      {/* Cursor glow — efecto premium que sigue al mouse */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -z-10 hidden lg:block w-[600px] h-[600px] rounded-full opacity-50 blur-3xl"
-        style={{
-          background: "radial-gradient(closest-side, rgba(206,253,85,0.55), rgba(206,253,85,0) 70%)",
-          x: sgx,
-          y: sgy,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-      {/* Fade superior para que el nav respire */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/80 to-transparent -z-10" aria-hidden />
-      {/* Fade inferior para corte limpio con la siguiente sección */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/90 to-transparent -z-10" aria-hidden />
+      {/* Luz interactiva — reacciona al puntero */}
+      <AuroraField className="-z-20" />
+      {/* Grano: sin esto los degradés grandes hacen bandas en pantallas de 8 bit */}
+      <div className="absolute inset-0 -z-10 opacity-[0.055] mix-blend-overlay bg-grain" aria-hidden />
+      {/* Oscurecido arriba, para que el nav se despegue del fondo */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#07090a] via-[#07090a]/70 to-transparent -z-10" aria-hidden />
+      {/* Transición al blanco del resto de la landing */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12 items-center">
@@ -165,14 +122,14 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-300/60 bg-white/80 backdrop-blur px-3.5 py-1.5 text-[12px] font-medium text-zinc-800 shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] backdrop-blur-md px-3.5 py-1.5 text-[12px] font-medium text-white/80"
             >
-              <Sparkles className="h-3.5 w-3.5 text-[#7AB23A]" />
-              <span className="text-zinc-700">
-                {t.pillL} <span className="font-bold text-zinc-900">{t.pillM}</span>
+              <Sparkles className="h-3.5 w-3.5 text-[#CEFD55]" />
+              <span className="text-white/65">
+                {t.pillL} <span className="font-bold text-white">{t.pillM}</span>
               </span>
-              <span className="h-3 w-px bg-zinc-300" />
-              <span className="text-zinc-700">{t.pillR} <span className="font-bold text-zinc-900">{t.pillRStrong}</span></span>
+              <span className="h-3 w-px bg-white/15" />
+              <span className="text-white/65">{t.pillR} <span className="font-bold text-[#CEFD55]">{t.pillRStrong}</span></span>
             </motion.div>
 
             {/* Headline GIGANTE con palabra rotando */}
@@ -180,11 +137,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 text-[52px] sm:text-[80px] lg:text-[100px] font-extrabold tracking-[-0.04em] text-zinc-950 leading-[0.92]"
+              className="mt-6 text-[52px] sm:text-[80px] lg:text-[100px] font-extrabold tracking-[-0.04em] text-white leading-[0.92]"
             >
               {t.headlineLead}
               <br />
-              <span className="text-zinc-400">{t.headlineMid}</span>{" "}
+              <span className="text-white/30">{t.headlineMid}</span>{" "}
               <span className="relative inline-block align-baseline" style={{ minWidth: "1ch" }}>
                 <span className="invisible">{words.reduce((max, w) => (w.length > max.length ? w : max), "")}</span>
                 <AnimatePresence mode="wait" initial={false}>
@@ -194,23 +151,23 @@ export function Hero() {
                     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: "-0.45em", opacity: 0, filter: "blur(8px)" }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 lime-underline whitespace-nowrap"
+                    className="absolute inset-0 whitespace-nowrap text-[#CEFD55]"
                   >
                     {words[wIdx]}
                   </motion.span>
                 </AnimatePresence>
               </span>
-              <span className="text-zinc-950">.</span>
+              <span className="text-white">.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-7 text-[18px] sm:text-[20px] leading-relaxed text-zinc-700 max-w-xl mx-auto lg:mx-0"
+              className="mt-7 text-[18px] sm:text-[20px] leading-relaxed text-white/55 max-w-xl mx-auto lg:mx-0"
             >
               {t.subPre}{" "}
-              <span className="font-semibold text-zinc-900">{t.subBold}</span>{" "}
+              <span className="font-semibold text-white">{t.subBold}</span>{" "}
               {t.subPost}
             </motion.p>
 
@@ -221,10 +178,10 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="mt-9 flex flex-col items-center lg:items-start gap-5"
             >
-              <StoreBadges />
+              <StoreBadges onDark />
 
               {/* Línea sutil debajo de los CTAs — sin métricas vanity */}
-              <p className="text-[13px] text-zinc-500">
+              <p className="text-[13px] text-white/35">
                 {t.proof}
               </p>
             </motion.div>
@@ -234,7 +191,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
-              className="hidden lg:flex items-center gap-2 mt-12 text-[12px] font-medium text-zinc-500"
+              className="hidden lg:flex items-center gap-2 mt-12 text-[12px] font-medium text-white/35"
             >
               <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
               {t.scrollHint}
@@ -243,21 +200,12 @@ export function Hero() {
 
           {/* PHONE MOCKUP con tilt 3D */}
           <motion.div
-            ref={ref}
-            onMouseMove={onMouseMove}
-            onMouseLeave={onMouseLeave}
             initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 relative w-full max-w-[440px] mx-auto"
-            style={{ perspective: "1200px" }}
           >
-            <motion.div
-              style={{ rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
-              className="relative"
-            >
-              <PhoneFrame screens={HERO_SCREENS} className="!max-w-[340px]" />
-            </motion.div>
+            <Device screens={HERO_SCREENS} />
 
             {/* Floating real-product cards (paleta disciplinada — solo lima + zinc) */}
             <FloatingMessageCard

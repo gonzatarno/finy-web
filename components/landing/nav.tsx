@@ -78,6 +78,10 @@ export function Nav() {
     return () => mql.removeEventListener("change", onChange)
   }, [])
 
+  // El hero es oscuro, así que arriba de todo el nav va en claro. Al scrollear
+  // aparece la barra blanca y vuelve a contenido oscuro.
+  const onDark = !scrolled
+
   return (
     <>
       <header
@@ -96,7 +100,8 @@ export function Nav() {
               width={94}
               height={54}
               priority
-              className="h-7 w-auto"
+              className="h-7 w-auto transition-[filter] duration-300"
+              style={onDark ? { filter: "invert(1)" } : undefined}
             />
           </Link>
 
@@ -105,7 +110,12 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="px-3 py-2 text-[14px] font-medium text-zinc-600 hover:text-zinc-900 rounded-lg hover:bg-zinc-100 transition-colors"
+                className={cn(
+                  "px-3 py-2 text-[14px] font-medium rounded-lg transition-colors",
+                  onDark
+                    ? "text-white/70 hover:text-white hover:bg-white/10"
+                    : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100",
+                )}
               >
                 {l.label}
               </Link>
@@ -118,17 +128,23 @@ export function Nav() {
             </div>
             <Link
               href="#descargar"
-              className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-zinc-900 text-white text-[14px] font-semibold hover:bg-zinc-800 transition-colors"
+              className={cn(
+                "hidden md:inline-flex items-center px-4 py-2 rounded-full text-[14px] font-semibold transition-colors",
+                onDark ? "bg-white text-zinc-950 hover:bg-white/90" : "bg-zinc-900 text-white hover:bg-zinc-800",
+              )}
             >
               {t.download}
             </Link>
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden p-2 -mr-2 rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors"
+              className={cn(
+                "md:hidden p-2 -mr-2 rounded-lg transition-colors",
+                onDark ? "hover:bg-white/10 active:bg-white/20" : "hover:bg-zinc-100 active:bg-zinc-200",
+              )}
               aria-label={t.openMenu}
               aria-expanded={open}
             >
-              <Menu className="h-6 w-6 text-zinc-900" />
+              <Menu className={cn("h-6 w-6", onDark ? "text-white" : "text-zinc-900")} />
             </button>
           </div>
         </div>

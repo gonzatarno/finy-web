@@ -15,11 +15,15 @@ const COPY = {
 
 interface StoreBadgesProps {
   variant?: "default" | "compact"
+  /** Sobre fondo oscuro los badges negros desaparecen: se invierten a blanco. */
+  onDark?: boolean
   className?: string
 }
 
-export function StoreBadges({ variant = "default", className }: StoreBadgesProps) {
+export function StoreBadges({ variant = "default", onDark = false, className }: StoreBadgesProps) {
   const t = useT(COPY)
+  const skin = onDark ? "bg-white text-black" : "bg-black text-white"
+  const sub = onDark ? "text-black/55" : "text-white/70"
   return (
     <div className={cn("flex flex-col sm:flex-row gap-3", className)}>
       {/* Android first — 90% of traffic is Android */}
@@ -29,13 +33,14 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         rel="noopener"
         onClick={() => trackPixelEvent("Lead", { content_name: "Play Store" })}
         className={cn(
-          "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
+          "group inline-flex items-center gap-3 rounded-2xl transition-transform active:scale-[0.98] hover:scale-[1.01]",
+          skin,
           variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",
         )}
       >
         <PlayStoreIcon className={variant === "default" ? "h-7 w-7" : "h-5 w-5"} />
         <div className="flex flex-col leading-tight text-left">
-          <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
+          <span className={cn("font-medium", sub, variant === "default" ? "text-[11px]" : "text-[10px]")}>
             {t.andTop}
           </span>
           <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
@@ -50,13 +55,14 @@ export function StoreBadges({ variant = "default", className }: StoreBadgesProps
         rel="noopener"
         onClick={() => trackPixelEvent("Lead", { content_name: "App Store" })}
         className={cn(
-          "group inline-flex items-center gap-3 rounded-2xl bg-black text-white transition-transform active:scale-[0.98] hover:scale-[1.01]",
+          "group inline-flex items-center gap-3 rounded-2xl transition-transform active:scale-[0.98] hover:scale-[1.01]",
+          skin,
           variant === "default" ? "px-5 py-3.5" : "px-4 py-2.5",
         )}
       >
         <AppleLogo className={variant === "default" ? "h-7 w-7" : "h-5 w-5"} />
         <div className="flex flex-col leading-tight text-left">
-          <span className={cn("font-medium text-white/70", variant === "default" ? "text-[11px]" : "text-[10px]")}>
+          <span className={cn("font-medium", sub, variant === "default" ? "text-[11px]" : "text-[10px]")}>
             {t.iosTop}
           </span>
           <span className={cn("font-semibold tracking-tight", variant === "default" ? "text-lg" : "text-sm")}>
