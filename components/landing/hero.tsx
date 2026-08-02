@@ -110,8 +110,10 @@ export function Hero() {
       <div className="absolute inset-0 -z-10 opacity-[0.055] mix-blend-overlay bg-grain" aria-hidden />
       {/* Oscurecido arriba, para que el nav se despegue del fondo */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#07090a] via-[#07090a]/70 to-transparent -z-10" aria-hidden />
-      {/* Transición al blanco del resto de la landing */}
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent" aria-hidden />
+      {/* La sección de abajo (StickyFeatures) también es oscura: el fundido va
+          a zinc-950, no a blanco. Fundir a blanco metía una banda clara entre
+          dos secciones negras. */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12 items-center">

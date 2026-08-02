@@ -85,24 +85,12 @@ export function Device({
   return (
     <div ref={wrapRef} className={`relative mx-auto w-full max-w-[330px] ${className}`}>
       {/*
-        Resplandor de pantalla: la misma captura, ampliada y desenfocada detrás
-        del equipo. Es el truco que hace que la pantalla parezca encendida en
-        vez de ser una imagen pegada.
+        Acá iba un resplandor hecho con la propia captura desenfocada. La idea
+        era que la pantalla se viera encendida, pero como la UI de Finy es
+        clara, el desenfoque daba un halo blanco alrededor del equipo que se
+        leía como un error de recorte. El volumen ya lo dan el canto metálico,
+        el especular y las sombras.
       */}
-      <div className="pointer-events-none absolute inset-0 -z-10 scale-[1.35] opacity-70 blur-[60px] saturate-150">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current.src}
-            className="relative h-full w-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image src={current.src} alt="" fill sizes="330px" className="object-cover" aria-hidden />
-          </motion.div>
-        </AnimatePresence>
-      </div>
 
       <motion.div style={{ perspective: 1500 }} className="relative">
         {/* Sombra de contacto: corta y densa, justo debajo del equipo */}
