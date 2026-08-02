@@ -115,7 +115,7 @@ export function Hero() {
           dos secciones negras. */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent" aria-hidden />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12 items-center">
           {/* TEXTO */}
           <div className="lg:col-span-7 text-center lg:text-left">

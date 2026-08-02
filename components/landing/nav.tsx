@@ -92,7 +92,7 @@ export function Nav() {
             : "bg-transparent",
         )}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center shrink-0" aria-label="Finy">
             <Image
               src="/images/fini-negro-logo.png"

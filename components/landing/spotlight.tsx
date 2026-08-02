@@ -37,7 +37,7 @@ export function Spotlight({
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8",
+        "relative overflow-hidden py-24 sm:py-32 lg:py-40 px-5 sm:px-6 lg:px-8",
         dark ? "bg-zinc-950 text-white" : "bg-white text-zinc-950",
       )}
     >

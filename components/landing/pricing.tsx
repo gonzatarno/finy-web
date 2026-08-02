@@ -115,7 +115,7 @@ export function Pricing() {
   }
 
   return (
-    <section id="precios" className="relative bg-zinc-50 py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="precios" className="relative bg-zinc-50 py-24 sm:py-32 px-5 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" aria-hidden />
       <div className="relative mx-auto max-w-6xl">
         {/* Header */}

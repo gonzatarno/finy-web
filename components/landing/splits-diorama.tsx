@@ -39,7 +39,7 @@ export function SplitsDiorama() {
   const t = useT(COPY)
 
   return (
-    <section className="relative overflow-hidden bg-zinc-950 text-white py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-zinc-950 text-white py-24 sm:py-32 lg:py-40 px-5 sm:px-6 lg:px-8">
       {/* Halos de fondo */}
       <div
         aria-hidden
