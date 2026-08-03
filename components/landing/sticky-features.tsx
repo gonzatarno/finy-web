@@ -169,8 +169,8 @@ export function StickyFeatures() {
     <section
       id="como-funciona"
       ref={ref}
-      className="relative bg-zinc-950 text-white"
-      style={{ minHeight: `${N * 100}vh` }}
+      className="relative bg-zinc-950 text-white lg:[min-height:var(--pin-height)]"
+      style={{ "--pin-height": `${N * 100}vh` } as React.CSSProperties}
     >
       {/* Grid sutil de fondo */}
       <div className="absolute inset-0 bg-grid-dark opacity-50 pointer-events-none" aria-hidden />
@@ -184,8 +184,13 @@ export function StickyFeatures() {
       />
 
       {/* SECCIÓN STICKY */}
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-24 lg:pt-28 pb-6 flex-shrink-0">
+      {/*
+        El pin es sólo de lg para arriba. En un teléfono el contenido apilado
+        —título + texto + captura— mide ~1.320px y el contenedor pineado sólo
+        812: se comía media sección. Abajo de lg va la versión en flujo normal.
+      */}
+      <div className="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:overflow-hidden">
+        <div className="mx-auto max-w-7xl w-full px-5 sm:px-6 lg:px-8 pt-24 lg:pt-28 pb-6 flex-shrink-0">
           {/* Eyebrow + title (arriba, no centrado vertical) */}
           <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#CEFD55] mb-3 text-center">
             {t.eyebrow}
@@ -196,7 +201,7 @@ export function StickyFeatures() {
           </h2>
         </div>
 
-        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex-1 flex items-center">
+        <div className="mx-auto max-w-7xl w-full px-5 sm:px-6 lg:px-8 flex-1 flex items-center">
           {/* CONTENIDO DE 2 COLUMNAS */}
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
             {/* TEXTO IZQUIERDA — un feature visible a la vez */}
@@ -278,7 +283,7 @@ export function StickyFeatures() {
         </div>
 
         {/* Progress indicador (fuera del flex item-center para quedar abajo) */}
-        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pb-8 lg:pb-12 flex-shrink-0">
+        <div className="mx-auto max-w-7xl w-full px-5 sm:px-6 lg:px-8 pb-8 lg:pb-12 flex-shrink-0">
           <div className="flex justify-center gap-2">
             {FEATURES.map((_, i) => (
               <motion.span
@@ -288,6 +293,66 @@ export function StickyFeatures() {
               />
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* ── MOBILE: las tres features en flujo, sin pin ─────────────────── */}
+      <div className="relative lg:hidden">
+        <div className="mx-auto w-full max-w-xl px-5 pt-20 pb-4">
+          <p className="mb-3 text-center text-[12px] font-semibold uppercase tracking-[0.2em] text-[#CEFD55]">
+            {t.eyebrow}
+          </p>
+          <h2 className="text-center text-[28px] font-extrabold leading-[1.05] tracking-tight text-white">
+            {t.titleA} <span className="text-zinc-500">{t.titleB}</span>
+          </h2>
+        </div>
+
+        <div className="space-y-16 px-5 pb-20">
+          {FEATURES.map((f) => (
+            <div key={f.title} className="mx-auto w-full max-w-xl">
+              <div className="mb-4 flex items-center gap-3">
+                <div
+                  className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl ${f.iconBg} ${f.iconColor} ring-1 ring-white/10`}
+                >
+                  {f.icon}
+                </div>
+                <span className="text-[12px] font-bold uppercase tracking-wider text-[#CEFD55]">
+                  {f.eyebrow}
+                </span>
+              </div>
+
+              <h3 className="text-[28px] font-extrabold leading-[1.08] tracking-tight text-white">
+                {f.title}
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-zinc-400">{f.body}</p>
+              <ul className="mt-4 space-y-2.5">
+                {f.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-[14px] text-zinc-200">
+                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#CEFD55]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="relative mx-auto mt-8 w-full max-w-[240px]">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-8 rounded-[60px] opacity-40 blur-3xl"
+                  style={{
+                    background:
+                      "radial-gradient(closest-side, rgba(206,253,85,0.4), rgba(206,253,85,0) 70%)",
+                  }}
+                />
+                <div className="relative w-full" style={{ aspectRatio: "393 / 852" }}>
+                  <div className="absolute inset-0 rounded-[42px] bg-zinc-900 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)] ring-1 ring-zinc-800" />
+                  <div className="absolute inset-[8px] overflow-hidden rounded-[35px] bg-white">
+                    <Image src={f.screen} alt={f.title} fill sizes="240px" className="object-cover" />
+                    <div className="pointer-events-none absolute left-1/2 top-2 z-10 h-[22px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

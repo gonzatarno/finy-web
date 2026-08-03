@@ -103,7 +103,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contacto" className="relative bg-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="contacto" className="relative bg-white py-24 sm:py-32 px-5 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" aria-hidden />
       <div className="relative mx-auto max-w-5xl">
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-start">

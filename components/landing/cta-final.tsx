@@ -34,7 +34,7 @@ const COPY = {
 export function CTAFinal() {
   const t = useT(COPY)
   return (
-    <section id="descargar" className="relative bg-zinc-950 text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20">
+    <section id="descargar" className="relative bg-zinc-950 text-white py-24 sm:py-32 px-5 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20">
       {/* Big lime glow */}
       <div
         className="pointer-events-none absolute -top-48 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full opacity-40 blur-3xl"

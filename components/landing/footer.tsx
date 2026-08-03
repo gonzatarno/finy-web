@@ -61,7 +61,7 @@ const COPY = {
 export function Footer() {
   const t = useT(COPY)
   return (
-    <footer className="relative bg-zinc-950 text-zinc-300 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <footer className="relative bg-zinc-950 text-zinc-300 py-16 px-5 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-grain opacity-50" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">

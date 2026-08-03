@@ -47,7 +47,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="bg-white py-24 sm:py-28 px-5 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-zinc-500 mb-3">
