@@ -10,7 +10,7 @@ export default function PoliticaPrivacidadClient() {
   const content = {
     es: {
       title: 'Política de Privacidad de Finy',
-      lastUpdated: 'Última actualización: 2 de Mayo de 2026',
+      lastUpdated: 'Última actualización: 24 de Agosto de 2026',
       sections: [
         {
           number: 1,
@@ -67,11 +67,13 @@ Utilizamos encriptación SSL/TLS en tránsito y encriptación de base de datos e
         {
           number: 4,
           title: 'Uso de Inteligencia Artificial y Procesadores Externos',
-          content: `Para ofrecer las funcionalidades de Finy (entender audios y fotos), compartimos fragmentos de datos estrictamente necesarios con proveedores de Inteligencia Artificial de clase mundial.
+          content: `Para ofrecer las funcionalidades de Finy, compartimos con proveedores de Inteligencia Artificial únicamente los datos necesarios para cada función.
 
 • Proveedores de IA: Utilizamos servicios de OpenAI, Anthropic (Claude) y Google (Gemini) para el procesamiento de lenguaje natural y visión por computadora.
-• Naturaleza del Uso: Enviamos el texto transcrito o la imagen del ticket a estos proveedores únicamente para extraer la información estructurada (Monto, Comercio, Categoría).
-• Privacidad de la IA: Según los acuerdos empresariales vigentes, estos proveedores NO utilizan sus datos financieros personales para entrenar sus modelos públicos.`,
+• Para registrar un movimiento: Enviamos el texto transcrito, el audio o la imagen del comprobante, únicamente para extraer la información estructurada (Monto, Comercio, Categoría).
+• Para el análisis periódico y el asistente de chat: Enviamos un resumen de sus movimientos del período. Ese resumen incluye los totales de ingresos y gastos, el desglose por categoría, sus movimientos de mayor monto con la descripción que tengan asociada, los totales de meses anteriores y los datos de perfil que usted haya cargado (ingreso declarado, metas de ahorro con el nombre que les puso, categorías que marcó como prioritarias, situación de convivencia, personas a cargo y el contexto personal que haya escrito). No enviamos su nombre, su correo electrónico ni ningún identificador de su cuenta.
+• Privacidad de la IA: Según los acuerdos empresariales vigentes, estos proveedores NO utilizan sus datos financieros personales para entrenar sus modelos públicos.
+• Si prefiere no usarlo: El análisis periódico y el asistente de chat son funciones opcionales. Puede registrar y consultar todos sus movimientos sin utilizarlas.`,
         },
         {
           number: 5,
@@ -150,7 +152,7 @@ Web: www.finyapp.io`,
     },
     en: {
       title: 'Finy Privacy Policy',
-      lastUpdated: 'Last updated: May 2, 2026',
+      lastUpdated: 'Last updated: August 24, 2026',
       sections: [
         {
           number: 1,
@@ -207,11 +209,13 @@ We use SSL/TLS encryption in transit and database encryption at rest. We restric
         {
           number: 4,
           title: 'Use of Artificial Intelligence and External Processors',
-          content: `To deliver Finy's features (understanding audio and photos), we share strictly necessary data fragments with world-class Artificial Intelligence providers.
+          content: `To deliver Finy's features, we share with Artificial Intelligence providers only the data each feature requires.
 
 • AI Providers: We use services from OpenAI, Anthropic (Claude) and Google (Gemini) for natural language processing and computer vision.
-• Nature of Use: We send transcribed text or receipt images to these providers only to extract structured information (Amount, Business, Category).
-• AI Privacy: According to current business agreements, these providers do NOT use your personal financial data to train their public models.`,
+• To log a transaction: We send the transcribed text, the audio or the receipt image, only to extract structured information (Amount, Business, Category).
+• For the periodic analysis and the chat assistant: We send a summary of your transactions for the period. That summary includes your income and expense totals, the breakdown by category, your largest transactions along with any description attached to them, totals from previous months, and the profile data you have entered (declared income, savings goals with the names you gave them, categories you marked as priorities, living situation, dependants, and any personal context you wrote). We do not send your name, your email address or any account identifier.
+• AI Privacy: According to current business agreements, these providers do NOT use your personal financial data to train their public models.
+• If you prefer not to use it: The periodic analysis and the chat assistant are optional features. You can record and review all your transactions without using them.`,
         },
         {
           number: 5,

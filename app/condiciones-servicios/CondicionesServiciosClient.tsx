@@ -10,7 +10,7 @@ export default function CondicionesServiciosClient() {
   const content = {
     es: {
       title: 'Términos y Condiciones del Servicio Finy',
-      lastUpdated: 'Última actualización: 2 de Mayo de 2026',
+      lastUpdated: 'Última actualización: 24 de Agosto de 2026',
       sections: [
         {
           number: 1,
@@ -20,12 +20,15 @@ export default function CondicionesServiciosClient() {
         {
           number: 2,
           title: 'Descripción del Servicio',
-          content: `Finy es una herramienta tecnológica de registro, organización y visualización de finanzas personales, accesible vía App Móvil (iOS y Android) y Plataforma Web. Finy utiliza Inteligencia Artificial para procesar comandos de voz, texto e imágenes y categorizar gastos. El servicio incluye:
+          content: `Finy es una herramienta tecnológica de registro, organización, análisis y visualización de finanzas personales, accesible vía App Móvil (iOS y Android) y Plataforma Web. Finy utiliza Inteligencia Artificial para procesar comandos de voz, texto e imágenes, categorizar gastos y elaborar análisis periódicos. El servicio incluye:
 • Una App Móvil disponible en la Apple App Store y Google Play Store, como canal principal de acceso.
 • Un Dashboard Web en dashboard.finyapp.io para la visualización de métricas, gráficos históricos y gestión de categorías.
+• Un análisis periódico automatizado de los movimientos que usted registre, con observaciones y sugerencias de organización (ver la sección 5).
 • Herramientas de automatización para procesamiento de correos electrónicos transaccionales (opcional).
 
-Naturaleza Informativa: Finy es una herramienta de registro y visualización. Finy NO es un asesor financiero, planificador de inversiones, contador ni abogado. Los reportes, proyecciones de cuotas y alertas son estimaciones basadas en los datos provistos por usted.`,
+Naturaleza del Servicio: Finy no es un banco, una entidad financiera, un agente de bolsa, ni un asesor de inversiones registrado ante la Comisión Nacional de Valores de la República Argentina o ante el organismo regulador equivalente de cualquier otra jurisdicción. Finy tampoco presta servicios de contaduría ni de asesoramiento legal o impositivo.
+
+Los reportes, análisis, proyecciones de cuotas, alertas y sugerencias generados por el Servicio son estimaciones elaboradas a partir de los datos que usted registra, y tienen una finalidad exclusivamente organizativa e informativa.`,
         },
         {
           number: 3,
@@ -39,7 +42,7 @@ Naturaleza Informativa: Finy es una herramienta de registro y visualización. Fi
           title: 'Uso de Inteligencia Artificial y Descargo de Responsabilidad',
           content: `Finy utiliza modelos de Inteligencia Artificial (IA) de terceros para interpretar lenguaje natural, transcribir audios y extraer datos de imágenes (OCR).
 
-Descargo de Responsabilidad Financiera: Finy no es un asesor financiero legal ni un banco. La información, gráficos, presupuestos y respuestas generadas por el asistente de Inteligencia Artificial tienen un propósito netamente organizativo e informativo. Finy no se hace responsable por las decisiones financieras, de inversión o de ahorro que el usuario tome basándose en la información proporcionada por la plataforma.
+Descargo de Responsabilidad Financiera: Finy no es una entidad financiera ni un asesor de inversiones registrado. La información, gráficos, presupuestos y respuestas generadas por el asistente de Inteligencia Artificial tienen un propósito netamente organizativo e informativo. Finy no se hace responsable por las decisiones financieras, de inversión o de ahorro que el usuario tome basándose en la información proporcionada por la plataforma.
 
 Reconocimiento de Falibilidad: Al usar el servicio, usted reconoce y acepta que:
 1. La IA es una tecnología experimental y puede cometer errores de interpretación (ej: leer un monto incorrecto en un ticket borroso o categorizar mal un gasto).
@@ -48,13 +51,28 @@ Reconocimiento de Falibilidad: Al usar el servicio, usted reconoce y acepta que:
         },
         {
           number: 5,
+          title: 'Análisis Mensual y Sugerencias',
+          content: `El Servicio puede generar periódicamente un análisis de los movimientos que usted haya registrado, con observaciones sobre sus hábitos de gasto y sugerencias de acción para el período siguiente, así como el seguimiento de aquellas sugerencias que usted decida aceptar.
+
+Alcance de las sugerencias: Las sugerencias que genera el Servicio se refieren exclusivamente a la administración de los gastos e ingresos que usted mismo registró en la aplicación (por ejemplo, reducir la frecuencia de una categoría de gasto). El Servicio no formula, ni pretende formular, recomendaciones de inversión, de compra o venta de instrumentos financieros, de contratación de productos bancarios, crediticios o de seguros, ni asesoramiento impositivo, contable o legal de ningún tipo.
+
+Sobre el uso de la palabra "asesor": Finy emplea los términos "asesor" y "análisis" en su sentido corriente y con finalidad descriptiva de la función del producto. Su uso no constituye ni implica una relación de asesoramiento profesional, fiduciaria o de intermediación financiera entre usted y Finy, ni supone que Finy se encuentre matriculada o registrada para prestar servicios de asesoramiento financiero en ninguna jurisdicción.
+
+Elaboración y límites: El análisis se genera de forma automatizada mediante modelos de Inteligencia Artificial, sobre la base de los datos que usted haya registrado. En consecuencia:
+1. Su calidad y exactitud dependen de que sus movimientos estén cargados de forma completa y correcta. Un análisis elaborado sobre datos parciales o mal categorizados producirá conclusiones parciales o incorrectas.
+2. El análisis no contempla su situación patrimonial, impositiva, familiar ni laboral completa, salvo por los datos que usted haya proporcionado voluntariamente.
+3. La medición del cumplimiento de una sugerencia se realiza únicamente con los movimientos registrados en el Servicio, y no constituye una verificación ni una auditoría de sus finanzas reales.
+4. Las decisiones que usted adopte a partir del análisis son de su exclusiva responsabilidad. Si necesita asesoramiento sobre inversiones, impuestos, deudas o planificación financiera, debe consultar a un profesional matriculado en su jurisdicción.`,
+        },
+        {
+          number: 6,
           title: 'Propiedad de los Datos y Licencias',
           content: `Sus Datos: Usted conserva la plena propiedad y los derechos intelectuales sobre sus datos financieros.
 
 Licencia a Finy: Para que podamos prestarle el servicio (mostrarle gráficos, calcular totales, guardar historial), usted otorga a Finy una licencia mundial, libre de regalías y transferible para alojar, transferir, visualizar, procesar y crear copias de seguridad de sus datos en nuestra infraestructura de servidores y bases de datos.`,
         },
         {
-          number: 6,
+          number: 7,
           title: 'Pagos, Suscripciones y Reembolsos',
           content: `Finy ofrece planes de suscripción (ej. Finy Plus, Finy Pro). Las condiciones varían según el canal de compra:
 
@@ -71,36 +89,36 @@ Suscripciones vía Web (Gumroad):
 Cambios de Precio: Nos reservamos el derecho de modificar las tarifas de suscripción. Cualquier cambio será notificado con al menos 30 días de antelación.`,
         },
         {
-          number: 7,
+          number: 8,
           title: 'Dependencia de Plataformas de Terceros',
           content: `El Servicio depende de la disponibilidad continua de plataformas externas, incluyendo la Apple App Store, Google Play Store y proveedores de correo electrónico (Google).
 
 Finy no garantiza que el servicio sea ininterrumpido. Finy no será responsable si alguna de estas plataformas sufre interrupciones, cambia sus políticas o suspende el acceso al Servicio.`,
         },
         {
-          number: 8,
+          number: 9,
           title: 'Automatización de Email (Gmail)',
           content: `Si habilita la lectura de correos:
 • Autoriza a Finy a acceder a su bandeja de entrada con el fin exclusivo de rastrear comprobantes de pago.
 • Reconoce que este proceso es automatizado y Finy podría omitir correos con formatos no reconocidos.`,
         },
         {
-          number: 9,
+          number: 10,
           title: 'Limitación de Responsabilidad',
           content: `En la medida máxima permitida por la ley aplicable, Finy, sus desarrolladores y afiliados no serán responsables por daños indirectos, incidentales, especiales, consecuentes o punitivos, ni por pérdida de beneficios, datos, uso o buena voluntad, que surjan de (i) su acceso o uso del servicio; (ii) cualquier conducta de terceros en el servicio; o (iii) acceso no autorizado, uso o alteración de sus transmisiones o contenido.`,
         },
         {
-          number: 10,
+          number: 11,
           title: 'Modificaciones al Servicio y Términos',
           content: `Finy se reserva el derecho de modificar o discontinuar, temporal o permanentemente, el Servicio (o cualquier parte del mismo) con o sin previo aviso. Asimismo, podemos actualizar estos Términos periódicamente. El uso continuado del servicio tras una modificación constituye la aceptación de los nuevos términos.`,
         },
         {
-          number: 11,
+          number: 12,
           title: 'Ley Aplicable',
           content: `Estos Términos se regirán e interpretarán de acuerdo con las leyes vigentes en la República Argentina (o su país de residencia fiscal), sin tener en cuenta sus disposiciones sobre conflictos de leyes.`,
         },
         {
-          number: 12,
+          number: 13,
           title: 'Contacto',
           content: `Para cualquier duda legal o relacionada con estos términos, contáctenos en:
 
@@ -110,7 +128,7 @@ soporte@finyapp.io`,
     },
     en: {
       title: 'Finy Terms and Conditions of Service',
-      lastUpdated: 'Last updated: May 2, 2026',
+      lastUpdated: 'Last updated: August 24, 2026',
       sections: [
         {
           number: 1,
@@ -148,13 +166,28 @@ Recognition of Fallibility: By using the service, you acknowledge and accept tha
         },
         {
           number: 5,
+          title: 'Monthly Analysis and Suggestions',
+          content: `The Service may periodically generate an analysis of the transactions you have recorded, with observations about your spending habits and suggested actions for the following period, as well as follow-up on any suggestion you choose to accept.
+
+Scope of the suggestions: The suggestions generated by the Service relate exclusively to managing the expenses and income you yourself recorded in the application (for example, reducing how often you spend in a given category). The Service does not make, and does not purport to make, investment recommendations, recommendations to buy or sell financial instruments, recommendations regarding banking, credit or insurance products, nor tax, accounting or legal advice of any kind.
+
+On the use of the word "advisor": Finy uses the terms "advisor" and "analysis" in their ordinary sense, to describe what the product does. Such use does not constitute or imply any professional advisory, fiduciary or financial intermediation relationship between you and Finy, nor does it imply that Finy is licensed or registered to provide financial advisory services in any jurisdiction.
+
+How it is produced, and its limits: The analysis is generated automatically by Artificial Intelligence models, based on the data you have recorded. Accordingly:
+1. Its quality and accuracy depend on your transactions being recorded completely and correctly. An analysis built on partial or miscategorized data will produce partial or incorrect conclusions.
+2. The analysis does not take into account your complete financial, tax, family or employment situation, except for the data you have voluntarily provided.
+3. Measuring whether a suggestion was met is done solely with the transactions recorded in the Service, and does not constitute a verification or audit of your actual finances.
+4. Any decisions you make based on the analysis are your sole responsibility. If you need advice on investments, taxes, debt or financial planning, you should consult a licensed professional in your jurisdiction.`,
+        },
+        {
+          number: 6,
           title: 'Data Ownership and Licenses',
           content: `Your Data: You retain full ownership and intellectual rights over your financial data.
 
 License to Finy: To enable us to provide you with the service (show you charts, calculate totals, save history), you grant Finy a worldwide, royalty-free and transferable license to host, transfer, display, process and create backups of your data in our server infrastructure and databases.`,
         },
         {
-          number: 6,
+          number: 7,
           title: 'Payments, Subscriptions and Refunds',
           content: `Finy offers subscription plans (e.g. Finy Plus, Finy Pro). Terms vary depending on the purchase channel:
 
@@ -171,36 +204,36 @@ Subscriptions via Web (Gumroad):
 Price Changes: We reserve the right to modify subscription fees. Any changes will be notified with at least 30 days notice.`,
         },
         {
-          number: 7,
+          number: 8,
           title: 'Dependence on Third-Party Platforms',
           content: `The Service depends on the continuous availability of external platforms, including the Apple App Store, Google Play Store and email providers (Google).
 
 Finy does not guarantee uninterrupted service. Finy will not be responsible if any of these platforms experiences outages, changes its policies, or suspends access to the Service.`,
         },
         {
-          number: 8,
+          number: 9,
           title: 'Email Automation (Gmail)',
           content: `If you enable email reading:
 • You authorize Finy to access your inbox exclusively for the purpose of tracking payment receipts.
 • You acknowledge that this process is automated and Finy may miss emails with unrecognized formats.`,
         },
         {
-          number: 9,
+          number: 10,
           title: 'Limitation of Liability',
           content: `To the maximum extent permitted by applicable law, Finy, its developers and affiliates will not be liable for indirect, incidental, special, consequential or punitive damages, nor for loss of profits, data, use or goodwill, arising from (i) your access or use of the service; (ii) any conduct of third parties on the service; or (iii) unauthorized access, use or alteration of your transmissions or content.`,
         },
         {
-          number: 10,
+          number: 11,
           title: 'Modifications to Service and Terms',
           content: `Finy reserves the right to modify or discontinue, temporarily or permanently, the Service (or any part thereof) with or without notice. We may also update these Terms periodically. Continued use of the service following a modification constitutes acceptance of the new terms.`,
         },
         {
-          number: 11,
+          number: 12,
           title: 'Applicable Law',
           content: `These Terms shall be governed and construed in accordance with the laws in force in the Argentine Republic (or your country of tax residence), without regard to its conflict of law provisions.`,
         },
         {
-          number: 12,
+          number: 13,
           title: 'Contact',
           content: `For any legal questions or questions related to these terms, please contact us at:
 
