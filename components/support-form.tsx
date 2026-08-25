@@ -25,7 +25,7 @@ export function SupportForm({ language }: { language: "es" | "en" }) {
       categories: ["Problema técnico", "Duda sobre mi suscripción", "Sugerencia", "Otro"],
       categoryPlaceholder: "Seleccioná una categoría",
       messageLabel: "Mensaje",
-      messagePlaceholder: "Contanos en qué podemos ayudarte...",
+      messagePlaceholder: "Cuéntanos en qué podemos ayudarte...",
       submit: "Enviar Mensaje",
       submitting: "Enviando...",
       successTitle: "¡Mensaje recibido!",

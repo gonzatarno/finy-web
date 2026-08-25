@@ -13,6 +13,8 @@ const COPY = {
     moreDoubts: "¿Otra duda?",
     writeUs: "Escríbenos",
     items: [
+      { q: "¿Qué es el análisis mensual?", a: "El 1° de cada mes Finy analiza el mes que cerraste: qué pasó con tu dinero, por qué pasó, y una sola cosa concreta para el mes siguiente. Al mes siguiente abre diciéndote si la cumpliste, medido con tus propios movimientos. El primero es gratis y viene completo." },
+      { q: "¿En qué se diferencia de pegarle mis gastos a ChatGPT?", a: "En que no hay que volver a hacerlo. Pegar un export da un buen análisis una vez; al mes siguiente hay que exportar, pegar y explicar el contexto de nuevo, y el chat no recuerda lo que te recomendó. Finy ya tiene los datos y encadena un mes con el siguiente." },
       { q: "¿Cómo funciona lo de cargar gastos por audio?", a: "Tocas el botón del micrófono, dices en lenguaje natural lo que gastaste (\"pagué 5 en café con débito\") y la IA detecta el monto, la categoría y el método de pago. Si algo no se entendió bien, lo editas antes de confirmar." },
       { q: "¿Puedo conectar mi cuenta bancaria o tarjeta?", a: "Sí, puedes conectar Mercado Pago para que tus pagos se importen automáticamente. Estamos trabajando en integraciones con bancos directos. Por ahora también puedes subir resúmenes en PDF y la IA extrae todos los movimientos sola." },
       { q: "¿Mis datos están seguros?", a: "Toda la información viaja encriptada de punta a punta. No vendemos datos a terceros. Si algún día quieres borrar todo, lo haces desde la app con un toque y desaparece." },
@@ -30,6 +32,8 @@ const COPY = {
     moreDoubts: "Another question?",
     writeUs: "Write us",
     items: [
+      { q: "What is the monthly analysis?", a: "On the 1st of every month Finy analyses the month you just closed: what happened with your money, why it happened, and one concrete thing to do next month. The following month it opens by telling you whether you did it, measured against your own transactions. The first one is free and complete." },
+      { q: "How is this different from pasting my expenses into ChatGPT?", a: "You don't have to do it again. Pasting an export gives you a good analysis once; next month you export, paste and explain the context all over again, and the chat doesn't remember what it told you. Finy already has the data and chains one month to the next." },
       { q: "How does logging expenses by voice work?", a: "You tap the mic, say what you spent in natural language (\"I paid $5 on coffee with debit\") and the AI detects the amount, category and payment method. If something is off, you can edit before confirming." },
       { q: "Can I connect my bank account or card?", a: "Yes, you can connect Mercado Pago so your payments import automatically. We're working on direct bank integrations. For now you can also upload PDF statements and the AI extracts every transaction." },
       { q: "Is my data safe?", a: "All your data travels end-to-end encrypted. We don't sell data to third parties. If you ever want to wipe everything, you do it from the app with one tap." },

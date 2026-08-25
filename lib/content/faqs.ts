@@ -17,7 +17,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "¿Qué es Finy?",
-        a: "Finy es una app de finanzas personales para iPhone y Android que registra tus gastos con inteligencia artificial: le hablás, le sacás foto al ticket o le escribís, y la IA carga el movimiento con monto, categoría y método de pago. Además tiene espacios compartidos para dividir gastos, soporta más de 40 monedas y sincroniza con Mercado Pago en siete países de LatAm.",
+        a: "Finy es una app de finanzas personales para iPhone y Android que registra tus gastos con inteligencia artificial: le hablas, le sacas foto al ticket o le escribes, y la IA carga el movimiento con monto, categoría y método de pago. Además tiene espacios compartidos para dividir gastos, soporta más de 40 monedas y sincroniza con Mercado Pago en siete países de LatAm.",
       },
       {
         q: "¿Finy es gratis?",
@@ -29,11 +29,11 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Para quién no es Finy?",
-        a: "Para quien necesite conexión automática con bancos tradicionales, contabilidad de empresa con facturación o seguimiento de inversiones y portafolio. Nada de eso está hoy en la app. Tampoco es la mejor opción si preferís cargar todo a mano en una planilla y eso te funciona.",
+        a: "Para quien necesite conexión automática con bancos tradicionales, contabilidad de empresa con facturación o seguimiento de inversiones y portafolio. Nada de eso está hoy en la app. Tampoco es la mejor opción si prefieres cargar todo a mano en una planilla y eso te funciona.",
       },
       {
         q: "¿Necesito conocimientos de finanzas para usarla?",
-        a: "No. La carga es en lenguaje natural y las categorías vienen armadas. Si querés entender algo puntual, se lo preguntás al asistente en vez de armar un reporte.",
+        a: "No. La carga es en lenguaje natural y las categorías vienen armadas. Si quieres entender algo puntual, se lo preguntas al asistente en vez de armar un reporte.",
       },
     ],
   },
@@ -43,23 +43,23 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "¿Cómo cargo un gasto por voz?",
-        a: "Tocás el botón del micrófono y decís en lenguaje natural lo que gastaste, por ejemplo “pagué 5 en café con débito”. La IA detecta el monto, la categoría y el método de pago, y te muestra lo que entendió para que lo confirmes o lo corrijas antes de guardar. Toma unos dos segundos.",
+        a: "Tocas el botón del micrófono y dices en lenguaje natural lo que gastaste, por ejemplo “pagué 5 en café con débito”. La IA detecta el monto, la categoría y el método de pago, y te muestra lo que entendió para que lo confirmes o lo corrijas antes de guardar. Toma unos dos segundos.",
       },
       {
         q: "¿Puedo sacarle una foto al ticket?",
-        a: "Sí. Sacás la foto y la IA extrae el comercio, el total y la fecha. Si el ticket está borroso o arrugado puede equivocarse, por eso siempre te muestra el resultado antes de guardar.",
+        a: "Sí. Sacas la foto y la IA extrae el comercio, el total y la fecha. Si el ticket está borroso o arrugado puede equivocarse, por eso siempre te muestra el resultado antes de guardar.",
       },
       {
         q: "¿Puedo subir el resumen de la tarjeta?",
-        a: "Sí, en PDF. La IA extrae todos los movimientos del resumen de una vez y te los muestra en una pantalla de revisión donde podés descartar los que no quieras antes de importarlos.",
+        a: "Sí, en PDF. La IA extrae todos los movimientos del resumen de una vez y te los muestra en una pantalla de revisión donde puedes descartar los que no quieras antes de importarlos.",
       },
       {
         q: "¿Qué le puedo preguntar al asistente?",
-        a: "Cosas sobre tus propios números: cuánto gastaste en una categoría este mes, cómo viene la comparación contra el mes pasado, en qué se te fue más plata de lo habitual. No es un chatbot genérico de consejos financieros: responde leyendo tu historial.",
+        a: "Cosas sobre tus propios números: cuánto gastaste en una categoría este mes, cómo viene la comparación contra el mes pasado, en qué se te fue más dinero de lo habitual. No es un chatbot genérico de consejos financieros: responde leyendo tu historial.",
       },
       {
         q: "¿Qué pasa si la IA entiende mal?",
-        a: "Podés editar el movimiento antes de confirmarlo, y también después desde el detalle de la transacción. La confirmación previa es a propósito: una app de gastos que guarda sin preguntar termina con datos sucios.",
+        a: "Puedes editar el movimiento antes de confirmarlo, y también después desde el detalle de la transacción. La confirmación previa es a propósito: una app de gastos que guarda sin preguntar termina con datos sucios.",
       },
       {
         q: "¿La IA aprende de mis correcciones?",
@@ -85,11 +85,11 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Cómo funciona la prueba de 14 días?",
-        a: "Todos los usuarios nuevos reciben 14 días de PRO gratis al instalar la app, sin cargar tarjeta. Cuando terminan, pasás automáticamente al plan Gratis. No hay cobro sin que lo confirmes.",
+        a: "Todos los usuarios nuevos reciben 14 días de PRO gratis al instalar la app, sin cargar tarjeta. Cuando terminan, pasas automáticamente al plan Gratis. No hay cobro sin que lo confirmes.",
       },
       {
         q: "¿Me van a cobrar sin avisar cuando termine la prueba?",
-        a: "No. Al no pedir tarjeta para el trial, no hay forma de cobrarte automáticamente: si no te suscribís, pasás al plan Gratis y listo.",
+        a: "No. Al no pedir tarjeta para el trial, no hay forma de cobrarte automáticamente: si no te suscribes, pasas al plan Gratis y listo.",
       },
       {
         q: "¿Puedo cancelar cuando quiera?",
@@ -97,11 +97,11 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Qué pasa con mis datos si dejo de pagar?",
-        a: "Tus movimientos siguen ahí. Pasás a los límites del plan Gratis, así que se reduce cuánto podés cargar por mes, pero no se borra tu historial.",
+        a: "Tus movimientos siguen ahí. Pasas a los límites del plan Gratis, así que se reduce cuánto puedes cargar por mes, pero no se borra tu historial.",
       },
       {
         q: "¿Qué pasa si me quedo sin transacciones o sin consultas del mes?",
-        a: "Los topes se reinician cada mes. Si te quedás corto antes de fin de mes, podés subir de plan o esperar al reinicio del ciclo.",
+        a: "Los topes se reinician cada mes. Si te quedas corto antes de fin de mes, puedes subir de plan o esperar al reinicio del ciclo.",
       },
       {
         q: "¿Los precios están en dólares?",
@@ -123,19 +123,19 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Puedo llevar gastos en varias monedas a la vez?",
-        a: "Sí. Cada movimiento guarda su moneda, así que podés tener gastos en pesos y en dólares en el mismo mes sin que se mezclen en un solo número.",
+        a: "Sí. Cada movimiento guarda su moneda, así que puedes tener gastos en pesos y en dólares en el mismo mes sin que se mezclen en un solo número.",
       },
       {
         q: "¿Se conecta con mi banco?",
-        a: "Con bancos tradicionales todavía no; las integraciones directas están en desarrollo. Hoy podés sincronizar Mercado Pago y subir el resumen de la tarjeta en PDF para que la IA cargue todos los movimientos de una vez.",
+        a: "Con bancos tradicionales todavía no; las integraciones directas están en desarrollo. Hoy puedes sincronizar Mercado Pago y subir el resumen de la tarjeta en PDF para que la IA cargue todos los movimientos de una vez.",
       },
       {
         q: "¿Cómo conecto Mercado Pago?",
-        a: "Desde la sección de conexiones de la app autorizás el acceso y tus pagos se importan automáticamente. Se puede desconectar cuando quieras.",
+        a: "Desde la sección de conexiones de la app autorizas el acceso y tus pagos se importan automáticamente. Se puede desconectar cuando quieras.",
       },
       {
         q: "¿Sirve si cobro del exterior?",
-        a: "Sí, es uno de los casos donde más se nota el soporte multimoneda: podés registrar ingresos en una moneda y gastos en otra sin forzar la conversión.",
+        a: "Sí, es uno de los casos donde más se nota el soporte multimoneda: puedes registrar ingresos en una moneda y gastos en otra sin forzar la conversión.",
       },
     ],
   },
@@ -145,7 +145,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "¿Puedo compartir gastos con mi pareja?",
-        a: "Sí, con los espacios compartidos. Creás un espacio —Casa, Viaje, Negocio—, invitás por link y cada persona suma sus gastos desde su propio teléfono. Finy hace las cuentas y muestra quién le debe a quién.",
+        a: "Sí, con los espacios compartidos. Creas un espacio —Casa, Viaje, Negocio—, invitas por link y cada persona suma sus gastos desde su propio teléfono. Finy hace las cuentas y muestra quién le debe a quién.",
       },
       {
         q: "¿Cuántos espacios puedo tener?",
@@ -175,15 +175,15 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Tiene presupuestos?",
-        a: "Sí, podés seguir cuánto llevás gastado contra lo que te propusiste, con seguimiento por categoría.",
+        a: "Sí, puedes seguir cuánto llevas gastado contra lo que te propusiste, con seguimiento por categoría.",
       },
       {
         q: "¿Puedo ponerme metas de ahorro?",
-        a: "Sí, la app tiene metas de ahorro con seguimiento de cuánto llevás juntado.",
+        a: "Sí, la app tiene metas de ahorro con seguimiento de cuánto llevas juntado.",
       },
       {
         q: "¿Puedo exportar mis datos?",
-        a: "Sí, podés exportar tus movimientos en CSV, que abre en Excel o Google Sheets.",
+        a: "Sí, puedes exportar tus movimientos en CSV, que abre en Excel o Google Sheets.",
       },
       {
         q: "¿Hay widget para la pantalla de inicio?",
@@ -191,7 +191,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "¿Funciona sin internet?",
-        a: "Podés cargar gastos manualmente sin conexión y se sincronizan cuando volvés a tener internet. Las funciones de IA —voz, foto y chat— necesitan internet porque el procesamiento pasa en la nube.",
+        a: "Puedes cargar gastos manualmente sin conexión y se sincronizan cuando vuelves a tener internet. Las funciones de IA —voz, foto y chat— necesitan internet porque el procesamiento pasa en la nube.",
       },
       {
         q: "¿Se puede usar desde la computadora?",
@@ -205,7 +205,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "¿Mis datos están seguros?",
-        a: "Toda la información viaja encriptada de punta a punta. Finy no vende datos a terceros. Podés borrar toda tu información desde la app cuando quieras.",
+        a: "Toda la información viaja encriptada de punta a punta. Finy no vende datos a terceros. Puedes borrar toda tu información desde la app cuando quieras.",
       },
       {
         q: "¿Venden mis datos financieros?",

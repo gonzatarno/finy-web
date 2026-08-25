@@ -12,9 +12,9 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-  title: "Finy — Anotá tus gastos sin esfuerzo",
+  title: "Finy — Anota tus gastos sin esfuerzo",
   description:
-    "Hablale, sacale foto al ticket o escribile. Finy entiende y registra todo por vos. La app de finanzas personales con IA para Argentina y LatAm.",
+    "Háblale, sácale foto al ticket o escríbele. Finy entiende y registra todo por ti. La app de finanzas personales con IA para Argentina y LatAm.",
   keywords: [
     "app finanzas personales",
     "control de gastos",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Finy — Anotá tus gastos sin esfuerzo",
+    title: "Finy — Anota tus gastos sin esfuerzo",
     description:
-      "Hablale, sacale foto al ticket o escribile. Finy entiende y registra todo por vos.",
+      "Háblale, sácale foto al ticket o escríbele. Finy entiende y registra todo por ti.",
     url: "https://www.finyapp.io",
     siteName: "Finy",
     locale: "es_AR",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Finy — Anotá tus gastos sin esfuerzo",
+    title: "Finy — Anota tus gastos sin esfuerzo",
     description: "La app de finanzas personales con IA.",
     images: ["/images/iphone-finy-chat-updated.png"],
   },

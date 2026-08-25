@@ -325,7 +325,7 @@ export const translations = {
     termsContactText: "Si tiene alguna pregunta sobre estos Términos, por favor contáctenos en:",
 
     // CONECTAR HOJA DE CALCULO
-    connectSheetTitle: "Conectá tu hoja de cálculo",
+    connectSheetTitle: "Conecta tu hoja de cálculo",
     connectSheetMessage: "Seleccioná tu archivo de Google Drive para que Finy pueda registrar tus movimientos.",
     selectFromDrive: "Seleccionar desde Drive",
     sheetConnected: "¡Hoja conectada con éxito!",

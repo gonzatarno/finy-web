@@ -36,11 +36,11 @@ export const COMPARISONS: Comparison[] = [
     metaDescription:
       "Comparación honesta entre Finy y Splitwise para dividir gastos con tu pareja, roommates o en un viaje. Cuándo conviene cada uno y cuándo no.",
     answer:
-      "Splitwise es mejor si lo único que necesitás es saber quién le debe a quién en un grupo, sobre todo si es un grupo grande o de una sola vez, como un viaje. Finy es mejor si esos gastos compartidos son parte de tu economía cotidiana —pareja, convivientes, un negocio chico— y querés que aparezcan en el mismo lugar donde llevás tus gastos personales, sin cargar todo dos veces.",
+      "Splitwise es mejor si lo único que necesitas es saber quién le debe a quién en un grupo, sobre todo si es un grupo grande o de una sola vez, como un viaje. Finy es mejor si esos gastos compartidos son parte de tu economía cotidiana —pareja, convivientes, un negocio chico— y quieres que aparezcan en el mismo lugar donde llevas tus gastos personales, sin cargar todo dos veces.",
     competitorUrl: "https://www.splitwise.com",
     competitorSummary: [
       "Splitwise es la referencia mundial para repartir gastos entre varias personas y llevar el saldo de quién le debe a quién. Funciona en web y en app, y tiene un plan gratuito más una suscripción paga.",
-      "Su ventaja más grande no es técnica sino social: mucha gente ya lo tiene instalado. Cuando armás un grupo de viaje, la probabilidad de que todos ya sepan usarlo es alta, y eso vale mucho.",
+      "Su ventaja más grande no es técnica sino social: mucha gente ya lo tiene instalado. Cuando armas un grupo de viaje, la probabilidad de que todos ya sepan usarlo es alta, y eso vale mucho.",
       "Lo que Splitwise deliberadamente no hace es llevar tus finanzas personales. Es una herramienta de deudas entre personas, no un control de gastos.",
     ],
     table: [
@@ -55,16 +55,16 @@ export const COMPARISONS: Comparison[] = [
       { dimension: "Modelo", finy: "Plan gratis + Plus y Pro desde USD 2,99/mes", other: "Plan gratuito + suscripción paga (ver sitio oficial)" },
     ],
     chooseFiny: [
-      "Compartís gastos de forma continua con una sola persona o con muy pocas: pareja, convivientes, un socio.",
-      "Querés que el gasto compartido y el personal vivan en el mismo lugar, sin cargar dos veces lo mismo.",
-      "Te traba tener que tipear cada gasto y preferís decirlo en voz o sacarle una foto al ticket.",
-      "Querés preguntarle a una IA cuánto gastaste en algo puntual este mes.",
+      "Compartes gastos de forma continua con una sola persona o con muy pocas: pareja, convivientes, un socio.",
+      "Quieres que el gasto compartido y el personal vivan en el mismo lugar, sin cargar dos veces lo mismo.",
+      "Te traba tener que tipear cada gasto y prefieres decirlo en voz o sacarle una foto al ticket.",
+      "Quieres preguntarle a una IA cuánto gastaste en algo puntual este mes.",
     ],
     chooseOther: [
       "El grupo es grande o de una sola vez —un viaje de ocho personas— y lo único que importa es el saldo final.",
-      "Los demás ya usan Splitwise y no querés pedirles que instalen otra cosa.",
-      "No querés una app de finanzas personales: sólo querés registrar deudas puntuales entre amigos.",
-      "Necesitás usarlo desde la computadora tanto como desde el teléfono.",
+      "Los demás ya usan Splitwise y no quieres pedirles que instalen otra cosa.",
+      "No quieres una app de finanzas personales: sólo quieres registrar deudas puntuales entre amigos.",
+      "Necesitas usarlo desde la computadora tanto como desde el teléfono.",
     ],
     faqs: [
       {
@@ -77,7 +77,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: "¿Cómo funcionan los espacios compartidos de Finy?",
-        a: "Creás un espacio (Casa, Viaje, Negocio), invitás por link y cada persona suma sus gastos desde su propio teléfono. Finy hace las cuentas y muestra quién le debe a quién. El plan Gratis incluye 1 espacio personal; Plus llega a 3 espacios compartidos y Pro a 10.",
+        a: "Creas un espacio (Casa, Viaje, Negocio), invitas por link y cada persona suma sus gastos desde su propio teléfono. Finy hace las cuentas y muestra quién le debe a quién. El plan Gratis incluye 1 espacio personal; Plus llega a 3 espacios compartidos y Pro a 10.",
       },
     ],
   },
@@ -90,11 +90,11 @@ export const COMPARISONS: Comparison[] = [
     metaDescription:
       "Comparación honesta entre Finy y Mobills: presupuesto por categoría y tarjetas de crédito frente a carga por voz y foto con IA. Cuándo conviene cada una.",
     answer:
-      "Mobills es mejor si querés una estructura de presupuesto detallada, seguimiento de varias tarjetas de crédito y metas de ahorro, y no te molesta cargar los movimientos a mano. Finy es mejor si el problema real es que abandonás las apps de gastos porque tipear cada movimiento te da pereza: la carga por voz, foto o chat es el motivo por el que existe.",
+      "Mobills es mejor si quieres una estructura de presupuesto detallada, seguimiento de varias tarjetas de crédito y metas de ahorro, y no te molesta cargar los movimientos a mano. Finy es mejor si el problema real es que abandonas las apps de gastos porque tipear cada movimiento te da pereza: la carga por voz, foto o chat es el motivo por el que existe.",
     competitorUrl: "https://www.mobills.com.br",
     competitorSummary: [
       "Mobills es una de las apps de finanzas personales más consolidadas de la región. Nació en Brasil y tiene años de recorrido, versión en español y una base de usuarios muy grande.",
-      "Su fuerte es la estructura clásica del control de gastos bien resuelta: cuentas, tarjetas de crédito con cierre y vencimiento, presupuestos por categoría, metas y reportes. Si te gusta esa forma de organizar la plata, está muy trabajada.",
+      "Su fuerte es la estructura clásica del control de gastos bien resuelta: cuentas, tarjetas de crédito con cierre y vencimiento, presupuestos por categoría, metas y reportes. Si te gusta esa forma de organizar el dinero, está muy trabajada.",
       "Su modelo es freemium: hay una versión gratuita con límites y una suscripción Premium que levanta restricciones y suma integraciones. Conviene mirar el precio en su sitio oficial porque varía por país.",
     ],
     table: [
@@ -110,15 +110,15 @@ export const COMPARISONS: Comparison[] = [
     ],
     chooseFiny: [
       "Ya probaste apps de gastos y las dejaste después de dos semanas por la pereza de cargar.",
-      "Querés preguntar en lenguaje natural cuánto gastaste en algo y que te responda con tus números.",
-      "Usás Mercado Pago como medio de pago principal.",
-      "Compartís gastos con otra persona de forma habitual.",
+      "Quieres preguntar en lenguaje natural cuánto gastaste en algo y que te responda con tus números.",
+      "Usas Mercado Pago como medio de pago principal.",
+      "Compartes gastos con otra persona de forma habitual.",
     ],
     chooseOther: [
-      "Querés un presupuesto muy granular por categoría y sub-categoría, y disfrutás configurarlo.",
-      "Manejás varias tarjetas de crédito y te importa el detalle de cierre y vencimiento de cada una.",
-      "Preferís una app con muchos años de recorrido y una comunidad grande detrás.",
-      "Necesitás integración con bancos tradicionales de tu país que Finy todavía no cubre.",
+      "Quieres un presupuesto muy granular por categoría y sub-categoría, y disfrutas configurarlo.",
+      "Manejas varias tarjetas de crédito y te importa el detalle de cierre y vencimiento de cada una.",
+      "Prefieres una app con muchos años de recorrido y una comunidad grande detrás.",
+      "Necesitas integración con bancos tradicionales de tu país que Finy todavía no cubre.",
     ],
     faqs: [
       {
@@ -144,7 +144,7 @@ export const COMPARISONS: Comparison[] = [
     metaDescription:
       "Comparación honesta entre Finy y Ábaco. Ábaco resuelve muy bien pesos y dólares en Argentina; Finy apunta a la carga automática con IA y a varios países.",
     answer:
-      "Ábaco es una excelente opción si estás en Argentina, tu vida financiera se mueve entre pesos y dólares, y querés algo gratis, simple y sin anuncios. Finy conviene si lo que te frena es cargar los gastos a mano, si manejás más de dos monedas, o si necesitás compartir gastos con otra persona. Son dos apps buenas resolviendo problemas distintos.",
+      "Ábaco es una excelente opción si estás en Argentina, tu vida financiera se mueve entre pesos y dólares, y quieres algo gratis, simple y sin anuncios. Finy conviene si lo que te frena es cargar los gastos a mano, si manejas más de dos monedas, o si necesitas compartir gastos con otra persona. Son dos apps buenas resolviendo problemas distintos.",
     competitorUrl: "https://www.abaco.uno",
     competitorSummary: [
       "Ábaco es una app argentina de control de gastos enfocada en el problema local más concreto: llevar la cuenta en pesos y en dólares cuando la cotización se mueve todo el tiempo.",
@@ -163,26 +163,26 @@ export const COMPARISONS: Comparison[] = [
       { dimension: "Modelo", finy: "Plan gratis + Plus y Pro desde USD 2,99/mes", other: "Gratis" },
     ],
     chooseFiny: [
-      "El problema no es la moneda sino la constancia: no cargás los gastos y por eso abandonás.",
-      "Manejás más de dos monedas, por viajes, clientes del exterior o ingresos en euros.",
-      "Compartís gastos con tu pareja o con socios y querés que la app haga las cuentas.",
-      "Querés que la IA lea el resumen de la tarjeta en vez de cargarlo movimiento por movimiento.",
-      "Vivís fuera de Argentina o te movés entre países.",
+      "El problema no es la moneda sino la constancia: no cargas los gastos y por eso abandonas.",
+      "Manejas más de dos monedas, por viajes, clientes del exterior o ingresos en euros.",
+      "Compartes gastos con tu pareja o con socios y quieres que la app haga las cuentas.",
+      "Quieres que la IA lea el resumen de la tarjeta en vez de cargarlo movimiento por movimiento.",
+      "Vives fuera de Argentina o te mueves entre países.",
     ],
     chooseOther: [
-      "Estás en Argentina y sólo necesitás pesos y dólares, bien resueltos.",
-      "Querés algo gratis, sin publicidad y sin suscripciones, punto.",
-      "Preferís cargar a mano: te sirve como ritual de control y no te pesa.",
-      "No necesitás IA ni gastos compartidos y valorás una app mínima.",
+      "Estás en Argentina y sólo necesitas pesos y dólares, bien resueltos.",
+      "Quieres algo gratis, sin publicidad y sin suscripciones, punto.",
+      "Prefieres cargar a mano: te sirve como ritual de control y no te pesa.",
+      "No necesitas IA ni gastos compartidos y valoras una app mínima.",
     ],
     faqs: [
       {
         q: "¿Finy sirve para llevar gastos en dólares en Argentina?",
-        a: "Sí. Finy soporta más de 40 monedas, incluidas ARS y USD, así que podés registrar movimientos en ambas. Si tu caso es específicamente seguir la brecha peso-dólar con cotización histórica, Ábaco está más enfocado en eso.",
+        a: "Sí. Finy soporta más de 40 monedas, incluidas ARS y USD, así que puedes registrar movimientos en ambas. Si tu caso es específicamente seguir la brecha peso-dólar con cotización histórica, Ábaco está más enfocado en eso.",
       },
       {
         q: "¿Cuál de las dos es gratis?",
-        a: "Ábaco es gratis. Finy tiene un plan Gratis con topes mensuales —100 transacciones, 10 consultas a la IA y 2 escaneos— y planes pagos desde USD 2,99 al mes si necesitás más.",
+        a: "Ábaco es gratis. Finy tiene un plan Gratis con topes mensuales —100 transacciones, 10 consultas a la IA y 2 escaneos— y planes pagos desde USD 2,99 al mes si necesitas más.",
       },
     ],
   },
@@ -195,43 +195,43 @@ export const COMPARISONS: Comparison[] = [
     metaDescription:
       "La planilla es el competidor real de las apps de gastos. Comparación honesta: qué gana y qué pierde alguien que pasa de Excel o Google Sheets a Finy.",
     answer:
-      "Si tu planilla funciona y la mantenés al día, no la cambies: es gratis, es tuya y hace exactamente lo que vos quisiste que haga. El problema de la planilla casi nunca es la planilla, es el momento de cargar: estás en la calle, pagaste algo, y anotarlo implica abrir el teléfono y tipear en una grilla. Finy tiene sentido si ahí es donde se te cae el sistema.",
+      "Si tu planilla funciona y la mantienes al día, no la cambies: es gratis, es tuya y hace exactamente lo que tú quisiste que haga. El problema de la planilla casi nunca es la planilla, es el momento de cargar: estás en la calle, pagaste algo, y anotarlo implica abrir el teléfono y tipear en una grilla. Finy tiene sentido si ahí es donde se te cae el sistema.",
     competitorUrl: "",
     competitorSummary: [
-      "La planilla es imbatible en flexibilidad. Cualquier categoría, cualquier fórmula, cualquier reporte que se te ocurra, y sin pedirle permiso a nadie. Los datos son tuyos y los podés llevar a cualquier lado.",
+      "La planilla es imbatible en flexibilidad. Cualquier categoría, cualquier fórmula, cualquier reporte que se te ocurra, y sin pedirle permiso a nadie. Los datos son tuyos y los puedes llevar a cualquier lado.",
       "También es gratis, no tiene límites de transacciones y no depende de que una empresa siga existiendo el año que viene.",
       "Su punto débil es uno solo, pero es grande: la fricción de carga en el teléfono. La mayoría de las planillas de gastos se abandonan a los dos o tres meses y casi nunca es por falta de funciones.",
     ],
     table: [
       { dimension: "Cargar un gasto en la calle", finy: "Decirlo en voz o sacarle foto al ticket, unos segundos", other: "Abrir la planilla y tipear en una grilla chica" },
-      { dimension: "Flexibilidad", finy: "Categorías y espacios configurables, dentro de la estructura de la app", other: "Total: hacés lo que quieras" },
+      { dimension: "Flexibilidad", finy: "Categorías y espacios configurables, dentro de la estructura de la app", other: "Total: haces lo que quieras" },
       { dimension: "Costo", finy: "Plan gratis con topes; Plus y Pro desde USD 2,99/mes", other: "Gratis" },
-      { dimension: "Resumen de tarjeta", finy: "Subís el PDF y la IA extrae todos los movimientos", other: "Copiar y pegar, o cargar a mano" },
-      { dimension: "Preguntar algo puntual", finy: "Le preguntás en lenguaje natural", other: "Armás una fórmula o una tabla dinámica" },
+      { dimension: "Resumen de tarjeta", finy: "Subes el PDF y la IA extrae todos los movimientos", other: "Copiar y pegar, o cargar a mano" },
+      { dimension: "Preguntar algo puntual", finy: "Le preguntas en lenguaje natural", other: "Armas una fórmula o una tabla dinámica" },
       { dimension: "Compartir con otra persona", finy: "Espacios compartidos con cuentas separadas", other: "Compartir el archivo y confiar en que no se rompa" },
       { dimension: "Propiedad de los datos", finy: "En la nube; exportables y borrables desde la app", other: "Tuyos, en tu archivo" },
       { dimension: "Riesgo de abandono", finy: "Menor: la carga cuesta poco", other: "Alto, y no por falta de disciplina" },
     ],
     chooseFiny: [
-      "Ya abandonaste dos o tres planillas y sabés que va a volver a pasar.",
-      "Gastás sobre todo fuera de casa y necesitás anotar en el momento.",
-      "Querés que el resumen de la tarjeta se cargue solo.",
-      "Compartís gastos con alguien y coordinar el archivo se hizo un problema.",
+      "Ya abandonaste dos o tres planillas y sabes que va a volver a pasar.",
+      "Gastas sobre todo fuera de casa y necesitas anotar en el momento.",
+      "Quieres que el resumen de la tarjeta se cargue solo.",
+      "Compartes gastos con alguien y coordinar el archivo se hizo un problema.",
     ],
     chooseOther: [
       "Tu planilla ya funciona y no te cuesta mantenerla.",
-      "Necesitás cálculos muy propios: amortizaciones, escenarios, modelos de inversión.",
-      "Querés control total del archivo y de dónde vive.",
-      "No querés pagar una suscripción ni depender de un servicio.",
+      "Necesitas cálculos muy propios: amortizaciones, escenarios, modelos de inversión.",
+      "Quieres control total del archivo y de dónde vive.",
+      "No quieres pagar una suscripción ni depender de un servicio.",
     ],
     faqs: [
       {
         q: "¿Puedo pasar mi planilla a Finy?",
-        a: "No hay un importador de Excel. En la práctica lo más simple es arrancar desde el mes en curso y dejar la planilla como archivo histórico. Si tenés resúmenes de tarjeta en PDF de meses anteriores, esos sí los podés subir para que la IA los procese.",
+        a: "No hay un importador de Excel. En la práctica lo más simple es arrancar desde el mes en curso y dejar la planilla como archivo histórico. Si tienes resúmenes de tarjeta en PDF de meses anteriores, esos sí los puedes subir para que la IA los procese.",
       },
       {
         q: "¿Puedo exportar mis datos de Finy si después quiero volver a la planilla?",
-        a: "Sí, podés sacar tu información y también borrarla por completo desde la app.",
+        a: "Sí, puedes sacar tu información y también borrarla por completo desde la app.",
       },
     ],
   },

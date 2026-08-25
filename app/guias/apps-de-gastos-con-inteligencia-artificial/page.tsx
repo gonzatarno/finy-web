@@ -23,11 +23,11 @@ const trail = [
 const FAQS = [
   {
     q: "¿Qué hace realmente la IA en una app de gastos?",
-    a: "Tres cosas concretas: interpretar lo que decís en voz y convertirlo en un movimiento con monto, categoría y método de pago; leer tickets y resúmenes de tarjeta para extraer los movimientos sin tipearlos; y responder preguntas sobre tu historial con tus números reales. Todo lo demás que se promete suele ser marketing.",
+    a: "Tres cosas concretas: interpretar lo que dices en voz y convertirlo en un movimiento con monto, categoría y método de pago; leer tickets y resúmenes de tarjeta para extraer los movimientos sin tipearlos; y responder preguntas sobre tu historial con tus números reales. Todo lo demás que se promete suele ser marketing.",
   },
   {
     q: "¿Es seguro darle mis datos financieros a una app con IA?",
-    a: "Depende de la app, y son preguntas que conviene hacer antes: si los datos viajan encriptados, si se venden a terceros y si podés borrarlos por completo. En el caso de Finy, la información viaja encriptada de punta a punta, no se vende a terceros y se puede borrar todo desde la app.",
+    a: "Depende de la app, y son preguntas que conviene hacer antes: si los datos viajan encriptados, si se venden a terceros y si puedes borrarlos por completo. En el caso de Finy, la información viaja encriptada de punta a punta, no se vende a terceros y se puede borrar todo desde la app.",
   },
   {
     q: "¿La IA se equivoca al cargar un gasto?",
@@ -35,7 +35,7 @@ const FAQS = [
   },
   {
     q: "¿Funciona sin internet?",
-    a: "Las funciones de IA no, porque el procesamiento pasa en la nube. En Finy podés cargar gastos a mano sin conexión y se sincronizan cuando volvés a tener internet, pero la voz, la foto y el chat necesitan estar online.",
+    a: "Las funciones de IA no, porque el procesamiento pasa en la nube. En Finy puedes cargar gastos a mano sin conexión y se sincronizan cuando vuelves a tener internet, pero la voz, la foto y el chat necesitan estar online.",
   },
 ]
 
@@ -49,22 +49,22 @@ export default function Page() {
             <p>
               Las apps de control de gastos no se abandonan por falta de funciones. Se abandonan porque cargar cada
               movimiento es un peaje diario: cuatro toques, elegir categoría, elegir método de pago, confirmar. Doce
-              segundos que no parecen nada hasta que los multiplicás por seis gastos por día durante un mes.
+              segundos que no parecen nada hasta que los multiplicas por seis gastos por día durante un mes.
             </p>
             <p>
               Ahí es donde la IA cambia algo real. No porque sea inteligente, sino porque elimina el tipeo:
             </p>
             <ul className="ml-5 list-disc space-y-2">
               <li>
-                <strong>Voz.</strong> Decís “pagué 5 en café con débito” y el modelo extrae monto, categoría y método
-                de pago. Pasás de doce segundos a dos.
+                <strong>Voz.</strong> Dices “pagué 5 en café con débito” y el modelo extrae monto, categoría y método
+                de pago. Pasas de doce segundos a dos.
               </li>
               <li>
-                <strong>Foto del ticket.</strong> Sacás la foto y la app lee comercio, total y fecha.
+                <strong>Foto del ticket.</strong> Sacas la foto y la app lee comercio, total y fecha.
               </li>
               <li>
-                <strong>Resumen de tarjeta en PDF.</strong> Subís el archivo y en vez de cargar cuarenta movimientos,
-                cargás uno.
+                <strong>Resumen de tarjeta en PDF.</strong> Subes el archivo y en vez de cargar cuarenta movimientos,
+                cargas uno.
               </li>
               <li>
                 <strong>Preguntas en lenguaje natural.</strong> “¿Cuánto gasté en delivery este mes?” devuelve el
@@ -77,7 +77,7 @@ export default function Page() {
         <Section title="Lo que la IA no resuelve">
           <Prose>
             <p>
-              Conviene bajar las expectativas donde corresponde, porque acá es donde varias apps prometen de más.
+              Conviene bajar las expectativas donde corresponde, porque aquí es donde varias apps prometen de más.
             </p>
             <ul className="ml-5 list-disc space-y-2">
               <li>
@@ -85,7 +85,7 @@ export default function Page() {
                 IA no puede adivinar tus movimientos. Lee lo que le das: audio, foto, PDF.
               </li>
               <li>
-                <strong>No decide por vos.</strong> Puede mostrarte que gastás el triple en delivery que el año
+                <strong>No decide por ti.</strong> Puede mostrarte que gastas el triple en delivery que el año
                 pasado. Dejar de hacerlo sigue siendo tuyo.
               </li>
               <li>
@@ -104,7 +104,7 @@ export default function Page() {
             <p>Tres preguntas alcanzan para separar una cosa de la otra:</p>
             <ul className="ml-5 list-disc space-y-2">
               <li>
-                <strong>¿La IA reduce toques o los agrega?</strong> Si para usarla tenés que entrar a una sección
+                <strong>¿La IA reduce toques o los agrega?</strong> Si para usarla tienes que entrar a una sección
                 aparte, no te está ahorrando nada. Tiene que estar en el camino principal de carga.
               </li>
               <li>
@@ -113,7 +113,7 @@ export default function Page() {
                 un 31% más que el mes pasado” está leyendo tu historial.
               </li>
               <li>
-                <strong>¿Podés corregir lo que entendió?</strong> Si no hay confirmación antes de guardar, vas a
+                <strong>¿Puedes corregir lo que entendió?</strong> Si no hay confirmación antes de guardar, vas a
                 terminar con datos sucios.
               </li>
             </ul>
@@ -129,7 +129,7 @@ export default function Page() {
             </p>
             <p>
               Lo que no hace: conectarse con bancos tradicionales —eso se cubre hoy con Mercado Pago y con el PDF del
-              resumen—, contabilidad de empresa ni seguimiento de inversiones. Si buscás alguna de esas tres cosas, la
+              resumen—, contabilidad de empresa ni seguimiento de inversiones. Si buscas alguna de esas tres cosas, la
               IA no compensa la diferencia.
             </p>
             <p>

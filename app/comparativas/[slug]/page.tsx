@@ -85,7 +85,7 @@ export default function ComparisonPage({ params }: { params: { slug: string } })
         <Section title="Cuándo elegir cada una">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-zinc-200 bg-white p-6">
-              <h3 className="text-[17px] font-bold text-zinc-950">Elegí Finy si…</h3>
+              <h3 className="text-[17px] font-bold text-zinc-950">Elige Finy si…</h3>
               <ul className="mt-4 space-y-3">
                 {c.chooseFiny.map((item) => (
                   <li key={item} className="flex gap-2.5 text-[15px] leading-relaxed text-zinc-700">
@@ -97,7 +97,7 @@ export default function ComparisonPage({ params }: { params: { slug: string } })
             </div>
             <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6">
               <h3 className="text-[17px] font-bold text-zinc-950">
-                Mejor {c.slug === "finy-vs-excel" ? "quedate con la planilla" : `elegí ${c.competitor}`} si…
+                Mejor {c.slug === "finy-vs-excel" ? "quédate con la planilla" : `elige ${c.competitor}`} si…
               </h3>
               <ul className="mt-4 space-y-3">
                 {c.chooseOther.map((item) => (

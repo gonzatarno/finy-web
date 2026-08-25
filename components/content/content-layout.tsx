@@ -61,8 +61,8 @@ export function Breadcrumbs({ trail }: { trail: { href: string; label: string }[
 }
 
 export function DownloadCta({
-  title = "Probá Finy",
-  body = "14 días de PRO gratis al instalar, sin tarjeta. Después pasás al plan Gratis solo.",
+  title = "Prueba Finy",
+  body = "14 días de PRO gratis al instalar, sin tarjeta. Después pasas al plan Gratis solo.",
 }: {
   title?: string
   body?: string

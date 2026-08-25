@@ -8,7 +8,7 @@ import { PageSchema } from "@/components/content/page-schema"
 
 const TITLE = "Finy comparada con otras apps de gastos"
 const ANSWER =
-  "Finy es una app de finanzas personales con IA: registrás gastos hablando, sacándole foto al ticket o escribiendo. Frente a las alternativas, gana cuando el problema es la fricción de cargar los movimientos, y pierde cuando lo que hace falta es conexión directa con bancos tradicionales, contabilidad de empresa o inversiones. Estas comparativas dicen las dos cosas."
+  "Finy es una app de finanzas personales con IA: registras gastos hablando, sacándole foto al ticket o escribiendo. Frente a las alternativas, gana cuando el problema es la fricción de cargar los movimientos, y pierde cuando lo que hace falta es conexión directa con bancos tradicionales, contabilidad de empresa o inversiones. Estas comparativas dicen las dos cosas."
 
 export const metadata: Metadata = {
   title: "Comparativas — Finy vs otras apps de control de gastos",
@@ -62,7 +62,7 @@ export default function ComparativasIndex() {
               ))}
             </ul>
             <p>
-              Si alguno de esos puntos es central para vos, probablemente te convenga otra herramienta, y está bien.
+              Si alguno de esos puntos es central para ti, probablemente te convenga otra herramienta, y está bien.
             </p>
           </Prose>
         </Section>

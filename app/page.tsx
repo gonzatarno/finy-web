@@ -2,6 +2,7 @@ import { Nav } from "@/components/landing/nav"
 import { Hero } from "@/components/landing/hero"
 import { StickyFeatures } from "@/components/landing/sticky-features"
 import { AIShowcase } from "@/components/landing/ai-showcase"
+import { AsesorMensual } from "@/components/landing/asesor-mensual"
 import { VentajasSections } from "@/components/landing/ventajas-sections"
 import { Pricing } from "@/components/landing/pricing"
 import { FAQ } from "@/components/landing/faq"
@@ -19,6 +20,7 @@ export default function HomePage() {
       <main className="bg-white">
         <Hero />
         <StickyFeatures />
+        <AsesorMensual />
         <AIShowcase />
         <VentajasSections />
         <Pricing />

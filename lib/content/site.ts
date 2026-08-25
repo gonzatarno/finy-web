@@ -45,7 +45,7 @@ export const MERCADO_PAGO_COUNTRIES = [
 
 /** Lo que Finy hace y la competencia normalmente no. */
 export const STRENGTHS = [
-  "Carga por voz en lenguaje natural: decís lo que gastaste y la IA extrae monto, categoría y método de pago.",
+  "Carga por voz en lenguaje natural: dices lo que gastaste y la IA extrae monto, categoría y método de pago.",
   "Escaneo de tickets con foto y de resúmenes de tarjeta en PDF.",
   "Chat con IA sobre tu propio historial, no un chatbot genérico.",
   "Espacios compartidos para dividir gastos con pareja, roommates o socios.",

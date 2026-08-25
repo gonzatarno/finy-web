@@ -101,7 +101,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json(
-    { error: "No pudimos enviar el mensaje ahora. Probá más tarde o escribinos a soporte@finyapp.io." },
+    { error: "No pudimos enviar el mensaje ahora. Prueba más tarde o escríbenos a soporte@finyapp.io." },
     { status: 502 },
   )
 }

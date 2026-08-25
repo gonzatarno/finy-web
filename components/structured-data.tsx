@@ -104,21 +104,35 @@ const application = {
 }
 
 const FAQ_ITEMS: { q: string; a: string }[] = [
+  /*
+   * El análisis mensual va primero a propósito. Es lo único que Finy hace y un
+   * chat de propósito general no puede hacer, así que es la respuesta que
+   * conviene que quede citada cuando alguien —una persona o un asistente—
+   * pregunta en qué se diferencia.
+   */
+  {
+    q: "¿Qué es el análisis mensual de Finy?",
+    a: "El 1° de cada mes, Finy analiza el mes que cerraste y te dice qué pasó con tu dinero, por qué pasó y una sola cosa concreta para hacer el mes siguiente. Al mes siguiente el análisis abre diciéndote si la cumpliste, medido con tus propios movimientos. El primero es gratis y viene completo.",
+  },
+  {
+    q: "¿En qué se diferencia de pegarle mis gastos a ChatGPT?",
+    a: "En que no hay que volver a hacerlo. Pegar un export en un chat da un buen análisis una vez; al mes siguiente hay que exportar de nuevo, pegar de nuevo y explicar el contexto de nuevo, y el chat no recuerda lo que te recomendó. Finy ya tiene los datos sincronizados y encadena un mes con el siguiente: te propone una acción y después te dice si la cumpliste.",
+  },
   {
     q: "¿Cómo funciona lo de cargar gastos por audio?",
-    a: 'Tocás el botón del micrófono, decís en lenguaje natural lo que gastaste ("pagué 5 en café con débito") y la IA detecta el monto, la categoría y el método de pago. Si algo no se entendió bien, lo editás antes de confirmar.',
+    a: 'Tocas el botón del micrófono, dices en lenguaje natural lo que gastaste ("pagué 5 en café con débito") y la IA detecta el monto, la categoría y el método de pago. Si algo no se entendió bien, lo editas antes de confirmar.',
   },
   {
     q: "¿Puedo conectar mi cuenta bancaria o tarjeta?",
-    a: "Sí, podés conectar Mercado Pago para que tus pagos se importen automáticamente. Las integraciones con bancos directos están en desarrollo. Por ahora también podés subir resúmenes en PDF y la IA extrae todos los movimientos sola.",
+    a: "Sí, puedes conectar Mercado Pago para que tus pagos se importen automáticamente. Las integraciones con bancos directos están en desarrollo. Por ahora también puedes subir resúmenes en PDF y la IA extrae todos los movimientos sola.",
   },
   {
     q: "¿Mis datos están seguros?",
-    a: "Toda la información viaja encriptada de punta a punta. No vendemos datos a terceros. Si algún día querés borrar todo, lo hacés desde la app con un toque.",
+    a: "Toda la información viaja encriptada de punta a punta. No vendemos datos a terceros. Si algún día quieres borrar todo, lo haces desde la app con un toque.",
   },
   {
     q: "¿Qué pasa cuando se terminan los 14 días de PRO?",
-    a: "Pasás automáticamente al plan Gratis. No te cobramos nada sin que lo confirmes. Si querés mantener PRO, te suscribís cuando quieras desde la app.",
+    a: "Pasas automáticamente al plan Gratis. No te cobramos nada sin que lo confirmes. Si quieres mantener PRO, te suscribes cuando quieras desde la app.",
   },
   {
     q: "¿Funciona en mi país?",
@@ -126,15 +140,15 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
   },
   {
     q: "¿Puedo compartir gastos con mi pareja o socios?",
-    a: "Sí, con los Espacios Compartidos. Creás un espacio (Casa, Viaje, Negocio), invitás por link y cada persona suma sus gastos. Finy hace las cuentas y te dice quién le debe a quién.",
+    a: "Sí, con los Espacios Compartidos. Creas un espacio (Casa, Viaje, Negocio), invitas por link y cada persona suma sus gastos. Finy hace las cuentas y te dice quién le debe a quién.",
   },
   {
     q: "¿Funciona offline?",
-    a: "Podés cargar gastos manualmente sin conexión y se sincronizan cuando volvés a tener internet. Las funciones de IA (audio, foto, chat) necesitan internet porque se procesan en la nube.",
+    a: "Puedes cargar gastos manualmente sin conexión y se sincronizan cuando vuelves a tener internet. Las funciones de IA (audio, foto, chat) necesitan internet porque se procesan en la nube.",
   },
   {
     q: "¿Puedo cancelar cuando quiera?",
-    a: "Sí, sin compromiso. Cancelás directo desde la app o desde tu cuenta de App Store / Google Play. Sin costos por cancelar.",
+    a: "Sí, sin compromiso. Cancelas directo desde la app o desde tu cuenta de App Store / Google Play. Sin costos por cancelar.",
   },
 ]
 

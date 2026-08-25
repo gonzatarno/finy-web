@@ -63,13 +63,13 @@ export default function PreguntasFrecuentes() {
 
         <DownloadCta />
 
-        <Section title="¿Seguís con dudas?">
+        <Section title="¿Sigues con dudas?">
           <p className="text-[16px] leading-relaxed text-zinc-700">
-            Escribinos a{" "}
+            Escríbenos a{" "}
             <a href="mailto:soporte@finyapp.io" className="font-medium text-zinc-950 underline underline-offset-4">
               soporte@finyapp.io
             </a>{" "}
-            o mirá las{" "}
+            o mira las{" "}
             <Link href="/comparativas" className="font-medium text-zinc-950 underline underline-offset-4">
               comparativas con otras apps
             </Link>{" "}

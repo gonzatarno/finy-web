@@ -66,8 +66,8 @@ export default function ConexionExitosa() {
 
             {/* Instructions */}
             <div className="bg-gray-50 rounded-xl p-6 mb-6">
-              <p className="text-gray-700 font-medium mb-2">Ya podés cerrar esta ventana y volver al chat.</p>
-              <p className="text-black font-bold text-lg">¡Tomá el control! 💪</p>
+              <p className="text-gray-700 font-medium mb-2">Ya puedes cerrar esta ventana y volver al chat.</p>
+              <p className="text-black font-bold text-lg">¡Toma el control! 💪</p>
             </div>
 
             {/* Action Buttons */}
@@ -100,14 +100,14 @@ export default function ConexionExitosa() {
                     d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                ¿Necesitás ayuda?
+                ¿Necesitas ayuda?
               </Link>
             </div>
           </div>
 
           <div className="text-center mt-6">
             <p className="text-gray-500 text-sm">
-              Si tenés algún problema, escribinos a{" "}
+              Si tienes algún problema, escríbenos a{" "}
               <button
                 onClick={() => copyEmailToClipboard("soporte@finyapp.io")}
                 className="text-black font-medium underline cursor-pointer hover:text-gray-700 transition-colors"

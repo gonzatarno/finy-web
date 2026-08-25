@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: "¿Qué app conviene para dividir gastos entre dos?",
-    a: "Si sólo querés el saldo de quién le debe a quién, Splitwise alcanza y probablemente la otra persona ya lo tenga. Si además querés que esos gastos aparezcan dentro de tu control de gastos personal, conviene una app con espacios compartidos como Finy, así no cargás lo mismo dos veces.",
+    a: "Si sólo quieres el saldo de quién le debe a quién, Splitwise alcanza y probablemente la otra persona ya lo tenga. Si además quieres que esos gastos aparezcan dentro de tu control de gastos personal, conviene una app con espacios compartidos como Finy, así no cargas lo mismo dos veces.",
   },
   {
     q: "¿Por qué falla la planilla compartida?",
@@ -47,7 +47,7 @@ export default function Page() {
         <Section title="Primero el método, después la app">
           <Prose>
             <p>
-              La discusión por la plata en pareja rara vez es por la herramienta. Es por no haber acordado el criterio
+              La discusión por el dinero en pareja rara vez es por la herramienta. Es por no haber acordado el criterio
               y descubrirlo recién cuando llega un gasto grande. Hay tres esquemas que funcionan, y los tres son
               válidos siempre que estén dichos en voz alta.
             </p>
@@ -72,19 +72,19 @@ export default function Page() {
         <Section title="Qué herramienta encaja con cada método">
           <Prose>
             <p>
-              <strong>Para mitad y mitad o proporcional</strong>, necesitás algo que lleve el saldo acumulado. Si eso
-              es todo lo que querés, <Link href="/comparativas/finy-vs-splitwise">Splitwise</Link> lo hace bien y es
+              <strong>Para mitad y mitad o proporcional</strong>, necesitas algo que lleve el saldo acumulado. Si eso
+              es todo lo que quieres, <Link href="/comparativas/finy-vs-splitwise">Splitwise</Link> lo hace bien y es
               probable que la otra persona ya lo tenga instalado.
             </p>
             <p>
-              El límite aparece cuando querés ver tus finanzas completas. Splitwise sabe que pagaste el supermercado y
-              que te deben la mitad, pero no forma parte de tu control de gastos personal, así que terminás cargando el
+              El límite aparece cuando quieres ver tus finanzas completas. Splitwise sabe que pagaste el supermercado y
+              que te deben la mitad, pero no forma parte de tu control de gastos personal, así que terminas cargando el
               mismo gasto en dos lugares. Ahí conviene una app con <strong>espacios compartidos</strong>, como{" "}
-              <Link href="/">Finy</Link>: creás un espacio, invitás por link, cada uno carga desde su teléfono, la app
+              <Link href="/">Finy</Link>: creas un espacio, invitas por link, cada uno carga desde su teléfono, la app
               calcula quién le debe a quién y el gasto igual aparece en tus números.
             </p>
             <p>
-              <strong>Para el pozo común</strong>, casi no necesitás herramienta de reparto: alcanza con que los gastos
+              <strong>Para el pozo común</strong>, casi no necesitas herramienta de reparto: alcanza con que los gastos
               del pozo estén juntos y separados de los personales. Un espacio compartido para la casa y tu control de
               gastos individual aparte resuelve el 90%.
             </p>
@@ -95,7 +95,7 @@ export default function Page() {
           <Prose>
             <ul className="ml-5 list-disc space-y-2">
               <li>
-                <strong>Que cargue siempre el mismo.</strong> Es la causa número uno de abandono. Elegí una
+                <strong>Que cargue siempre el mismo.</strong> Es la causa número uno de abandono. Elige una
                 herramienta donde cada uno cargue desde su propio teléfono, con su propia cuenta.
               </li>
               <li>
@@ -110,7 +110,7 @@ export default function Page() {
           </Prose>
         </Section>
 
-        <Section title="Y si además compartís con roommates o socios">
+        <Section title="Y si además compartes con roommates o socios">
           <Prose>
             <p>
               El mismo criterio aplica, con un matiz: cuantas más personas hay, más pesa que la herramienta ya la
@@ -122,8 +122,8 @@ export default function Page() {
         </Section>
 
         <DownloadCta
-          title="Probá los espacios compartidos"
-          body="Creás un espacio, invitás por link y Finy hace las cuentas. 14 días de PRO gratis al instalar, sin tarjeta."
+          title="Prueba los espacios compartidos"
+          body="Creas un espacio, invitas por link y Finy hace las cuentas. 14 días de PRO gratis al instalar, sin tarjeta."
         />
 
         <Section title="Preguntas frecuentes">

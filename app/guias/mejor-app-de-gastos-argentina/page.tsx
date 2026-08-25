@@ -23,7 +23,7 @@ const trail = [
 const FAQS = [
   {
     q: "¿Cuál es la mejor app gratis para controlar gastos en Argentina?",
-    a: "Si necesitás algo gratis y sin publicidad enfocado en pesos y dólares, Ábaco es una buena opción. Finy tiene un plan Gratis con topes mensuales —100 transacciones, 10 consultas a la IA y 2 escaneos— que alcanza si tus gastos son pocos, y suma carga por voz y foto.",
+    a: "Si necesitas algo gratis y sin publicidad enfocado en pesos y dólares, Ábaco es una buena opción. Finy tiene un plan Gratis con topes mensuales —100 transacciones, 10 consultas a la IA y 2 escaneos— que alcanza si tus gastos son pocos, y suma carga por voz y foto.",
   },
   {
     q: "¿Hay alguna app que se conecte con mi banco argentino?",
@@ -31,11 +31,11 @@ const FAQS = [
   },
   {
     q: "¿Me sirve la app de mi billetera virtual para llevar mis gastos?",
-    a: "Sirve para ver lo que pasó por esa billetera, y nada más. En cuanto pagás en efectivo, con otra tarjeta o desde otra cuenta, la foto queda incompleta. Por eso la mayoría termina usando una app aparte que junte todo.",
+    a: "Sirve para ver lo que pasó por esa billetera, y nada más. En cuanto pagas en efectivo, con otra tarjeta o desde otra cuenta, la foto queda incompleta. Por eso la mayoría termina usando una app aparte que junte todo.",
   },
   {
     q: "¿Cómo llevo gastos en pesos y en dólares al mismo tiempo?",
-    a: "Necesitás una app que guarde la moneda de cada movimiento, no que convierta todo a un solo número. Ábaco está enfocada en eso para ARS y USD. Finy soporta más de 40 monedas, que es lo que conviene si además manejás euros o cobrás del exterior.",
+    a: "Necesitas una app que guarde la moneda de cada movimiento, no que convierta todo a un solo número. Ábaco está enfocada en eso para ARS y USD. Finy soporta más de 40 monedas, que es lo que conviene si además manejas euros o cobras del exterior.",
   },
 ]
 
@@ -44,7 +44,7 @@ export default function Page() {
     <>
       <PageSchema path={`/guias/${guide.slug}`} headline={guide.title} description={guide.answer} faqs={FAQS} breadcrumbs={trail} />
       <ContentLayout title={guide.title} intro={guide.answer} updated={CONTENT_REVIEWED} trail={trail}>
-        <Section title="Empezá por el problema, no por la lista de funciones">
+        <Section title="Empieza por el problema, no por la lista de funciones">
           <Prose>
             <p>
               Casi todo el mundo elige app de gastos mirando cuál tiene más funciones. Después la abandona a las tres
@@ -54,19 +54,19 @@ export default function Page() {
             <p>En Argentina, los motivos casi siempre son uno de estos cuatro:</p>
             <ul className="ml-5 list-disc space-y-2">
               <li>
-                <strong>La moneda.</strong> Cobrás o ahorrás en dólares y la app te obliga a convertir todo a pesos,
+                <strong>La moneda.</strong> Cobras o ahorras en dólares y la app te obliga a convertir todo a pesos,
                 así que comparar dos meses no significa nada.
               </li>
               <li>
                 <strong>La constancia.</strong> La app está buena, pero cargar cada gasto a mano es un peaje diario y
-                al final dejás de pagarlo.
+                al final dejas de pagarlo.
               </li>
               <li>
-                <strong>La foto incompleta.</strong> Pagás con tres medios distintos y ninguna app los junta, así que
+                <strong>La foto incompleta.</strong> Pagas con tres medios distintos y ninguna app los junta, así que
                 nunca ves el total real.
               </li>
               <li>
-                <strong>Los gastos compartidos.</strong> Vivís con alguien y la mitad de lo que gastás no es
+                <strong>Los gastos compartidos.</strong> Vives con alguien y la mitad de lo que gastas no es
                 enteramente tuyo, pero la app no tiene forma de representarlo.
               </li>
             </ul>
@@ -79,27 +79,27 @@ export default function Page() {
               <strong>Si tu problema es la moneda.</strong> Buscá una app que guarde la cotización del momento en cada
               movimiento, no una que convierta todo al final.{" "}
               <Link href="/comparativas/finy-vs-abaco">Ábaco</Link> está muy enfocada en pesos y dólares y es gratis.
-              Si además manejás euros, reales o cobrás de varios países, vas a necesitar algo con soporte multimoneda
+              Si además manejas euros, reales o cobras de varios países, vas a necesitar algo con soporte multimoneda
               más amplio.
             </p>
             <p>
               <strong>Si tu problema es la constancia.</strong> Este es el caso más común y el que menos se admite.
-              Necesitás bajar el costo de cargar un gasto a segundos: apps que permiten dictarlo por voz, sacarle una
+              Necesitas bajar el costo de cargar un gasto a segundos: apps que permiten dictarlo por voz, sacarle una
               foto al ticket o subir el resumen de la tarjeta en PDF. Es exactamente el problema para el que existe{" "}
               <Link href="/">Finy</Link>.
             </p>
             <p>
-              <strong>Si tu problema es la foto incompleta.</strong> Fijate qué integraciones tiene la app en
+              <strong>Si tu problema es la foto incompleta.</strong> Fíjate qué integraciones tiene la app en
               Argentina. Hoy la más útil en la práctica es Mercado Pago, porque concentra buena parte del consumo
-              cotidiano. Después completás con carga manual o con el PDF de la tarjeta.
+              cotidiano. Después completas con carga manual o con el PDF de la tarjeta.
             </p>
             <p>
-              <strong>Si tu problema son los gastos compartidos.</strong> Necesitás espacios compartidos o una app
+              <strong>Si tu problema son los gastos compartidos.</strong> Necesitas espacios compartidos o una app
               dedicada a repartir cuentas. Está desarrollado en la guía de{" "}
               <Link href="/guias/apps-para-dividir-gastos-con-tu-pareja">cómo dividir gastos en pareja</Link>.
             </p>
             <p>
-              <strong>Si nada de esto te pasa</strong> y tu planilla funciona, quedate con la planilla. Lo desarrollamos
+              <strong>Si nada de esto te pasa</strong> y tu planilla funciona, quédate con la planilla. Lo desarrollamos
               en <Link href="/comparativas/finy-vs-excel">Finy vs Excel</Link>.
             </p>
           </Prose>
@@ -109,24 +109,24 @@ export default function Page() {
           <Prose>
             <ul className="ml-5 list-disc space-y-2">
               <li>
-                <strong>Cómo se carga un gasto parado en la caja del supermercado.</strong> Probá ese momento exacto
+                <strong>Cómo se carga un gasto parado en la caja del supermercado.</strong> Prueba ese momento exacto
                 antes de comprometerte. Si tarda más de diez segundos, no lo vas a sostener.
               </li>
               <li>
-                <strong>Si podés exportar y borrar tus datos.</strong> Son tus finanzas: tenés que poder llevártelas y
-                tenés que poder borrarlas.
+                <strong>Si puedes exportar y borrar tus datos.</strong> Son tus finanzas: tienes que poder llevártelas y
+                tienes que poder borrarlas.
               </li>
               <li>
                 <strong>En qué moneda está el precio.</strong> Muchas apps cobran en dólares, así que el costo real en
                 pesos se mueve todos los meses.
               </li>
               <li>
-                <strong>Si el plan gratis alcanza para tu volumen.</strong> Contá cuántos movimientos hacés por mes
+                <strong>Si el plan gratis alcanza para tu volumen.</strong> Cuenta cuántos movimientos haces por mes
                 antes de mirar los topes.
               </li>
               <li>
                 <strong>Publicidad.</strong> Varias apps gratis se financian con anuncios dentro de la pantalla donde
-                cargás. Es una fuente de fricción que se subestima.
+                cargas. Es una fuente de fricción que se subestima.
               </li>
             </ul>
           </Prose>
@@ -135,15 +135,15 @@ export default function Page() {
         <Section title="Dónde entra Finy y dónde no">
           <Prose>
             <p>
-              Finy es una app de finanzas personales con IA: le hablás y carga el gasto, le sacás foto al ticket y lo
-              lee, subís el PDF del resumen y extrae todos los movimientos. Además tiene espacios compartidos para
+              Finy es una app de finanzas personales con IA: le hablas y carga el gasto, le sacas foto al ticket y lo
+              lee, subes el PDF del resumen y extrae todos los movimientos. Además tiene espacios compartidos para
               dividir gastos, soporta más de 40 monedas y sincroniza con Mercado Pago en Argentina, Brasil, México,
               Colombia, Chile, Perú y Uruguay.
             </p>
             <p>
               Es una buena recomendación si tu problema es la constancia o los gastos compartidos.{" "}
-              <strong>No es la mejor opción</strong> si necesitás conexión directa con bancos tradicionales, si querés
-              contabilidad de empresa con facturación, o si buscás seguimiento de inversiones: nada de eso está hoy en
+              <strong>No es la mejor opción</strong> si necesitas conexión directa con bancos tradicionales, si quieres
+              contabilidad de empresa con facturación, o si buscas seguimiento de inversiones: nada de eso está hoy en
               la app.
             </p>
           </Prose>
