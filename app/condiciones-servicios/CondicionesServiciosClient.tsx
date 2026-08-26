@@ -10,7 +10,7 @@ export default function CondicionesServiciosClient() {
   const content = {
     es: {
       title: 'Términos y Condiciones del Servicio Finy',
-      lastUpdated: 'Última actualización: 24 de Agosto de 2026',
+      lastUpdated: 'Última actualización: 26 de Agosto de 2026',
       sections: [
         {
           number: 1,
@@ -77,8 +77,11 @@ Licencia a Finy: Para que podamos prestarle el servicio (mostrarle gráficos, ca
           content: `Finy ofrece planes de suscripción (ej. Finy Plus, Finy Pro). Las condiciones varían según el canal de compra:
 
 Suscripciones vía Apple App Store o Google Play Store:
-• Si la suscripción se realiza a través de la Apple App Store o Google Play Store, el pago y la renovación automática estarán sujetos a los términos y condiciones de dichas plataformas.
-• El usuario puede cancelar su suscripción en cualquier momento desde los ajustes de su dispositivo (Apple ID > Suscripciones, o cuenta de Google > Play Store > Suscripciones).
+• Finy ofrece suscripciones de renovación automática, en período mensual o anual. El plan, la duración del período y el precio aplicable a su país se muestran en la pantalla de compra antes de confirmar. Los precios varían según la región y la moneda local.
+• La suscripción se renueva automáticamente salvo que se cancele al menos 24 horas antes del final del período en curso.
+• El cobro de la renovación se efectúa dentro de las 24 horas previas al final del período en curso, al precio del plan vigente.
+• Puede cancelar en cualquier momento desde los ajustes de su dispositivo (Apple ID > Suscripciones, o cuenta de Google > Play Store > Suscripciones). La cancelación tiene efecto al final del período ya pagado; hasta entonces conserva el acceso.
+• Si está usando un período de prueba gratuito y compra una suscripción antes de que termine, la parte no utilizada de la prueba se pierde.
 • Finy no gestiona directamente los reembolsos de compras realizadas en las tiendas de apps. Para solicitar un reembolso, el usuario debe comunicarse con el soporte de Apple o Google según corresponda.
 
 Suscripciones vía Web (Gumroad):
@@ -128,7 +131,7 @@ soporte@finyapp.io`,
     },
     en: {
       title: 'Finy Terms and Conditions of Service',
-      lastUpdated: 'Last updated: August 24, 2026',
+      lastUpdated: 'Last updated: August 26, 2026',
       sections: [
         {
           number: 1,
@@ -192,8 +195,11 @@ License to Finy: To enable us to provide you with the service (show you charts, 
           content: `Finy offers subscription plans (e.g. Finy Plus, Finy Pro). Terms vary depending on the purchase channel:
 
 Subscriptions via Apple App Store or Google Play Store:
-• If the subscription is made through the Apple App Store or Google Play Store, payment and automatic renewal will be subject to the terms and conditions of those platforms.
-• Users may cancel their subscription at any time from their device settings (Apple ID > Subscriptions, or Google Account > Play Store > Subscriptions).
+• Finy offers auto-renewable subscriptions, on a monthly or yearly period. The plan, the length of the period and the price applicable to your country are shown on the purchase screen before you confirm. Prices vary by region and local currency.
+• The subscription renews automatically unless it is cancelled at least 24 hours before the end of the current period.
+• Renewal is charged within the 24 hours prior to the end of the current period, at the price of the plan in effect.
+• You may cancel at any time from your device settings (Apple ID > Subscriptions, or Google Account > Play Store > Subscriptions). Cancellation takes effect at the end of the period already paid for; until then you keep access.
+• If you are on a free trial and purchase a subscription before it ends, the unused portion of the trial is forfeited.
 • Finy does not directly manage refunds for purchases made in the app stores. To request a refund, the user must contact Apple or Google support as applicable.
 
 Subscriptions via Web (Gumroad):
