@@ -25,6 +25,16 @@ export const GUIDES: GuideMeta[] = [
       "No existe una única mejor app: la elección correcta depende de cuál es tu problema real. Si es seguir pesos y dólares con la cotización del momento, buscá una app enfocada en multimoneda local. Si es que abandonas a las dos semanas porque cargar a mano te da pereza, buscá una que registre por voz o foto, como Finy. Si es repartir gastos con otra persona, buscá una con espacios compartidos. Elegir por la lista de funciones, en vez de por el motivo por el que dejaste la anterior, es el error más común.",
   },
   {
+    slug: "mejor-app-de-gastos-colombia",
+    title: "Cuál es la mejor app para controlar gastos en Colombia",
+    metaTitle: "La mejor app para controlar gastos en Colombia (2026)",
+    metaDescription:
+      "Guía honesta para elegir app de control de gastos en Colombia: qué hacer cuando pagas con Nequi, Daviplata y efectivo, y ninguna app junta todo.",
+    blurb: "En Colombia el problema no es elegir app: es que el dinero se reparte entre demasiadas billeteras.",
+    answer:
+      "En Colombia casi nadie paga todo por el mismo medio: una parte va por Nequi, otra por Daviplata, otra con la tarjeta del banco y otra en efectivo. Ninguna app se conecta con todos, así que elegir por la lista de integraciones lleva siempre a la misma decepción. Lo que define si vas a sostener el sistema es cuánto te cuesta cargar un gasto a mano: si puedes dictarlo, sacarle una foto al recibo o subir el extracto en PDF, la app sobrevive al primer mes. Si tienes que tipear cada compra, no.",
+  },
+  {
     slug: "apps-para-dividir-gastos-con-tu-pareja",
     title: "Cómo dividir gastos con tu pareja sin pelearse por la planilla",
     metaTitle: "Apps para dividir gastos con tu pareja (2026): cómo elegir",
