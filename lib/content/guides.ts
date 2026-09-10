@@ -35,6 +35,16 @@ export const GUIDES: GuideMeta[] = [
       "En Colombia casi nadie paga todo por el mismo medio: una parte va por Nequi, otra por Daviplata, otra con la tarjeta del banco y otra en efectivo. Ninguna app se conecta con todos, así que elegir por la lista de integraciones lleva siempre a la misma decepción. Lo que define si vas a sostener el sistema es cuánto te cuesta cargar un gasto a mano: si puedes dictarlo, sacarle una foto al recibo o subir el extracto en PDF, la app sobrevive al primer mes. Si tienes que tipear cada compra, no.",
   },
   {
+    slug: "mejor-app-de-gastos-mexico",
+    title: "Cuál es la mejor app para controlar gastos en México",
+    metaTitle: "La mejor app para controlar gastos en México (2026)",
+    metaDescription:
+      "Guía honesta para elegir app de gastos en México: cómo llevar la cuenta de los meses sin intereses, qué mirar antes de pagar y qué app conviene según tu caso.",
+    blurb: "Si compras a meses sin intereses, tu gasto del mes no es lo que gastaste este mes.",
+    answer:
+      "En México el problema de fondo no es registrar lo que gastas hoy: es que una parte de lo que pagas este mes se decidió hace medio año. Con dos o tres compras a 12 o 18 meses sin intereses corriendo en paralelo, el total del mes se ve bajo mientras el ingreso ya está comprometido, y eso no aparece en ninguna app que sume movimientos sueltos. Antes de elegir, fíjate si la app entiende una compra a meses como una sola compra repartida y no como un cargo mensual suelto. Después mira lo de siempre: cuánto tarda cargar un gasto a mano, porque de eso depende que sigas usándola en dos meses.",
+  },
+  {
     slug: "apps-para-dividir-gastos-con-tu-pareja",
     title: "Cómo dividir gastos con tu pareja sin pelearse por la planilla",
     metaTitle: "Apps para dividir gastos con tu pareja (2026): cómo elegir",
