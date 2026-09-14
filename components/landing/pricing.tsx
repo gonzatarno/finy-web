@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Check, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useT } from "@/hooks/use-t"
+import { PAGO_UNICO } from "@/lib/content/site"
 
 type Period = "monthly" | "yearly"
 
@@ -32,6 +33,9 @@ const COPY = {
     saveText: (pct: number) => `ahorra ${pct}%`,
     orYear: "o",
     paidYearly: "pagado por año",
+    unicoPrefijo: "o",
+    unicoMonto: (precio: number) => `$${precio} una vez`,
+    unicoSufijo: "y es tuyo para siempre",
     trialNote: "Todos los nuevos usuarios reciben",
     trialBold: "14 días de PRO gratis",
     trialNote2: "al instalar la app. Sin tarjeta.",
@@ -70,6 +74,9 @@ const COPY = {
     saveText: (pct: number) => `save ${pct}%`,
     orYear: "or",
     paidYearly: "billed yearly",
+    unicoPrefijo: "or",
+    unicoMonto: (precio: number) => `$${precio} once`,
+    unicoSufijo: "and it is yours forever",
     trialNote: "Every new user gets",
     trialBold: "14 days of PRO free",
     trialNote2: "when they install the app. No credit card.",
@@ -256,6 +263,22 @@ export function Pricing() {
                   <p className={`mt-1 text-[12px] ${plan.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
                     {t.orYear} <span className={`font-semibold ${plan.highlight ? "text-white" : "text-zinc-900"}`}>${plan.yearlyPrice} {t.perYear}</span>{" "}
                     <span className={`font-semibold ${plan.highlight ? "text-[#CEFD55]" : "text-zinc-700"}`}>({t.saveText(yearlyDiscount(plan))})</span>
+                  </p>
+                )}
+
+                {/*
+                  * El pago único sólo cuelga de Pro, y sólo cuando existe.
+                  * Va como una línea más abajo del precio y no como una tercera
+                  * pestaña: quien entra a una página de precios ya viene
+                  * eligiendo entre mensual y anual, y meter una opción más
+                  * adelante de esa decisión la hace más lenta, no más clara. El
+                  * que lo busca lo encuentra igual.
+                  */}
+                {PAGO_UNICO.disponible && plan.highlight && (
+                  <p className="mt-1 text-[12px] text-zinc-400">
+                    {t.unicoPrefijo}{" "}
+                    <span className="font-semibold text-white">{t.unicoMonto(PAGO_UNICO.price)}</span>{" "}
+                    {t.unicoSufijo}
                   </p>
                 )}
 

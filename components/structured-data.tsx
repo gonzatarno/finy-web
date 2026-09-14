@@ -7,6 +7,8 @@
  * y en public/llms.txt.
  */
 
+import { PAGO_UNICO } from "@/lib/content/site"
+
 const SITE = "https://www.finyapp.io"
 const APP_STORE = "https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721"
 const PLAY_STORE = "https://play.google.com/store/apps/details?id=com.finy.app"
@@ -96,6 +98,20 @@ const application = {
       priceCurrency: "USD",
       description: "Plan Pro facturado por año.",
     },
+    /*
+     * El pago único entra al JSON-LD recién cuando se puede comprar. Un precio
+     * publicado acá lo levantan buscadores y asistentes, y queda dando vueltas
+     * mucho después de que se corrija: es el peor lugar para adelantarse.
+     */
+    ...(PAGO_UNICO.disponible
+      ? [{
+          "@type": "Offer",
+          name: "Pro (pago único)",
+          price: String(PAGO_UNICO.price),
+          priceCurrency: "USD",
+          description: "Plan Pro con un solo pago, sin renovación.",
+        }]
+      : []),
   ],
   // 14 días de PRO gratis al instalar, sin tarjeta.
   isAccessibleForFree: true,

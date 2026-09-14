@@ -33,6 +33,24 @@ export const PLANS = [
   },
 ] as const
 
+/**
+ * El pago único de Pro.
+ *
+ * `disponible` está en false a propósito. La opción vive en el bundle de la
+ * app, así que hasta que Apple y Google aprueben la versión que la trae, la web
+ * estaría ofreciendo algo que el usuario no puede comprar cuando abre la app.
+ * Eso además es motivo de rechazo en revisión: la ficha y la web tienen que
+ * coincidir con lo que la app hace. El día que la versión salga se pone en true
+ * y aparece en la web, en el JSON-LD y en llms.txt de una sola vez.
+ */
+export const PAGO_UNICO = {
+  disponible: false,
+  plan: "Pro",
+  price: 99,
+  /** Contra los 39,99 al año: se paga solo a los dos años y medio. */
+  equivaleAAnios: 2.5,
+} as const
+
 export const MERCADO_PAGO_COUNTRIES = [
   "Argentina",
   "Brasil",
