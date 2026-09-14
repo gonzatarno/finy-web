@@ -46,7 +46,7 @@ export const PLANS = [
 export const PAGO_UNICO = {
   disponible: false,
   plan: "Pro",
-  price: 99,
+  price: 99.99,
   /** Contra los 39,99 al año: se paga solo a los dos años y medio. */
   equivaleAAnios: 2.5,
 } as const
