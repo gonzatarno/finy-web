@@ -23,9 +23,9 @@ import { APP_STORE, PLAY_STORE, PAGO_UNICO } from "@/lib/content/site"
  */
 
 export const metadata: Metadata = {
-  title: "El taller de Finy: en qué anda la app, contado por quien la hace",
+  title: "El taller de Finy: en qué estamos trabajando y qué ya salió",
   description:
-    "Qué se está construyendo en Finy, qué ya salió y qué se decidió no hacer, con el motivo de cada decisión. Los que compraron con el pago único pueden contestarle directo a quien la hace.",
+    "Qué estamos construyendo en Finy, qué ya salió y qué decidimos no hacer, con el motivo de cada decisión. Los que compraron con el pago único pueden escribirnos directo.",
   alternates: { canonical: "/taller" },
   openGraph: {
     title: "El taller de Finy",
@@ -59,13 +59,13 @@ type Entrada = {
 }
 
 /*
- * En primera persona a propósito. "La estoy mirando" tiene a alguien adentro;
- * "En estudio" no. Cuando lo que se ofrece es que del otro lado hay una persona
- * que lee, la etiqueta de estado es el lugar más barato para demostrarlo.
+ * En primera persona del plural. "Lo estamos mirando" tiene a alguien adentro,
+ * que es lo que hay que demostrar; el singular además cuenta que Finy la hace
+ * una sola persona, que es cierto pero no aporta en una página de precios.
  */
 const ETIQUETA: Record<Estado, string> = {
-  abierta: "Lo estoy pensando",
-  en_estudio: "Lo estoy mirando",
+  abierta: "Lo estamos pensando",
+  en_estudio: "Lo estamos mirando",
   en_curso: "En construcción",
   lista: "Ya está",
   no_va: "No va",
@@ -166,9 +166,8 @@ function Cabecera({ propuestas }: { propuestas: Entrada[] | null }) {
           El taller
         </h1>
         <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-zinc-400 sm:text-[19px]">
-          En qué anda Finy, contado por quien la hace. Lo que se está
-          construyendo, lo que ya salió y lo que se decidió no hacer, con el
-          motivo de cada decisión.
+          En qué anda Finy. Lo que estamos construyendo, lo que ya salió y lo
+          que decidimos no hacer, con el motivo de cada decisión.
         </p>
 
         {hayDatos && (
@@ -202,9 +201,9 @@ function ComoSeParticipa() {
   return (
     <ol className="mt-10 grid gap-4 sm:grid-cols-3">
       {[
-        ["Acá se cuenta", "Qué se está construyendo, qué salió y qué se decidió no hacer."],
-        ["Vos contestás", "Si no estás de acuerdo o te falta algo, le escribís. Lo lee sólo él."],
-        ["Te contesta", "La respuesta aparece en el taller, adentro de tu app."],
+        ["Contamos", "Qué estamos construyendo, qué salió y qué decidimos no hacer."],
+        ["Contestás", "Si no estás de acuerdo o te falta algo, nos escribís. Lo leemos sólo nosotros."],
+        ["Te contestamos", "La respuesta aparece en el taller, adentro de tu app."],
       ].map(([que, como], i) => (
         <li key={que} className="rounded-2xl bg-zinc-50 p-5">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-950 text-[12px] font-bold text-white">
@@ -231,15 +230,15 @@ export default async function TallerPage() {
       <Prose>
         <p>
           La mayoría de las apps te dejan un formulario de sugerencias que nadie
-          lee. Acá es al revés: Finy la hace una sola persona, y acá va contando
-          en qué anda, qué salió y qué decidió no hacer, con el motivo.
+          lee. Acá es al revés: contamos en qué andamos, qué salió y qué
+          decidimos no hacer, con el motivo de cada decisión.
         </p>
         <p>
           <strong>Los que compraron Finy con el pago único pueden
-          contestarle.</strong> No es un foro ni una comunidad: lo que escribís
-          lo lee sólo él y te contesta él. No es una recompensa por gastar más,
-          es que quien paga una vez se queda para siempre, y alguien que se queda
-          para siempre opina distinto que alguien que está probando.
+          contestarnos.</strong> No es un foro ni una comunidad: lo que escribís
+          lo leemos sólo nosotros y te contestamos. No es una recompensa por
+          gastar más, es que quien paga una vez se queda para siempre, y alguien
+          que se queda para siempre opina distinto que alguien que está probando.
         </p>
       </Prose>
 
@@ -259,7 +258,7 @@ export default async function TallerPage() {
 
       {propuestas !== null && propuestas.length === 0 && (
         <p className="mt-10 rounded-2xl bg-zinc-50 p-5 text-[15px] leading-relaxed text-zinc-600">
-          El taller recién abre. Lo que se esté construyendo va a aparecer acá.
+          El taller recién abre. Lo que estemos construyendo va a aparecer acá.
         </p>
       )}
 
@@ -279,7 +278,7 @@ export default async function TallerPage() {
         propuestas={de("lista")}
       />
       <Grupo
-        titulo="Lo que no voy a hacer"
+        titulo="Lo que no vamos a hacer"
         cuando="Con el motivo. Un no sin explicación no sirve para nada."
         propuestas={de("no_va")}
       />
@@ -290,7 +289,7 @@ export default async function TallerPage() {
             <p>
               Comprando Finy Pro con el pago único: <strong>US$ {PAGO_UNICO.price}</strong>,
               una vez, sin renovación. Se compra desde la app, en la pestaña
-              &ldquo;Una vez&rdquo;, y a partir de ahí podés escribirle directo
+              &ldquo;Una vez&rdquo;, y a partir de ahí podés escribirnos directo
               sobre cualquiera de estas decisiones.
             </p>
           ) : (
