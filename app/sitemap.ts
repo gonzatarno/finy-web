@@ -23,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    /*
+     * El taller cambia cada vez que alguien propone algo, así que "daily".
+     * Es la única página del sitio cuyo contenido no lo escribimos nosotros.
+     */
+    { url: `${SITE}/taller`, lastModified, changeFrequency: "daily", priority: 0.7 },
     { url: `${SITE}/centro-legal`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/politica-privacidad`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/condiciones-servicios`, lastModified, changeFrequency: "yearly", priority: 0.3 },
