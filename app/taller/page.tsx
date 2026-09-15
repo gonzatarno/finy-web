@@ -127,11 +127,14 @@ function Tarjeta({ p }: { p: Entrada }) {
         * se termina la página. Un único botón abajo de todo obliga a bajar con
         * la idea en la cabeza, y para cuando se llega ya se perdió.
         *
-        * Lleva al dashboard, que pide entrar con la cuenta: eso es el "login
-        * para opinar" y no hace falta construir nada aparte.
+        * Lleva al taller de la app, a ESTA entrada, no a la raíz del dashboard.
+        * Dejar a la persona en la home y que vuelva a buscar el taller sola no
+        * funciona: el impulso de decir algo no sobrevive a dos pantallas de
+        * búsqueda. Y ese dominio ya tiene la sesión, así que el que está
+        * logueado escribe sin pasar por ningún login.
         */}
       <a
-        href={DASHBOARD}
+        href={`${DASHBOARD}/taller#${p.id}`}
         className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-950 underline underline-offset-4"
       >
         Opinar sobre esto
