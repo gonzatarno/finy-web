@@ -11,7 +11,14 @@ import { APP_STORE, PLAY_STORE } from "@/lib/content/site"
  * crawlers de buscadores y de asistentes IA.
  */
 
-function ContentNav() {
+/*
+ * Se exporta porque el taller arma su propia cabecera.
+ *
+ * Es la única página del sitio que no empieza en blanco: su identidad es que se
+ * da vuelta, igual que adentro de la app. Pero la navegación y el pie tienen
+ * que ser los mismos, así que se reusan en vez de copiarse.
+ */
+export function ContentNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">

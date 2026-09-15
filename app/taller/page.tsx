@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ContentLayout, Prose, Section } from "@/components/content/content-layout"
+import { ContentNav, Prose, Section } from "@/components/content/content-layout"
+import { Footer } from "@/components/landing/footer"
 import { APP_STORE, PLAY_STORE, PAGO_UNICO } from "@/lib/content/site"
 
 /**
@@ -129,16 +130,92 @@ function Grupo({ titulo, cuando, propuestas }: { titulo: string; cuando: string;
   )
 }
 
+/*
+ * La cabecera oscura, la misma idea que adentro de la app.
+ *
+ * Todo el sitio es blanco. Esta página no, y no es capricho: el taller tiene
+ * que parecer otro lugar antes de que se lea una palabra, porque lo que se
+ * ofrece es justamente entrar a otro lugar. Una página igual a las demás,
+ * explicando que hay un espacio aparte, se contradice sola.
+ */
+function Cabecera({ propuestas }: { propuestas: Propuesta[] | null }) {
+  const salieron = (propuestas ?? []).filter((p) => p.estado === "lista").length
+  const votos = (propuestas ?? []).reduce((n, p) => n + p.votos, 0)
+  const hayDatos = propuestas !== null && propuestas.length > 0
+
+  return (
+    <header className="bg-zinc-950 px-4 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-14">
+      <div className="mx-auto max-w-3xl">
+        <nav className="mb-9 text-[13px] text-zinc-500">
+          {trail.map((t, i) => (
+            <span key={t.href}>
+              {i > 0 && <span className="px-2">/</span>}
+              {i === trail.length - 1
+                ? <span className="text-zinc-300">{t.label}</span>
+                : <Link href={t.href} className="hover:text-zinc-300">{t.label}</Link>}
+            </span>
+          ))}
+        </nav>
+
+        <h1 className="text-[40px] font-extrabold leading-[1] tracking-tight text-white sm:text-[58px]">
+          El taller
+        </h1>
+        <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-zinc-400 sm:text-[19px]">
+          Acá se decide qué se construye en Finy. Cualquiera puede mirar: lo que
+          se está haciendo, lo que está en debate y lo que se descartó, con el
+          motivo de cada decisión.
+        </p>
+
+        {hayDatos && (
+          <div className="mt-9 flex gap-10">
+            {([
+              [propuestas!.length, propuestas!.length === 1 ? "propuesta" : "propuestas"],
+              [votos, votos === 1 ? "voto" : "votos"],
+              [salieron, salieron === 1 ? "salió de acá" : "salieron de acá"],
+            ] as [number, string][]).map(([n, t]) => (
+              <div key={t}>
+                <p className="text-[28px] font-extrabold leading-none text-[#CEFD55]">{n}</p>
+                <p className="mt-1.5 text-[12px] font-medium text-zinc-500">{t}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+  )
+}
+
+/** Los tres pasos, la respuesta a "¿y yo qué hago acá?". */
+function ComoSeParticipa() {
+  return (
+    <ol className="mt-10 grid gap-4 sm:grid-cols-3">
+      {[
+        ["Alguien propone", "Cuenta algo que le falta o le molesta de la app."],
+        ["Se discute", "Los demás votan y comentan. Las que más mueven suben."],
+        ["Hay una respuesta", "Cada propuesta termina con una decisión escrita, incluso las que no van."],
+      ].map(([que, como], i) => (
+        <li key={que} className="rounded-2xl bg-zinc-50 p-5">
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-950 text-[12px] font-bold text-white">
+            {i + 1}
+          </span>
+          <p className="mt-3 text-[15px] font-bold text-zinc-950">{que}</p>
+          <p className="mt-1 text-[14px] leading-relaxed text-zinc-600">{como}</p>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 export default async function TallerPage() {
   const propuestas = await traer()
   const de = (e: Estado) => (propuestas ?? []).filter((p) => p.estado === e)
 
   return (
-    <ContentLayout
-      trail={trail}
-      title="El taller"
-      intro="Acá se decide qué se construye en Finy. Cualquiera puede mirar: lo que se está haciendo, lo que está en debate y lo que se descartó, con el motivo de cada decisión. Proponen y votan los que compraron Finy con el pago único."
-    >
+    <>
+      <ContentNav />
+      <Cabecera propuestas={propuestas} />
+      <main className="bg-white">
+        <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <Prose>
         <p>
           La mayoría de las apps tienen un formulario de sugerencias que nadie
@@ -153,6 +230,8 @@ export default async function TallerPage() {
           distinta sobre hacia dónde va la app que alguien que la está probando.
         </p>
       </Prose>
+
+      <ComoSeParticipa />
 
       {propuestas === null && (
         /*
@@ -228,6 +307,9 @@ export default async function TallerPage() {
           </a>
         </div>
       </Section>
-    </ContentLayout>
+        </article>
+      </main>
+      <Footer />
+    </>
   )
 }
