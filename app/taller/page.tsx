@@ -264,22 +264,22 @@ export default async function TallerPage() {
       )}
 
       <Grupo
-        titulo="En construcción"
+        titulo="Lo que estoy construyendo"
         cuando="Decidido y en camino."
         propuestas={de("en_curso")}
       />
       <Grupo
-        titulo="En debate"
+        titulo="Lo que estoy pensando"
         cuando="Todavía sin decidir del todo."
         propuestas={de("abierta").concat(de("en_estudio"))}
       />
       <Grupo
-        titulo="Ya salió"
-        cuando="Y cuándo."
+        titulo="Lo que ya salió"
+        cuando="Y en qué versión."
         propuestas={de("lista")}
       />
       <Grupo
-        titulo="Lo que no se va a hacer"
+        titulo="Lo que no voy a hacer"
         cuando="Con el motivo. Un no sin explicación no sirve para nada."
         propuestas={de("no_va")}
       />
