@@ -5,6 +5,9 @@
  */
 
 export const SITE = "https://www.finyapp.io"
+/** La app en el navegador. Es donde se entra con la cuenta para opinar. */
+export const DASHBOARD = "https://dashboard.finyapp.io"
+
 export const APP_STORE = "https://apps.apple.com/us/app/finy-control-de-gastos-con-ia/id6760370721"
 export const PLAY_STORE = "https://play.google.com/store/apps/details?id=com.finy.app"
 

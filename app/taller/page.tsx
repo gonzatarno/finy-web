@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ContentNav, Prose, Section } from "@/components/content/content-layout"
 import { Footer } from "@/components/landing/footer"
-import { APP_STORE, PLAY_STORE, PAGO_UNICO } from "@/lib/content/site"
+import { APP_STORE, PLAY_STORE, PAGO_UNICO, DASHBOARD } from "@/lib/content/site"
 
 /**
  * El taller, de puertas afuera.
@@ -119,6 +119,23 @@ function Tarjeta({ p }: { p: Entrada }) {
           {p.respuesta}
         </p>
       )}
+
+      {/*
+        * "Opinar" en cada tarjeta y no una sola vez al final.
+        *
+        * La opinión aparece cuando se termina de leer algo concreto, no cuando
+        * se termina la página. Un único botón abajo de todo obliga a bajar con
+        * la idea en la cabeza, y para cuando se llega ya se perdió.
+        *
+        * Lleva al dashboard, que pide entrar con la cuenta: eso es el "login
+        * para opinar" y no hace falta construir nada aparte.
+        */}
+      <a
+        href={DASHBOARD}
+        className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-950 underline underline-offset-4"
+      >
+        Opinar sobre esto
+      </a>
     </li>
   )
 }
@@ -202,8 +219,8 @@ function ComoSeParticipa() {
     <ol className="mt-10 grid gap-4 sm:grid-cols-3">
       {[
         ["Contamos", "Qué estamos construyendo, qué salió y qué decidimos no hacer."],
-        ["Contestás", "Si no estás de acuerdo o te falta algo, nos escribís. Lo leemos sólo nosotros."],
-        ["Te contestamos", "La respuesta aparece en el taller, adentro de tu app."],
+        ["Opinás", "Entrás con tu cuenta de Finy y nos escribís. Lo leemos sólo nosotros: no es un comentario público."],
+        ["Te contestamos", "La respuesta te aparece en el taller, con lo que habías escrito arriba."],
       ].map(([que, como], i) => (
         <li key={que} className="rounded-2xl bg-zinc-50 p-5">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-950 text-[12px] font-bold text-white">
