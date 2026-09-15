@@ -23,13 +23,13 @@ import { APP_STORE, PLAY_STORE, PAGO_UNICO } from "@/lib/content/site"
  */
 
 export const metadata: Metadata = {
-  title: "El taller de Finy: quien compra decide qué se construye",
+  title: "El taller de Finy: en qué anda la app, contado por quien la hace",
   description:
-    "Las funciones que se están construyendo en Finy, las que están en debate y las que se descartaron, con el motivo de cada decisión. Proponen y votan los que compraron Finy con el pago único.",
+    "Qué se está construyendo en Finy, qué ya salió y qué se decidió no hacer, con el motivo de cada decisión. Los que compraron con el pago único pueden contestarle directo a quien la hace.",
   alternates: { canonical: "/taller" },
   openGraph: {
     title: "El taller de Finy",
-    description: "Qué se está construyendo, qué se debate y qué se descartó. Con el motivo de cada decisión.",
+    description: "Qué se está construyendo, qué salió y qué no se va a hacer. Con el motivo de cada decisión.",
     type: "article",
   },
 }
@@ -49,20 +49,23 @@ const API = `${process.env.FINY_API ?? "https://dashboard.finyapp.io"}/api/talle
 
 type Estado = "abierta" | "en_estudio" | "en_curso" | "lista" | "no_va"
 
-type Propuesta = {
+type Entrada = {
   id: string
   titulo: string
   cuerpo: string
   estado: Estado
   respuesta: string | null
-  autor: string
-  votos: number
-  comentarios: number
+  created_at: string
 }
 
+/*
+ * En primera persona a propósito. "La estoy mirando" tiene a alguien adentro;
+ * "En estudio" no. Cuando lo que se ofrece es que del otro lado hay una persona
+ * que lee, la etiqueta de estado es el lugar más barato para demostrarlo.
+ */
 const ETIQUETA: Record<Estado, string> = {
-  abierta: "En debate",
-  en_estudio: "La estoy mirando",
+  abierta: "Lo estoy pensando",
+  en_estudio: "Lo estoy mirando",
   en_curso: "En construcción",
   lista: "Ya está",
   no_va: "No va",
@@ -76,12 +79,12 @@ const PINTA: Record<Estado, string> = {
   no_va: "bg-zinc-100 text-zinc-600",
 }
 
-async function traer(): Promise<Propuesta[] | null> {
+async function traer(): Promise<Entrada[] | null> {
   try {
     const r = await fetch(API, { next: { revalidate } })
     if (!r.ok) return null
     const d = await r.json()
-    return (d.propuestas ?? []) as Propuesta[]
+    return (d.entradas ?? []) as Entrada[]
   } catch {
     return null
   }
@@ -92,18 +95,20 @@ const trail = [
   { href: "/taller", label: "El taller" },
 ]
 
-function Tarjeta({ p }: { p: Propuesta }) {
+/*
+ * Sin contadores.
+ *
+ * Un "2 personas votaron esto" abajo de una entrada dice en voz alta que acá no
+ * hay nadie, que es lo único que esta página no puede decir. Lo que tiene que
+ * mostrar es que hay alguien trabajando y decidiendo, y para eso los números de
+ * otra gente no aportan nada.
+ */
+function Tarjeta({ p }: { p: Entrada }) {
   return (
     <li className="rounded-2xl border border-zinc-200 p-5">
-      <div className="flex items-center gap-3">
-        <span className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-bold ${PINTA[p.estado]}`}>
-          {ETIQUETA[p.estado]}
-        </span>
-        <span className="text-[13px] text-zinc-400">
-          {p.votos} {p.votos === 1 ? "voto" : "votos"}
-          {p.comentarios > 0 && ` · ${p.comentarios} ${p.comentarios === 1 ? "comentario" : "comentarios"}`}
-        </span>
-      </div>
+      <span className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-bold ${PINTA[p.estado]}`}>
+        {ETIQUETA[p.estado]}
+      </span>
 
       <h3 className="mt-3 text-[18px] font-bold leading-snug text-zinc-950">{p.titulo}</h3>
       <p className="mt-2 text-[15px] leading-relaxed text-zinc-600">{p.cuerpo}</p>
@@ -118,7 +123,7 @@ function Tarjeta({ p }: { p: Propuesta }) {
   )
 }
 
-function Grupo({ titulo, cuando, propuestas }: { titulo: string; cuando: string; propuestas: Propuesta[] }) {
+function Grupo({ titulo, cuando, propuestas }: { titulo: string; cuando: string; propuestas: Entrada[] }) {
   if (propuestas.length === 0) return null
   return (
     <Section title={titulo}>
@@ -138,9 +143,9 @@ function Grupo({ titulo, cuando, propuestas }: { titulo: string; cuando: string;
  * ofrece es justamente entrar a otro lugar. Una página igual a las demás,
  * explicando que hay un espacio aparte, se contradice sola.
  */
-function Cabecera({ propuestas }: { propuestas: Propuesta[] | null }) {
+function Cabecera({ propuestas }: { propuestas: Entrada[] | null }) {
   const salieron = (propuestas ?? []).filter((p) => p.estado === "lista").length
-  const votos = (propuestas ?? []).reduce((n, p) => n + p.votos, 0)
+  const enCurso = (propuestas ?? []).filter((p) => p.estado === "en_curso").length
   const hayDatos = propuestas !== null && propuestas.length > 0
 
   return (
@@ -161,17 +166,24 @@ function Cabecera({ propuestas }: { propuestas: Propuesta[] | null }) {
           El taller
         </h1>
         <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-zinc-400 sm:text-[19px]">
-          Acá se decide qué se construye en Finy. Cualquiera puede mirar: lo que
-          se está haciendo, lo que está en debate y lo que se descartó, con el
+          En qué anda Finy, contado por quien la hace. Lo que se está
+          construyendo, lo que ya salió y lo que se decidió no hacer, con el
           motivo de cada decisión.
         </p>
 
         {hayDatos && (
           <div className="mt-9 flex gap-10">
+            {/*
+              * Los números son de lo que se hizo, no de cuánta gente hay.
+              *
+              * "3 en construcción" habla de trabajo; "3 personas votaron" habla
+              * de una multitud que no existe. El primero se sostiene con un solo
+              * usuario y el segundo no.
+              */}
             {([
-              [propuestas!.length, propuestas!.length === 1 ? "propuesta" : "propuestas"],
-              [votos, votos === 1 ? "voto" : "votos"],
-              [salieron, salieron === 1 ? "salió de acá" : "salieron de acá"],
+              [enCurso, enCurso === 1 ? "en construcción" : "en construcción"],
+              [salieron, salieron === 1 ? "ya salió" : "ya salieron"],
+              [propuestas!.length, propuestas!.length === 1 ? "decisión escrita" : "decisiones escritas"],
             ] as [number, string][]).map(([n, t]) => (
               <div key={t}>
                 <p className="text-[28px] font-extrabold leading-none text-[#CEFD55]">{n}</p>
@@ -190,9 +202,9 @@ function ComoSeParticipa() {
   return (
     <ol className="mt-10 grid gap-4 sm:grid-cols-3">
       {[
-        ["Alguien propone", "Cuenta algo que le falta o le molesta de la app."],
-        ["Se discute", "Los demás votan y comentan. Las que más mueven suben."],
-        ["Hay una respuesta", "Cada propuesta termina con una decisión escrita, incluso las que no van."],
+        ["Acá se cuenta", "Qué se está construyendo, qué salió y qué se decidió no hacer."],
+        ["Vos contestás", "Si no estás de acuerdo o te falta algo, le escribís. Lo lee sólo él."],
+        ["Te contesta", "La respuesta aparece en el taller, adentro de tu app."],
       ].map(([que, como], i) => (
         <li key={que} className="rounded-2xl bg-zinc-50 p-5">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-950 text-[12px] font-bold text-white">
@@ -218,16 +230,16 @@ export default async function TallerPage() {
         <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <Prose>
         <p>
-          La mayoría de las apps tienen un formulario de sugerencias que nadie
-          lee. Esto es lo contrario: un lugar chico donde se discute qué falta, y
-          donde las decisiones quedan escritas con el nombre de quien las
-          propuso y la razón por la que se tomaron.
+          La mayoría de las apps te dejan un formulario de sugerencias que nadie
+          lee. Acá es al revés: Finy la hace una sola persona, y acá va contando
+          en qué anda, qué salió y qué decidió no hacer, con el motivo.
         </p>
         <p>
-          <strong>Escriben los que compraron Finy con el pago único.</strong> No
-          es una recompensa por gastar más: es que quien paga una vez se queda
-          para siempre, y alguien que se queda para siempre tiene una opinión
-          distinta sobre hacia dónde va la app que alguien que la está probando.
+          <strong>Los que compraron Finy con el pago único pueden
+          contestarle.</strong> No es un foro ni una comunidad: lo que escribís
+          lo lee sólo él y te contesta él. No es una recompensa por gastar más,
+          es que quien paga una vez se queda para siempre, y alguien que se queda
+          para siempre opina distinto que alguien que está probando.
         </p>
       </Prose>
 
@@ -240,15 +252,14 @@ export default async function TallerPage() {
          * igual. La página sigue explicando lo que tiene que explicar.
          */
         <p className="mt-10 rounded-2xl bg-zinc-50 p-5 text-[15px] leading-relaxed text-zinc-600">
-          El tablero no se pudo cargar en este momento. Está adentro de la app,
-          en Más y después El taller.
+          No se pudo cargar en este momento. Está adentro de la app, en Más y
+          después El taller.
         </p>
       )}
 
       {propuestas !== null && propuestas.length === 0 && (
         <p className="mt-10 rounded-2xl bg-zinc-50 p-5 text-[15px] leading-relaxed text-zinc-600">
-          El taller recién abre. Las primeras propuestas van a aparecer acá
-          apenas alguien las escriba.
+          El taller recién abre. Lo que se esté construyendo va a aparecer acá.
         </p>
       )}
 
@@ -259,12 +270,12 @@ export default async function TallerPage() {
       />
       <Grupo
         titulo="En debate"
-        cuando="Propuestas abiertas. Se votan y se discuten adentro de la app."
+        cuando="Todavía sin decidir del todo."
         propuestas={de("abierta").concat(de("en_estudio"))}
       />
       <Grupo
         titulo="Ya salió"
-        cuando="Empezó como una propuesta de acá."
+        cuando="Y cuándo."
         propuestas={de("lista")}
       />
       <Grupo
@@ -279,8 +290,8 @@ export default async function TallerPage() {
             <p>
               Comprando Finy Pro con el pago único: <strong>US$ {PAGO_UNICO.price}</strong>,
               una vez, sin renovación. Se compra desde la app, en la pestaña
-              &ldquo;Una vez&rdquo;, y a partir de ahí podés proponer, votar y
-              discutir lo que otros proponen.
+              &ldquo;Una vez&rdquo;, y a partir de ahí podés escribirle directo
+              sobre cualquiera de estas decisiones.
             </p>
           ) : (
             <p>
