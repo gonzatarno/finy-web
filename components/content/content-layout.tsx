@@ -26,6 +26,9 @@ export function ContentNav() {
           <Image src="/images/fini-negro-logo.png" alt="Finy" width={94} height={54} className="h-7 w-auto" />
         </Link>
         <div className="flex items-center gap-5">
+          <Link href="/taller" className="hidden text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 sm:block">
+            El taller
+          </Link>
           <Link href="/#precios" className="hidden text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 sm:block">
             Precios
           </Link>

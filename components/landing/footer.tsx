@@ -18,6 +18,12 @@ const COPY = {
     ],
     resourcesH: "Recursos",
     resourcesLinks: [
+      /*
+       * Primero de la lista a propósito. Es lo único del sitio que cambia solo,
+       * y lo único que muestra que del otro lado hay alguien trabajando: las
+       * comparativas y las guías se escriben una vez y quedan quietas.
+       */
+      { href: "/taller", label: "El taller" },
       { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
       { href: "/comparativas", label: "Comparativas" },
       { href: "/guias", label: "Guías" },
@@ -43,6 +49,7 @@ const COPY = {
     ],
     resourcesH: "Resources",
     resourcesLinks: [
+      { href: "/taller", label: "The workshop" },
       { href: "/preguntas-frecuentes", label: "FAQ" },
       { href: "/comparativas", label: "Comparisons" },
       { href: "/guias", label: "Guides" },
