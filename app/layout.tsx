@@ -7,6 +7,7 @@ import { Analytics } from "@/components/analytics"
 import { MetaPixel } from "@/components/meta-pixel"
 import { LanguageProvider } from "@/contexts/language-context"
 import { StructuredData } from "@/components/structured-data"
+import { AsistenteProvider, BurbujaFiny } from "@/components/landing/finy-chat"
 import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -78,7 +79,15 @@ export default function RootLayout({
         <StructuredData />
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            {children}
+            {/*
+              El asistente vive acá arriba porque se dibuja en dos lugares, la
+              sección de la landing y la burbuja de abajo a la derecha, y tiene
+              que ser la misma conversación en los dos.
+            */}
+            <AsistenteProvider>
+              {children}
+              <BurbujaFiny />
+            </AsistenteProvider>
             <Analytics />
             {/*
               MetaPixel usa useSearchParams(), que fuerza render en cliente de
