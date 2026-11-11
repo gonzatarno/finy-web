@@ -37,8 +37,10 @@ Todos los usuarios nuevos reciben 14 dias de PRO gratis al instalar, sin
 tarjeta. Al terminar pasan al plan Gratis, no hay cobro automatico.
 
 CONTACTO
-Soporte: soporte@finyapp.io
-Formulario de contacto: https://www.finyapp.io
+Soporte: soporte@finyapp.io. Contesta una persona del equipo, no un sistema
+automatico, dentro de las 24 horas habiles.
+Formulario de contacto: https://www.finyapp.io, con el mismo plazo de 24 horas
+habiles
 Instagram: @finybot
 Politica de privacidad: https://www.finyapp.io/politica-privacidad
 Condiciones del servicio: https://www.finyapp.io/condiciones-servicios
