@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Chat de Finy, propuesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
+<style>
+  :root{
+    --fondo:#0B0C09; --panel:#0E0F0C; --panel2:#14150F; --burbuja:#1B1D17;
+    --linea:#24261D; --linea2:#2B2E23;
+    --tinta:#EDEDE6; --tinta2:#9FA196; --tinta3:#6E7067;
+    --lima:#CEFD55; --negro:#14150F;
+    --gutter:max(20px, env(safe-area-inset-left,0px));
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--tinta);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .hoja{max-width:860px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter);padding-block:56px 100px}
+
+  h1{font-size:clamp(32px,6vw,46px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:0 0 14px;text-wrap:balance}
+  .bajada{font-size:17px;color:var(--tinta2);max-width:60ch;margin:0}
+  h2{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+  h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--tinta3);margin:0 0 10px}
+  p{margin:0 0 12px;color:var(--tinta2);max-width:64ch}
+  p strong,li strong{color:var(--tinta);font-weight:600}
+  a{color:var(--lima)}
+
+  .punto{border-top:1px solid var(--linea);padding-top:34px;margin-top:34px}
+  .num{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--lima);margin-bottom:10px}
+
+  .par{display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
+  @media(min-width:720px){.par{grid-template-columns:1fr 300px;gap:34px}}
+  .demo{background:var(--panel);border:1px solid var(--linea);border-radius:20px;padding:20px;min-width:0}
+  .demo .pie{font-size:12px;color:var(--tinta3);margin:14px 0 0;text-align:center}
+
+  .decide{background:var(--panel2);border:1px solid var(--linea2);border-radius:14px;padding:14px 16px;margin-top:14px}
+  .decide b{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lima);margin-bottom:6px}
+  .decide p{margin:0;font-size:14px;color:var(--tinta2)}
+
+  ul{margin:0 0 12px;padding-left:18px;color:var(--tinta2)}
+  li{margin-bottom:6px;max-width:62ch}
+
+  /* ---- maqueta de chat compartida ---- */
+  .chat{background:var(--panel);border:1px solid var(--linea);border-radius:18px;overflow:hidden;width:100%;max-width:300px;margin:0 auto}
+  .chat .cab{display:flex;align-items:center;gap:9px;background:var(--panel2);border-bottom:1px solid var(--linea);padding:11px 13px}
+  .chat .cab span{font-size:13px;font-weight:600}
+  .chat .hilo{padding:13px;display:flex;flex-direction:column;gap:9px;min-height:150px}
+  .msj{max-width:85%;padding:8px 11px;font-size:13.5px;line-height:1.5}
+  .mio{align-self:flex-end;background:var(--lima);color:var(--negro);font-weight:500;border-radius:14px 14px 4px 14px}
+  .suyo{align-self:flex-start;background:var(--burbuja);color:#E3E4DC;border-radius:14px 14px 14px 4px}
+
+  /* ---- 1. burbuja ---- */
+  .burbujas{display:flex;gap:28px;align-items:flex-end;justify-content:center;padding:14px 0}
+  .bFig{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .bFig em{font-size:11px;font-style:normal;color:var(--tinta3);letter-spacing:.04em}
+  .bot{display:grid;place-items:center;background:var(--lima);color:var(--negro);box-shadow:0 10px 30px -8px rgba(206,253,85,.3)}
+  .bot.hoy{width:60px;height:60px;border-radius:17px}
+  .bot.nueva{width:52px;height:52px;border-radius:50%;position:relative}
+  .bot.nueva::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(206,253,85,.35);animation:latido 3.4s ease-out infinite}
+  @keyframes latido{0%{transform:scale(.92);opacity:0}30%{opacity:.9}100%{transform:scale(1.22);opacity:0}}
+
+  /* ---- 2. apertura ---- */
+  .escena{position:relative;height:230px;background:var(--panel2);border:1px solid var(--linea);border-radius:14px;overflow:hidden}
+  .escena .chat{position:absolute;right:14px;bottom:76px;max-width:212px;transform-origin:bottom right}
+  .escena .hilo{min-height:0;padding:11px}
+  .escena .bot{position:absolute;right:16px;bottom:16px}
+  .abre{animation:abrir .42s cubic-bezier(.16,1,.3,1) both}
+  @keyframes abrir{from{opacity:0;transform:translateY(12px) scale(.88)}to{opacity:1;transform:none}}
+  .escalonado .msj{animation:entra .5s cubic-bezier(.16,1,.3,1) both}
+  .escalonado .msj:nth-child(1){animation-delay:.18s}
+  .escalonado .msj:nth-child(2){animation-delay:.3s}
+  @keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ---- 3. pensando ---- */
+  .pensando{display:inline-flex;align-items:center;gap:9px;background:var(--burbuja);border-radius:14px 14px 14px 4px;padding:9px 13px;font-size:13.5px;color:var(--tinta2)}
+  .aro{width:13px;height:13px;border-radius:50%;border:1.5px solid rgba(206,253,85,.25);border-top-color:var(--lima);animation:gira .8s linear infinite;flex:none}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  .rotulo{position:relative;display:inline-block;min-width:112px}
+  .rotulo i{position:absolute;left:0;top:0;white-space:nowrap;font-style:normal;opacity:0;animation:turnar 7.5s infinite}
+  .rotulo i:nth-child(1){animation-delay:0s}
+  .rotulo i:nth-child(2){animation-delay:2.5s}
+  .rotulo i:nth-child(3){animation-delay:5s}
+  @keyframes turnar{0%{opacity:0;transform:translateY(5px)}4%,30%{opacity:1;transform:none}34%,100%{opacity:0;transform:translateY(-5px)}}
+  .puntitos{display:flex;gap:5px;background:var(--burbuja);border-radius:14px 14px 14px 4px;padding:13px}
+  .puntitos span{width:6px;height:6px;border-radius:50%;background:#7E8176;animation:pulso 1.2s ease-in-out infinite}
+  .puntitos span:nth-child(2){animation-delay:.16s}
+  .puntitos span:nth-child(3){animation-delay:.32s}
+  @keyframes pulso{0%,100%{opacity:.35}50%{opacity:1}}
+
+  /* ---- 4. campo ---- */
+  .campo{display:flex;align-items:center;gap:9px;background:var(--panel2);border:1px solid var(--linea2);border-radius:13px;padding:9px 11px;position:relative;transition:border-color .25s}
+  .campo::before{content:"";position:absolute;inset:-1px;border-radius:14px;pointer-events:none;opacity:0;transition:opacity .35s;
+    box-shadow:0 0 0 1px rgba(206,253,85,.45), 0 0 22px -4px rgba(206,253,85,.45)}
+  .campo:focus-within::before{opacity:1}
+  .campo input{flex:1;min-width:0;background:none;border:0;outline:none;color:var(--tinta);font:inherit;font-size:13.5px}
+  .campo input::placeholder{color:#65685D}
+  .icono{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;flex:none;border:0;cursor:pointer}
+  .icono.fantasma{background:transparent;color:var(--tinta3)}
+  .icono.lima{background:var(--lima);color:var(--negro)}
+
+  /* ---- 6. audio ---- */
+  .onda{display:flex;align-items:center;gap:3px;height:26px}
+  .onda i{width:3px;border-radius:2px;background:var(--lima);animation:onda 1s ease-in-out infinite}
+  .onda i:nth-child(1){height:8px;animation-delay:0s}
+  .onda i:nth-child(2){height:18px;animation-delay:.1s}
+  .onda i:nth-child(3){height:12px;animation-delay:.2s}
+  .onda i:nth-child(4){height:22px;animation-delay:.3s}
+  .onda i:nth-child(5){height:10px;animation-delay:.4s}
+  .onda i:nth-child(6){height:16px;animation-delay:.5s}
+  @keyframes onda{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+
+  /* ---- 7. historial ---- */
+  .separador{display:flex;align-items:center;gap:10px;color:var(--tinta3);font-size:11.5px;letter-spacing:.06em}
+  .separador::before,.separador::after{content:"";flex:1;height:1px;background:var(--linea2)}
+  .chip{align-self:center;background:transparent;border:1px solid var(--linea2);color:var(--tinta2);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer}
+
+  /* ---- 8. persona ---- */
+  .tarjeta{background:#fff;color:var(--negro);border-radius:14px;padding:13px;max-width:85%;align-self:flex-start}
+  .tarjeta b{display:block;font-size:14px;margin-bottom:3px}
+  .tarjeta p{font-size:12.5px;color:#6F726A;margin:0 0 10px}
+  .tarjeta .fila{display:flex;gap:7px}
+  .tarjeta .fila span{flex:1;text-align:center;font-size:12px;font-weight:600;border-radius:9px;padding:7px 0}
+  .tarjeta .fila .a{background:var(--lima)}
+  .tarjeta .fila .b{background:#F0F1EB;color:#6F726A}
+
+  .nota{border-left:2px solid var(--lima);padding-left:14px;margin:18px 0;font-size:14px;color:var(--tinta2)}
+  .nota b{color:var(--tinta)}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <h1>El chat de Finy, con ganas</h1>
+  <p class="bajada">Nueve decisiones para que la experiencia sea de verdad buena. Cada una con la propuesta, una muestra viva al lado y lo que necesito que decidas.</p>
+
+  <div class="nota">
+    <b>Actualizado.</b> Probé las cuatro piezas de libraries.dev que mandaste. Tres andan y están instaladas: las ves funcionando con nuestros colores en <a href="/lab-chat">/lab-chat</a>. La cuarta, las ondas, no existe para web.
+  </div>
+
+  <div class="nota">
+    <b>Lo que averigüé del motor.</b> Botmaker nos da seis funciones y nada más: abrir, cerrar, mostrar, esconder, mandar texto y definir variables. No hay API para mandar audio, ni para empezar una conversación nueva. La identidad del visitante vive en una cookie de ellos y dura tres meses. Todo lo de abajo está pensado dentro de esos límites, no contra ellos.
+  </div>
+
+  <!-- 1 -->
+  <section class="punto">
+    <span class="num">01</span>
+    <div class="par">
+      <div>
+        <h2>La burbuja: más chica y redonda</h2>
+        <p>Hoy mide 60 píxeles y es un cuadrado redondeado con el logotipo entero adentro. Pesa demasiado para algo que está siempre ahí, y el logotipo a ese tamaño se lee apretado.</p>
+        <p>Propongo <strong>52 píxeles, círculo</strong>, y adentro sólo la isotipo, no la palabra completa. Un anillo que respira cada tres segundos y medio avisa que hay algo sin ser un globo que salta.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>¿Círculo o seguimos con el cuadrado redondeado? Y si querés el anillo que respira o la burbuja quieta hasta que le pasás el mouse.</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="burbujas">
+          <div class="bFig">
+            <div class="bot hoy"><svg viewBox="6 13.4 36 21" height="21" aria-hidden="true"><path d="M42 18.67v9.62c0 3.99-1.96 5.99-5.87 5.99-1.03 0-2.02-.14-2.97-.43-.93-.27-1.7-.66-2.31-1.19l1.19-2a4.6 4.6 0 0 0 1.76.88c.69.24 1.42.36 2.18.36 1.16 0 2.01-.28 2.55-.85.55-.55.82-1.41.82-2.57v-.53a3.9 3.9 0 0 1-1.45 1.08c-.61.24-1.27.36-1.97.36-1.52 0-2.71-.42-3.59-1.25-.86-.84-1.29-2.09-1.29-3.76v-5.82h2.65v5.48c0 1.01.23 1.76.68 2.27.47.5 1.13.75 1.97.75.95 0 1.7-.29 2.25-.87.57-.58.85-1.43.85-2.53v-5.1H42Z" fill="currentColor"/><path d="M24.6 18.58c1.43 0 2.57.42 3.44 1.25.86.83 1.29 2.06 1.29 3.7V30h-2.65v-6.13c0-.99-.23-1.73-.7-2.22-.46-.51-1.13-.76-1.99-.76-.97 0-1.74.29-2.31.89-.56.58-.85 1.42-.85 2.52V30h-2.65V18.71h2.52v1.46c.44-.52.99-.92 1.65-1.18.67-.27 1.42-.4 2.25-.4Z" fill="currentColor"/><path d="M13.72 18.71h2.65V30h-2.65V18.71Zm1.34-1.87c-.48 0-.88-.15-1.21-.44a1.47 1.47 0 0 1-.49-1.14c0-.45.16-.83.49-1.12.33-.31.73-.47 1.21-.47.48 0 .88.15 1.21.44.32.28.49.64.49 1.08 0 .46-.17.86-.49 1.18-.31.31-.71.47-1.21.47Z" fill="currentColor"/><path d="M10.29 16.26c-1.11 0-1.67.61-1.67 1.82v.68h3.11v2.12H8.69V30H6.04V18.04c0-1.2.35-2.15 1.06-2.86.7-.71 1.7-1.06 3-1.06 1 0 1.79.2 2.37.61l-.74 1.99c-.42-.31-.9-.46-1.44-.46Z" fill="currentColor"/></svg></div>
+            <em>hoy, 60</em>
+          </div>
+          <div class="bFig">
+            <div class="bot nueva"><svg viewBox="6 13.4 7 21" height="22" aria-hidden="true"><path d="M10.29 16.26c-1.11 0-1.67.61-1.67 1.82v.68h3.11v2.12H8.69V30H6.04V18.04c0-1.2.35-2.15 1.06-2.86.7-.71 1.7-1.06 3-1.06 1 0 1.79.2 2.37.61l-.74 1.99c-.42-.31-.9-.46-1.44-.46Z" fill="currentColor"/></svg></div>
+            <em>propuesta, 52</em>
+          </div>
+        </div>
+        <p class="pie">A escala real</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="punto">
+    <span class="num">02</span>
+    <div class="par">
+      <div>
+        <h2>Cómo aparece al apretarla</h2>
+        <p>Hoy el panel aparece de golpe, sin transición. Es lo primero que delata que está armado rápido.</p>
+        <p>Propongo que <strong>crezca desde la burbuja</strong>, con el origen abajo a la derecha, en 420 milisegundos y una curva que frena suave al final. Los dos primeros mensajes entran escalonados, uno detrás del otro, no todos juntos. Al cerrar, lo mismo al revés pero más rápido, en 200.</p>
+        <p>Es la biblioteca que ya está instalada en el proyecto, así que no suma peso.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>Mirá la muestra y decime si el tiempo está bien o lo querés más seco.</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="escena">
+          <div class="chat abre">
+            <div class="cab"><span style="color:var(--lima)">finy</span><span>Asistente</span></div>
+            <div class="hilo escalonado">
+              <div class="msj suyo">Hola. ¿Probamos?</div>
+              <div class="msj suyo">Dime un gasto y te muestro cómo lo carga Finy.</div>
+            </div>
+          </div>
+          <div class="bot nueva"><svg viewBox="6 13.4 7 21" height="20" aria-hidden="true"><path d="M10.29 16.26c-1.11 0-1.67.61-1.67 1.82v.68h3.11v2.12H8.69V30H6.04V18.04c0-1.2.35-2.15 1.06-2.86.7-.71 1.7-1.06 3-1.06 1 0 1.79.2 2.37.61l-.74 1.99c-.42-.31-.9-.46-1.44-.46Z" fill="currentColor"/></svg></div>
+        </div>
+        <p class="pie">Recargá la página para verlo otra vez</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="punto">
+    <span class="num">03</span>
+    <div class="par">
+      <div>
+        <h2>Pensando, no escribiendo</h2>
+        <p>Los tres puntitos son la convención de "alguien está tecleando". Acá no hay nadie tecleando: hay un orquestador que elige un agente, busca en una base y redacta. Y se toma entre cinco y veinte segundos, que con puntitos se siente roto.</p>
+        <p>Propongo <strong>decir lo que está pasando</strong>, que además es la verdad y hace el tiempo más corto. El texto cambia cada dos segundos y medio.</p>
+        <p>Lo bueno es que no hay que inventarlo: la consola ya nos dice en qué paso está. Si el orquestador delegó en el agente de consultas, podemos decir "buscando en lo que sé". Arrancaría con tres frases fijas y después lo atamos al paso real.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>Las frases. Puse tres de ejemplo. ¿Te gusta el tono o lo querés más seco, tipo "pensando" y listo?</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="chat">
+          <div class="hilo" style="min-height:0">
+            <div class="msj mio">¿cuánto sale el plan Pro?</div>
+            <div class="pensando" style="align-self:flex-start">
+              <span class="aro"></span>
+              <span class="rotulo"><i>Pensando</i><i>Buscando en lo que sé</i><i>Armando la respuesta</i></span>
+            </div>
+          </div>
+        </div>
+        <p class="pie" style="margin-bottom:10px">Propuesta</p>
+        <div style="display:flex;justify-content:center"><div class="puntitos"><span></span><span></span><span></span></div></div>
+        <p class="pie">Hoy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="punto">
+    <span class="num">04</span>
+    <div class="par">
+      <div>
+        <h2>El campo que se enciende</h2>
+        <p>Esto es lo que te gustó de la página que mandaste. El campo no tiene borde hasta que lo tocás: al enfocarlo aparece un halo verde muy suave, que es la única luz de color en toda la interfaz.</p>
+        <p>Funciona porque es <strong>una sola cosa la que brilla</strong>. Si además brillan los botones y las burbujas, deja de llamar la atención y queda recargado.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>Tocá el campo de al lado. ¿Ese es el nivel o lo querés más fuerte?</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="campo">
+          <input placeholder="Escribe lo tuyo" aria-label="Muestra del campo de texto">
+          <button class="icono fantasma" aria-label="Dictar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></button>
+          <button class="icono lima" aria-label="Enviar">↑</button>
+        </div>
+        <p class="pie">Hacé clic adentro</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="punto">
+    <span class="num">05</span>
+    <div class="par">
+      <div>
+        <h2>Cómo entra cada mensaje</h2>
+        <p>Tres reglas chicas que juntas cambian todo:</p>
+        <ul>
+          <li><strong>El tuyo aparece al instante</strong>, apenas apretás enter, sin esperar al servidor. Ya lo hace y está bien.</li>
+          <li><strong>El de él entra desde abajo</strong>, ocho píxeles, con una opacidad que sube. Nunca aparece de la nada.</li>
+          <li><strong>La tarjeta del gasto entra distinto</strong>: crece apenas, como si se materializara. Es el momento wow de Finy, merece su propia entrada.</li>
+        </ul>
+        <p>Y el scroll: hoy baja con "smooth" siempre. Si estás leyendo algo más arriba y llega una respuesta, te arranca. Propongo que <strong>sólo baje solo si ya estabas abajo</strong>, y si no, aparezca un botoncito "hay algo nuevo".</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>Lo del scroll inteligente suma código. ¿Vale la pena o bajamos siempre y listo?</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="chat">
+          <div class="hilo escalonado" style="min-height:0">
+            <div class="msj mio">gasté 3500 en un café con débito</div>
+            <div class="tarjeta">
+              <b>$3.500</b>
+              <p>Café · Débito</p>
+              <div class="fila"><span class="a">Confirmar</span><span class="b">Editar</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="pie">La tarjeta, con su propia entrada</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="punto">
+    <span class="num">06</span>
+    <div class="par">
+      <div>
+        <h2>Audio: se puede, pero no como audio</h2>
+        <p>Botmaker no tiene forma de recibir un audio desde afuera de su widget. La función que usamos manda texto y nada más, y la que mandaría otra cosa está encerrada adentro de su código.</p>
+        <p>Pero hay un camino mejor, y es el que cuenta la landing: <strong>el navegador escucha y transcribe, y mandamos el texto</strong>. Probé el soporte en esta máquina y está disponible. Mientras hablás se ve la onda y el texto aparece en vivo en el campo, así que podés corregir antes de mandar.</p>
+        <p>Dos cosas honestas: en Firefox no funciona, así que ahí el micrófono no se muestra. Y el navegador pide permiso la primera vez.</p>
+        <p>Lo bueno es que encaja con el producto: el asistente de la landing hace lo mismo que la app, hablarle y que entienda.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>¿Lo hacemos? Es la pieza más grande de todas estas. Si va, la haría después de las animaciones.</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="campo" style="border-color:rgba(206,253,85,.5)">
+          <div class="onda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span style="flex:1;font-size:13.5px;color:var(--tinta2);min-width:0">gasté tres mil quinientos en un…</span>
+          <button class="icono lima" aria-label="Terminar">■</button>
+        </div>
+        <p class="pie">Mientras hablás</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="punto">
+    <span class="num">07</span>
+    <div class="par">
+      <div>
+        <h2>Las conversaciones anteriores: sí se guardan</h2>
+        <p>Lo comprobé hoy. Botmaker guarda la conversación por visitante y <strong>la identidad dura tres meses</strong>. Borré todo lo que el navegador guarda, recargué, y volvió la misma conversación con los veinticuatro mensajes. La identidad vive en una cookie de ellos, no nuestra.</p>
+        <p>Así que no es si guardamos o no: ya se guarda y no lo podemos apagar. La pregunta es qué mostramos.</p>
+        <p>Hoy, quien habló la semana pasada abre la burbuja y cae en el medio de una conversación vieja, sin saber cuándo fue. Y peor: esa conversación vieja <strong>sigue contestando con la configuración que tenía cuando empezó</strong>, que es exactamente el problema que estuvimos persiguiendo.</p>
+        <p>Propongo abrir siempre en el saludo, con lo anterior plegado detrás de una línea con la fecha. Un clic y lo ves.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>Tres opciones: plegado con fecha (lo que propongo), mostrarlo entero como hoy, o no mostrar nada y arrancar siempre limpio. Ojo que la tercera es cosmética: el motor igual se acuerda.</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="chat">
+          <div class="hilo" style="min-height:0">
+            <button class="chip">Ver lo del 6 de noviembre</button>
+            <div class="separador">hoy</div>
+            <div class="msj suyo">Hola de nuevo. ¿En qué te ayudo?</div>
+          </div>
+        </div>
+        <p class="pie">Lo viejo, a un clic</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="punto">
+    <span class="num">08</span>
+    <div class="par">
+      <div>
+        <h2>Si piden hablar con alguien, hoy caen en el vacío</h2>
+        <p>Fui a ver qué hace. El agente tiene una skill que se llama "Pide hablar con alguien" y lo único que hace es <strong>derivar a un humano</strong>, o sea asignar la conversación a una persona en la bandeja de Botmaker. Esa bandeja no la mira nadie.</p>
+        <p>Entonces hoy alguien escribe "quiero hablar con una persona", el bot se calla, y se queda esperando una respuesta que no va a llegar. Es el peor final posible y no se ve desde afuera.</p>
+        <p>Propongo cambiar la skill para que <strong>no derive</strong> y en cambio conteste con una tarjeta: el correo, el formulario, y cuánto tarda la respuesta de verdad. Decir "te contestamos por correo" es mucho mejor que un silencio.</p>
+        <div class="decide">
+          <b>Decidí vos</b>
+          <p>¿Sacamos la derivación? Y si sí, qué prometemos de tiempo. Necesito el dato real, no uno inventado.</p>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="chat">
+          <div class="hilo" style="min-height:0">
+            <div class="msj mio">quiero hablar con una persona</div>
+            <div class="tarjeta">
+              <b>Te leemos</b>
+              <p>Escríbenos y te contesta alguien del equipo, no un robot.</p>
+              <div class="fila"><span class="a">Escribir</span><span class="b">Copiar correo</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="pie">En vez del silencio</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="punto">
+    <span class="num">09</span>
+    <h2>Lo que dejaría afuera</h2>
+    <p>Para que lo de arriba se note, conviene no hacer esto:</p>
+    <ul>
+      <li><strong>Que el texto aparezca letra por letra.</strong> Botmaker manda la respuesta entera de una, así que habría que fingirlo. Y agrega dos segundos a una espera que ya es larga.</li>
+      <li><strong>Un avatar animado o una carita.</strong> Compite con la tarjeta del gasto, que es lo que querés que se mire.</li>
+      <li><strong>Sonidos.</strong> En una landing es intrusivo.</li>
+      <li><strong>Que la burbuja salte o mande un globo solo.</strong> Es la primera cosa que la gente aprende a ignorar.</li>
+    </ul>
+  </section>
+
+  <section class="punto">
+    <span class="num">EN QUÉ ORDEN</span>
+    <h2>Por dónde arrancaría</h2>
+    <p>Primero lo que se ve y es barato: <strong>burbuja, apertura, entrada de mensajes, el campo que se enciende y el pensando</strong>. Todo eso es un rato y cambia la sensación por completo.</p>
+    <p>Después las dos decisiones de producto, que necesitan que vos definas: <strong>qué hacemos con lo que piden hablar con alguien</strong> y <strong>cómo mostramos lo anterior</strong>.</p>
+    <p>Último el <strong>audio</strong>, que es lo más grande y lo único que puede salir mal en algún navegador.</p>
+  </section>
+
+</div>
+</body>
+</html>

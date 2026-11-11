@@ -38,7 +38,16 @@ const AI_AGENTS = [
   "DuckAssistBot",
 ]
 
-const DISALLOW = ["/api/", "/pago_exitoso", "/pago_failed", "/pago_pendiente", "/conexion-exitosa"]
+const DISALLOW = [
+  "/api/",
+  "/pago_exitoso",
+  "/pago_failed",
+  "/pago_pendiente",
+  "/conexion-exitosa",
+  // Herramientas internas de diseño, en línea para mirarlas, fuera del índice.
+  "/lab-chat",
+  "/propuesta-chat.html",
+]
 
 export default function robots(): MetadataRoute.Robots {
   return {
