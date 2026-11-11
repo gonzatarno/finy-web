@@ -849,6 +849,18 @@ export function PanelChat({ onCerrar }: { onCerrar?: () => void }) {
     else setHayNuevo(true)
   }, [mensajes, pendiente, esperando, demorado, bajar])
 
+  /* Si bajás a mano hasta el final, el cartel sobra. */
+  useEffect(() => {
+    const caja = hilo.current
+    if (!caja) return
+    const alMover = () => {
+      const cerca = caja.scrollHeight - caja.scrollTop - caja.clientHeight < 90
+      if (cerca) setHayNuevo(false)
+    }
+    caja.addEventListener("scroll", alMover, { passive: true })
+    return () => caja.removeEventListener("scroll", alMover)
+  }, [])
+
   const enviar = (f: string) => {
     mandar(f)
     bajar()
